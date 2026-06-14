@@ -50,3 +50,6 @@ lib/generated/
 public/uploads/
 
 /uploads/
+
+# runtime sqlite (railway volume / build-local)
+/data/
