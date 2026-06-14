@@ -20,28 +20,27 @@ async function seedCollection<T extends { slug: string; category?: string; featu
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   model: any
 ) {
+  // Create-only-if-missing: never overwrite records edited via the dashboard.
+  let created = 0;
   let i = 0;
   for (const item of items) {
-    await model.upsert({
-      where: { slug: item.slug },
-      update: {
-        data: item as object,
-        category: item.category ?? null,
-        featured: item.featured ?? false,
-        sortOrder: i,
-      },
-      create: {
-        slug: item.slug,
-        status: "published",
-        category: item.category ?? null,
-        featured: item.featured ?? false,
-        sortOrder: i,
-        data: item as object,
-      },
-    });
+    const exists = await model.findUnique({ where: { slug: item.slug }, select: { id: true } });
+    if (!exists) {
+      await model.create({
+        data: {
+          slug: item.slug,
+          status: "published",
+          category: item.category ?? null,
+          featured: item.featured ?? false,
+          sortOrder: i,
+          data: item as object,
+        },
+      });
+      created++;
+    }
     i++;
   }
-  console.log(`  ${label}: ${items.length} upserted`);
+  console.log(`  ${label}: ${created} created, ${items.length - created} already existed`);
 }
 
 async function main() {
