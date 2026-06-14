@@ -1,0 +1,4 @@
+# Use `npm install` instead of `npm ci`: the lockfile is generated on Windows
+# and `npm ci` is strict about cross-platform optional dependencies on Linux.
+[phases.install]
+cmds = ["npm install --no-audit --no-fund"]
