@@ -1,0 +1,123 @@
+// Fair Egypt Tours — CMS data model
+// Hybrid "document" model: indexed columns for querying/ordering + a `data`
+// JSON column holding the full typed object, so public pages get the exact
+// same shape they already use. Nothing is ever hard-deleted (deletedAt).
+
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+}
+
+/// Dashboard users (small team, role-based).
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  name         String
+  passwordHash String
+  role         String   @default("editor") // "admin" | "editor"
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+/// Blog posts.
+model Post {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  status    String    @default("published") // "draft" | "published" | "archived"
+  category  String?
+  featured  Boolean   @default(false)
+  sortOrder Int       @default(0)
+  data      Json
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status, deletedAt])
+}
+
+/// Tours.
+model Tour {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  status    String    @default("published")
+  category  String?
+  featured  Boolean   @default(false)
+  sortOrder Int       @default(0)
+  data      Json
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status, deletedAt])
+}
+
+/// Destinations / travel guides.
+model Destination {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  status    String    @default("published")
+  category  String?
+  featured  Boolean   @default(false)
+  sortOrder Int       @default(0)
+  data      Json
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status, deletedAt])
+}
+
+/// Hotels.
+model Hotel {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  status    String    @default("published")
+  category  String?
+  featured  Boolean   @default(false)
+  sortOrder Int       @default(0)
+  data      Json
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status, deletedAt])
+}
+
+/// Travel tips.
+model Tip {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  status    String    @default("published")
+  category  String?
+  featured  Boolean   @default(false)
+  sortOrder Int       @default(0)
+  data      Json
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status, deletedAt])
+}
+
+/// Singleton content for static pages + global site settings.
+/// key = "home" | "about" | "site"
+model PageContent {
+  id        String   @id @default(cuid())
+  key       String   @unique
+  data      Json
+  updatedAt DateTime @updatedAt
+}
+
+/// Uploaded media (served from /public/uploads).
+model Media {
+  id        String   @id @default(cuid())
+  url       String   @unique
+  filename  String
+  width     Int?
+  height    Int?
+  createdAt DateTime @default(now())
+}
