@@ -290,8 +290,8 @@
 
     /* =============== RESPONSIVE =============== */
     @media(max-width:1080px){
-      .hero{background-attachment:scroll}
-      .hero__grid{grid-template-columns:1fr;gap:30px}
+      .hero{background-attachment:scroll;align-items:flex-start;min-height:auto}
+      .hero__grid{grid-template-columns:1fr;gap:26px;padding:128px 0 56px}
       .widget{max-width:460px}
       .promise__grid,.cta__grid{grid-template-columns:1fr;gap:36px}
       .stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:none}.stat:nth-child(n+3){border-top:1px solid var(--line)}
