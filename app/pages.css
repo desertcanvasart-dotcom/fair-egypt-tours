@@ -118,7 +118,7 @@ a.rcard, a.hcard, a.bcard { text-decoration: none; color: inherit; }
 .hcard:hover .gocircle, .bcard:hover .gocircle { background: var(--clay); color: #fff; transform: translateX(3px) rotate(-45deg); }
 
 /* ---------- Hotels ---------- */
-.hgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(285px, 1fr)); gap: 24px; }
+.hgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
 .hcard { background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: var(--sh-sm); display: flex; flex-direction: column; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
 .hcard:hover { transform: translateY(-7px); box-shadow: var(--sh-md); }
 .hcard__media { position: relative; height: 210px; overflow: hidden; }
@@ -164,18 +164,25 @@ a.rcard, a.hcard, a.bcard { text-decoration: none; color: inherit; }
 .hdr { z-index: 70; }
 .hdr__burger { position: relative; z-index: 62; }
 @media (min-width: 1081px) { .mmenu { display: none; } }
-/* header fits small screens: drop the desktop call button, tighten spacing */
+/* header fits small screens: brand left, burger right, drop the call button */
 @media (max-width: 1080px) {
-  .hdr__in { gap: 16px; }
+  .hdr__in { gap: 16px; justify-content: space-between; }
   .hdr__phone { display: none; }
+  .hdr__act { margin-left: auto; }
 }
-@media (max-width: 400px) {
-  .hdr__brand b { font-size: 17px; }
-  .hdr__brand .logo { width: 40px; height: 40px; }
+@media (max-width: 480px) {
+  .hdr__brand b { font-size: 18px; }
+  .hdr__brand small { display: none; } /* drop the tagline so the row never crowds */
 }
+@media (max-width: 360px) {
+  .hdr__brand b { font-size: 16px; }
+  .hdr__brand .logo { width: 38px; height: 38px; }
+}
+/* when the mobile menu is open the overlay is light, so force a dark X */
+.hdr__burger[aria-expanded="true"] { color: var(--nile) !important; border-color: var(--line-2) !important; }
 
 /* ---------- Blog / Tips cards ---------- */
-.bgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 26px; }
+.bgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 26px; }
 .bcard { display: flex; flex-direction: column; background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: var(--sh-sm); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
 .bcard:hover { transform: translateY(-7px); box-shadow: var(--sh-md); }
 .bcard__media { position: relative; height: 210px; overflow: hidden; }
