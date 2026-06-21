@@ -7,10 +7,11 @@ import PageHero from "@/components/PageHero";
 import Cta from "@/components/Cta";
 import Prose from "@/components/Prose";
 import TourCard from "@/components/TourCard";
+import HotelCard from "@/components/HotelCard";
 import JsonLdScript from "@/components/JsonLdScript";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
-import { getDestination, getDestinationSlugs, getTour } from "@/lib/cms";
-import { Pin, Clock, Calendar, BadgeCheck, Car, ArrowRight } from "@/components/icons";
+import { getDestination, getDestinationSlugs, getTour, getHotels } from "@/lib/cms";
+import { Pin, Clock, BadgeCheck, ArrowRight, Whatsapp } from "@/components/icons";
 
 export function generateStaticParams() {
   return getDestinationSlugs().then((slugs) => slugs.map((slug) => ({ slug })));
@@ -40,9 +41,23 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
 
   const relatedTours = (await Promise.all(d.tourSlugs.map((s) => getTour(s)))).filter(Boolean);
   const idealStay = d.quickFacts.find((f) => /stay|days/i.test(f.label))?.value ?? "2–3 days";
-  const highlights = d.thingsToDo.slice(0, 4).map((t) => t.title);
 
-  // FAQ composed from this destination's own content.
+  // Real hotel suggestions for this destination, from the hotels collection.
+  const allHotels = await getHotels();
+  const cityHotels = allHotels
+    .filter((h) => d.name.toLowerCase().includes(h.city.toLowerCase()) || (d.slug === "red-sea" && /hurghada/i.test(h.city)))
+    .slice(0, 3);
+
+  // Photo pool for the experience bento (real destination imagery).
+  const pool = [d.gallery[0], d.gallery[1], d.gallery[2], d.heroImage, d.cardImage].filter(Boolean) as string[];
+
+  const know = [
+    { t: "Getting there", p: d.gettingThere[0] },
+    { t: "When to go", p: d.bestTime },
+    { t: "Why a local guide", p: `In ${d.name}, a licensed local guide ties the sites into one story — handling timing, routing, and the context that turns separate stops into a real understanding of the place.` },
+    { t: "A little history", p: d.history[0] },
+  ];
+
   const faqs = [
     { q: `How many days should I spend in ${d.name}?`, a: `We suggest ${idealStay}. ${d.intro}` },
     { q: `What's the best time to visit ${d.name}?`, a: d.bestTime },
@@ -50,13 +65,6 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
     { q: `Where should I stay in ${d.name}?`, a: `${d.whereToStay[0].area} — ${d.whereToStay[0].note} We match the base to the kind of trip you want.` },
     { q: `Do I need a private guide?`, a: `For ${d.name}, a licensed local guide is recommended — the sites are layered and a good guide turns separate stops into one connected story. Every tour includes one.` },
     { q: `Can the days be adjusted for families or a slower pace?`, a: `Yes. Route order, timing, walking, museum pace, and rest stops are all shaped around your comfort and energy.` },
-  ];
-
-  const tips = [
-    { icon: <Car size={20} />, b: "Getting there", p: d.gettingThere[0] },
-    { icon: <Calendar size={20} />, b: "When to go", p: d.bestTime },
-    { icon: <BadgeCheck size={20} />, b: "A guide changes the visit", p: `With a licensed local guide, ${d.name}'s sites connect into a story rather than separate stops.` },
-    { icon: <Pin size={20} />, b: "A bit of history", p: d.history[0] },
   ];
 
   const destSchema = {
@@ -95,15 +103,14 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
           { icon: <Clock size={16} />, label: `Ideal stay: ${idealStay}` },
           { icon: <BadgeCheck size={16} />, label: `${d.tourCount} tours` },
         ]}
-        pills={highlights}
       />
 
-      {/* Quick facts */}
+      {/* At a glance */}
       <section className="sec" style={{ paddingBottom: 0 }}>
         <div className="shell">
-          <div className="facts reveal">
+          <div className="atglance reveal">
             {d.quickFacts.map((f) => (
-              <div className="fact" key={f.label}><small>{f.label}</small><b>{f.value}</b></div>
+              <div className="ag" key={f.label}><small>{f.label}</small><b>{f.value}</b></div>
             ))}
           </div>
         </div>
@@ -127,19 +134,12 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
                 <div className="row"><span><BadgeCheck size={16} /> Tours</span><b>{d.tourCount} available</b></div>
                 <Link href="/#cta" className="btn btn--solid">Ask for a tailored plan <ArrowRight size={16} /></Link>
               </div>
-              <div className="sidecard reveal" data-delay="1">
-                <h4>Why book with us</h4>
-                <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.7 }}>
-                  Licensed local guides, private air-conditioned transport, and honest itemised pricing — with real
-                  human support from first message to final drop-off.
-                </p>
-              </div>
             </aside>
           </div>
         </div>
       </section>
 
-      {/* Things to do */}
+      {/* Things to do — image bento */}
       <section className="sec" style={{ background: "var(--sand)" }}>
         <div className="shell">
           <div className="sec-top">
@@ -149,12 +149,15 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
               <p className="reveal" data-delay="2">The places and moments worth building your days around.</p>
             </div>
           </div>
-          <div className="xgrid">
+          <div className="xbento reveal">
             {d.thingsToDo.map((t, i) => (
-              <article className="xcard reveal" data-delay={(i % 4) + 1} key={t.title}>
-                <span className="n">{String(i + 1).padStart(2, "0")}</span>
-                <h3>{t.title}</h3>
-                <p>{t.text}</p>
+              <article key={t.title} className={`xtile${i === 0 ? " xtile--big" : i === 3 ? " xtile--wide" : ""}`}>
+                <div className="img" style={{ backgroundImage: `url('${pool[i % pool.length]}')` }} />
+                <div className="xtile__b">
+                  <span className="k">{d.name}</span>
+                  <h3>{t.title}</h3>
+                  <p>{t.text}</p>
+                </div>
               </article>
             ))}
           </div>
@@ -173,35 +176,39 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
                 visits, and softer evenings make the whole trip more rewarding. {d.bestTime}
               </p>
             </div>
-            <div className="d-stay">
-              <b>{idealStay}</b>
-              <span>Recommended</span>
-            </div>
+            <div className="d-stay"><b>{idealStay}</b><span>Recommended</span></div>
           </div>
         </div>
       </section>
 
-      {/* Where to stay */}
+      {/* Where to stay — areas + real hotels */}
       <section className="sec" style={{ background: "var(--sand)" }}>
         <div className="shell">
           <div className="sec-top">
             <div className="kicker reveal"><i>—</i> <span>Where to stay</span> <span className="ln" /></div>
             <div className="sec-top__row">
               <h2 className="display reveal" data-delay="1">Pick the base that fits your trip.</h2>
-              <p className="reveal" data-delay="2">Where you stay quietly shapes the whole experience — here&apos;s how each area feels.</p>
+              <p className="reveal" data-delay="2">Where you stay quietly shapes the whole experience — here&apos;s how each area feels, plus stays we&apos;d actually book.</p>
             </div>
           </div>
-          <div className="staygrid">
+
+          <div className="arealist reveal">
             {d.whereToStay.map((w, i) => (
-              <article className="staycard reveal" data-delay={(i % 2) + 1} key={w.area}>
-                <span className="num">{String(i + 1).padStart(2, "0")}</span>
-                <div>
-                  <h3>{w.area}</h3>
-                  <p>{w.note}</p>
-                </div>
-              </article>
+              <div className="arearow" key={w.area}>
+                <span className="ai">{String(i + 1).padStart(2, "0")}</span>
+                <div><h3>{w.area}</h3><p>{w.note}</p></div>
+              </div>
             ))}
           </div>
+
+          {cityHotels.length > 0 ? (
+            <>
+              <h3 className="subhead reveal" style={{ marginTop: 52 }}>Hand-picked stays in {d.name}</h3>
+              <div className="hgrid">
+                {cityHotels.map((h, i) => <HotelCard key={h.slug} hotel={h} delay={(i % 3) + 1} />)}
+              </div>
+            </>
+          ) : null}
         </div>
       </section>
 
@@ -223,22 +230,23 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
         </section>
       ) : null}
 
-      {/* Good to know */}
+      {/* Good to know — photo + list */}
       <section className="sec" style={{ background: "var(--sand)" }}>
         <div className="shell">
-          <div className="tipwrap">
-            <div>
-              <div className="kicker reveal"><i>—</i> <span>Good to know</span> <span className="ln" /></div>
-              <h2 className="display reveal" data-delay="1" style={{ marginTop: 18 }}>The practical details matter.</h2>
-              <p className="reveal" data-delay="2" style={{ color: "var(--muted)", marginTop: 14, maxWidth: "34ch" }}>
-                Small decisions — timing, routing, and where you base yourself — make the biggest difference to how {d.name} feels.
-              </p>
+          <div className="sec-top" style={{ marginBottom: 36 }}>
+            <div className="kicker reveal"><i>—</i> <span>Good to know</span> <span className="ln" /></div>
+            <div className="sec-top__row">
+              <h2 className="display reveal" data-delay="1">The practical details that matter.</h2>
+              <p className="reveal" data-delay="2">Small decisions — timing, routing, and where you base yourself — make the biggest difference.</p>
             </div>
-            <div className="tipgrid">
-              {tips.map((t) => (
-                <div className="tipcard reveal" key={t.b}>
-                  <span className="ti">{t.icon}</span>
-                  <div><b>{t.b}</b><p>{t.p}</p></div>
+          </div>
+          <div className="know">
+            <div className="know__img reveal" style={{ backgroundImage: `url('${d.gallery[1] || d.heroImage}')` }} role="img" aria-label={`${d.name} scenery`} />
+            <div className="reveal" data-delay="1">
+              {know.map((k, i) => (
+                <div className="know__item" key={k.t}>
+                  <span className="ki">{String(i + 1).padStart(2, "0")}</span>
+                  <div><b>{k.t}</b><p>{k.p}</p></div>
                 </div>
               ))}
             </div>
@@ -264,20 +272,27 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
       {/* FAQ */}
       <section className="sec" style={{ background: "var(--sand)" }}>
         <div className="shell">
-          <div className="sec-top">
-            <div className="kicker reveal"><i>—</i> <span>FAQ</span> <span className="ln" /></div>
-            <div className="sec-top__row">
-              <h2 className="display reveal" data-delay="1">Questions travellers ask before {d.name}.</h2>
-              <p className="reveal" data-delay="2">Honest answers, drawn from how we actually plan these trips.</p>
+          <div className="qa2">
+            <div className="qa2__intro">
+              <div className="kicker reveal"><i>—</i> <span>FAQ</span> <span className="ln" /></div>
+              <h2 className="display reveal" data-delay="1" style={{ marginTop: 16, fontSize: "clamp(30px,3.6vw,46px)" }}>
+                Questions before {d.name}.
+              </h2>
+              <p className="reveal" data-delay="2" style={{ color: "var(--muted)", marginTop: 14, maxWidth: "34ch" }}>
+                Can&apos;t find it here? Message us — a real person replies, usually within a few hours.
+              </p>
+              <a href="https://wa.me/" className="btn btn--dark reveal" data-delay="2" style={{ marginTop: 22 }}>
+                <Whatsapp size={16} /> Ask on WhatsApp
+              </a>
             </div>
-          </div>
-          <div className="faq-grid">
-            {faqs.map((f, i) => (
-              <article className="fcard reveal" data-delay={(i % 2) + 1} key={f.q}>
-                <h4><i>Q.</i>{f.q}</h4>
-                <p>{f.a}</p>
-              </article>
-            ))}
+            <div className="qa2__list reveal" data-delay="1">
+              {faqs.map((f) => (
+                <div className="qa2__item" key={f.q}>
+                  <h4>{f.q}</h4>
+                  <p>{f.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

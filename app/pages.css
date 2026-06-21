@@ -128,6 +128,57 @@
 .tipcard p { font-size: 14px; color: var(--muted); margin: 0; }
 @media (max-width: 920px) { .tipwrap { grid-template-columns: 1fr; gap: 28px; } }
 
+/* ---- redesigned: at-a-glance facts (editorial strip, not boxed cards) ---- */
+.atglance { display: flex; flex-wrap: wrap; border-top: 1px solid var(--line-2); border-bottom: 1px solid var(--line-2); }
+.atglance .ag { flex: 1 1 180px; padding: 26px 30px 26px 0; margin-right: 30px; border-right: 1px solid var(--line); }
+.atglance .ag:last-child { border-right: none; margin-right: 0; }
+.atglance small { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--clay-dark); font-weight: 800; margin-bottom: 10px; }
+.atglance b { font-family: var(--font-playfair), serif; font-weight: 600; font-size: clamp(19px, 2vw, 24px); color: var(--nile); line-height: 1.1; }
+@media (max-width: 680px) { .atglance .ag { flex-basis: 45%; margin-right: 0; padding-right: 16px; border-bottom: 1px solid var(--line); } .atglance .ag:nth-child(2n) { border-right: none; } }
+
+/* ---- redesigned: things-to-do image bento ---- */
+.xbento { display: grid; grid-template-columns: repeat(4, 1fr); grid-auto-rows: 255px; gap: 16px; }
+.xtile { position: relative; border-radius: 20px; overflow: hidden; box-shadow: var(--sh-md); isolation: isolate; }
+.xtile--big { grid-column: span 2; grid-row: span 2; }
+.xtile--wide { grid-column: span 2; }
+.xtile .img { position: absolute; inset: 0; background-size: cover; background-position: center; transform: scale(1.03); transition: transform 1s var(--ease); }
+.xtile:hover .img { transform: scale(1.1); }
+.xtile::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(7,28,40,0) 34%, rgba(7,28,40,.9) 100%); z-index: 1; }
+.xtile__b { position: absolute; inset: auto 0 0 0; z-index: 2; padding: 24px; color: #fff; }
+.xtile__b .k { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--clay-soft); font-weight: 800; }
+.xtile__b h3 { font-family: var(--font-playfair), serif; font-size: 23px; margin: 6px 0; line-height: 1.12; }
+.xtile__b p { font-size: 13px; color: rgba(255,255,255,.85); max-width: 44ch; }
+.xtile--big .xtile__b h3 { font-size: 30px; }
+@media (max-width: 1080px) { .xbento { grid-template-columns: 1fr 1fr; grid-auto-rows: 220px; } .xtile--big, .xtile--wide { grid-column: span 2; grid-row: span 1; } }
+@media (max-width: 560px) { .xbento { grid-template-columns: 1fr; } .xtile--big, .xtile--wide { grid-column: span 1; } }
+
+/* ---- redesigned: choosing a base (areas as a clean list) ---- */
+.arealist { display: grid; grid-template-columns: 1fr 1fr; gap: 0 48px; }
+.arearow { display: grid; grid-template-columns: auto 1fr; gap: 16px; align-items: baseline; padding: 22px 0; border-top: 1px solid var(--line); }
+.arearow .ai { font-family: var(--font-playfair), serif; font-style: italic; color: var(--clay); font-size: 18px; }
+.arearow h3 { font-family: var(--font-playfair), serif; font-size: 20px; color: var(--nile); margin-bottom: 6px; }
+.arearow p { font-size: 14px; color: var(--muted); }
+@media (max-width: 760px) { .arealist { grid-template-columns: 1fr; } }
+
+/* ---- redesigned: good to know (photo + list) ---- */
+.know { display: grid; grid-template-columns: .92fr 1.08fr; gap: 50px; align-items: center; }
+.know__img { border-radius: 22px; height: 440px; background-size: cover; background-position: center; box-shadow: var(--sh-lg); }
+.know__item { display: grid; grid-template-columns: 38px 1fr; gap: 16px; padding: 22px 0; border-top: 1px solid var(--line); }
+.know__item:first-child { border-top: none; }
+.know__item .ki { font-family: var(--font-playfair), serif; font-style: italic; color: var(--clay); font-size: 18px; }
+.know__item b { display: block; color: var(--nile); font-size: 17px; margin-bottom: 5px; }
+.know__item p { color: var(--muted); font-size: 14.5px; line-height: 1.65; }
+@media (max-width: 920px) { .know { grid-template-columns: 1fr; gap: 30px; } .know__img { height: 300px; order: -1; } }
+
+/* ---- redesigned: FAQ two-column ---- */
+.qa2 { display: grid; grid-template-columns: .8fr 1.2fr; gap: 50px; align-items: start; }
+.qa2__intro { position: sticky; top: 110px; }
+.qa2__list { border-top: 1px solid var(--line-2); }
+.qa2__item { padding: 26px 0; border-bottom: 1px solid var(--line); }
+.qa2__item h4 { font-family: var(--font-playfair), serif; font-size: 21px; color: var(--nile); margin-bottom: 10px; line-height: 1.25; }
+.qa2__item p { color: var(--muted); font-size: 15px; line-height: 1.75; max-width: 64ch; }
+@media (max-width: 920px) { .qa2 { grid-template-columns: 1fr; gap: 24px; } .qa2__intro { position: static; } }
+
 /* ---------- Itinerary timeline ---------- */
 .itin { display: grid; border-left: 2px solid var(--line-2); margin: 6px 0 0 8px; }
 .istop { position: relative; padding: 0 0 28px 30px; }
