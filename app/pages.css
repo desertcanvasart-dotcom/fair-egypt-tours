@@ -81,6 +81,53 @@
 .fitem b { display: block; color: var(--nile); font-size: 16px; margin-bottom: 4px; }
 .fitem p { font-size: 14px; color: var(--muted); margin: 0; }
 
+/* ===================================================================
+   DESTINATION GUIDE (detail page) — editorial sections
+   =================================================================== */
+.phero__pills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
+.phero__pills span { display: inline-flex; align-items: center; gap: 8px; padding: 8px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,.26); background: rgba(255,255,255,.08); color: rgba(255,255,255,.92); font-size: 13px; font-weight: 600; }
+.phero__pills span::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--clay-soft); }
+
+/* "What defines" / experiences */
+.xgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 18px; }
+.xcard { position: relative; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 26px 24px; box-shadow: var(--sh-sm); overflow: hidden; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.xcard:hover { transform: translateY(-6px); box-shadow: var(--sh-md); }
+.xcard::after { content: ''; position: absolute; right: -30px; top: -30px; width: 110px; height: 110px; border-radius: 50%; background: rgba(201,121,74,.1); }
+.xcard .n { position: relative; font-family: var(--font-playfair), serif; font-style: italic; font-size: 18px; color: var(--clay); }
+.xcard h3 { position: relative; font-family: var(--font-playfair), serif; font-size: 21px; color: var(--nile); margin: 14px 0 8px; line-height: 1.15; }
+.xcard p { position: relative; font-size: 14px; color: var(--muted); margin: 0; }
+
+/* "How long to stay" band */
+.duration { position: relative; overflow: hidden; display: grid; grid-template-columns: 1fr auto; gap: 36px; align-items: center; border-radius: 24px; padding: clamp(30px, 5vw, 52px); color: #fff; box-shadow: var(--sh-lg); background: linear-gradient(140deg, var(--nile-dark), var(--nile)); }
+.duration::before { content: ''; position: absolute; right: -8%; top: -30%; width: 46%; height: 120%; border-radius: 50%; background: radial-gradient(circle, rgba(201,121,74,.2), transparent 65%); }
+.duration .d-copy { position: relative; }
+.duration .d-copy .kicker { color: var(--clay-soft); margin-bottom: 16px; }
+.duration .d-copy .kicker .ln { background: rgba(255,255,255,.3); }
+.duration h2 { font-family: var(--font-playfair), serif; font-size: clamp(26px, 3.4vw, 40px); color: #fff; margin-bottom: 14px; }
+.duration p { color: rgba(255,255,255,.78); max-width: 50ch; }
+.duration .d-stay { position: relative; text-align: center; background: rgba(255,255,255,.07); border: 1px solid rgba(255,255,255,.16); border-radius: 18px; padding: 26px 34px; min-width: 180px; }
+.duration .d-stay b { display: block; font-family: var(--font-playfair), serif; font-size: clamp(30px, 5vw, 46px); color: var(--clay-soft); line-height: 1; }
+.duration .d-stay span { display: block; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: rgba(255,255,255,.7); margin-top: 10px; }
+@media (max-width: 720px) { .duration { grid-template-columns: 1fr; } }
+
+/* Where to stay — numbered */
+.staygrid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.staycard { display: grid; grid-template-columns: 74px 1fr; gap: 18px; align-items: start; background: #fff; border: 1px solid var(--line); border-radius: 18px; padding: 22px; box-shadow: var(--sh-sm); transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
+.staycard:hover { transform: translateY(-4px); box-shadow: var(--sh-md); }
+.staycard .num { width: 64px; height: 64px; border-radius: 18px; display: grid; place-items: center; background: var(--sand); color: var(--clay-dark); font-family: var(--font-playfair), serif; font-size: 26px; font-weight: 700; }
+.staycard h3 { font-family: var(--font-playfair), serif; font-size: 20px; color: var(--nile); margin-bottom: 6px; }
+.staycard p { font-size: 14px; color: var(--muted); }
+@media (max-width: 720px) { .staygrid { grid-template-columns: 1fr; } .staycard { grid-template-columns: 54px 1fr; } .staycard .num { width: 52px; height: 52px; font-size: 21px; } }
+
+/* Good to know — tips */
+.tipwrap { display: grid; grid-template-columns: .85fr 1.15fr; gap: 48px; align-items: start; }
+.tipgrid { display: grid; gap: 14px; }
+.tipcard { display: flex; gap: 16px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px 24px; box-shadow: var(--sh-sm); }
+.tipcard .ti { width: 42px; height: 42px; flex-shrink: 0; border-radius: 12px; display: grid; place-items: center; background: rgba(201,121,74,.1); color: var(--clay-dark); }
+.tipcard b { display: block; color: var(--nile); font-size: 16px; margin-bottom: 5px; }
+.tipcard p { font-size: 14px; color: var(--muted); margin: 0; }
+@media (max-width: 920px) { .tipwrap { grid-template-columns: 1fr; gap: 28px; } }
+
 /* ---------- Itinerary timeline ---------- */
 .itin { display: grid; border-left: 2px solid var(--line-2); margin: 6px 0 0 8px; }
 .istop { position: relative; padding: 0 0 28px 30px; }

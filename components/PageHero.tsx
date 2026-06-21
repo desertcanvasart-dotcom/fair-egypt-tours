@@ -9,6 +9,7 @@ export default function PageHero({
   image,
   crumbs,
   meta,
+  pills,
 }: {
   kicker: string;
   title: React.ReactNode;
@@ -16,6 +17,7 @@ export default function PageHero({
   image: string;
   crumbs: Crumb[];
   meta?: MetaItem[];
+  pills?: string[];
 }) {
   return (
     <section
@@ -35,6 +37,11 @@ export default function PageHero({
               {meta.map((m, i) => (
                 <span className="pm" key={i}>{m.icon}{m.label}</span>
               ))}
+            </div>
+          ) : null}
+          {pills && pills.length > 0 ? (
+            <div className="phero__pills">
+              {pills.map((p) => <span key={p}>{p}</span>)}
             </div>
           ) : null}
         </div>

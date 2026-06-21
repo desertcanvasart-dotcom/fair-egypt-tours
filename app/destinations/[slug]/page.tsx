@@ -10,11 +10,10 @@ import TourCard from "@/components/TourCard";
 import JsonLdScript from "@/components/JsonLdScript";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { getDestination, getDestinationSlugs, getTour } from "@/lib/cms";
-import type { Section } from "@/lib/content";
-import { Pin, Clock, ArrowRight, Calendar, BadgeCheck } from "@/components/icons";
+import { Pin, Clock, Calendar, BadgeCheck, Car, ArrowRight } from "@/components/icons";
 
-export async function generateStaticParams() {
-  return (await getDestinationSlugs()).map((slug) => ({ slug }));
+export function generateStaticParams() {
+  return getDestinationSlugs().then((slugs) => slugs.map((slug) => ({ slug })));
 }
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
@@ -40,15 +39,27 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
   if (!d) notFound();
 
   const relatedTours = (await Promise.all(d.tourSlugs.map((s) => getTour(s)))).filter(Boolean);
+  const idealStay = d.quickFacts.find((f) => /stay|days/i.test(f.label))?.value ?? "2–3 days";
+  const highlights = d.thingsToDo.slice(0, 4).map((t) => t.title);
 
-  const sections: Section[] = [
-    ...d.overview,
-    { heading: "A little history", paras: d.history },
-    { heading: "Getting there", paras: d.gettingThere },
-    { heading: "Best time to visit", paras: [d.bestTime] },
+  // FAQ composed from this destination's own content.
+  const faqs = [
+    { q: `How many days should I spend in ${d.name}?`, a: `We suggest ${idealStay}. ${d.intro}` },
+    { q: `What's the best time to visit ${d.name}?`, a: d.bestTime },
+    { q: `How do I get to ${d.name}?`, a: d.gettingThere[0] },
+    { q: `Where should I stay in ${d.name}?`, a: `${d.whereToStay[0].area} — ${d.whereToStay[0].note} We match the base to the kind of trip you want.` },
+    { q: `Do I need a private guide?`, a: `For ${d.name}, a licensed local guide is recommended — the sites are layered and a good guide turns separate stops into one connected story. Every tour includes one.` },
+    { q: `Can the days be adjusted for families or a slower pace?`, a: `Yes. Route order, timing, walking, museum pace, and rest stops are all shaped around your comfort and energy.` },
   ];
 
-  const schema = {
+  const tips = [
+    { icon: <Car size={20} />, b: "Getting there", p: d.gettingThere[0] },
+    { icon: <Calendar size={20} />, b: "When to go", p: d.bestTime },
+    { icon: <BadgeCheck size={20} />, b: "A guide changes the visit", p: `With a licensed local guide, ${d.name}'s sites connect into a story rather than separate stops.` },
+    { icon: <Pin size={20} />, b: "A bit of history", p: d.history[0] },
+  ];
+
+  const destSchema = {
     "@context": "https://schema.org",
     "@type": "TouristDestination",
     name: d.name,
@@ -57,21 +68,22 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
     address: { "@type": "PostalAddress", addressRegion: d.region, addressCountry: "EG" },
     touristType: "Cultural & historical travellers",
     ...(d.thingsToDo?.length
-      ? {
-          includesAttraction: d.thingsToDo.map((t) => ({
-            "@type": "TouristAttraction",
-            name: t.title,
-            description: t.text,
-          })),
-        }
+      ? { includesAttraction: d.thingsToDo.map((t) => ({ "@type": "TouristAttraction", name: t.title, description: t.text })) }
       : {}),
+  };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
   };
 
   return (
     <>
-      <JsonLdScript data={schema} />
+      <JsonLdScript data={destSchema} />
+      <JsonLdScript data={faqSchema} />
       <BreadcrumbJsonLd items={[{ name: "Destinations", url: "/destinations" }, { name: d.name }]} />
       <Header />
+
       <PageHero
         kicker="Travel Guide"
         title={d.name}
@@ -80,9 +92,10 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
         crumbs={[{ label: "Destinations", href: "/destinations" }, { label: d.name }]}
         meta={[
           { icon: <Pin size={16} />, label: d.region },
-          { icon: <Clock size={16} />, label: d.quickFacts[1]?.value ? `Ideal stay: ${d.quickFacts[1].value}` : "" },
-          { icon: <BadgeCheck size={16} />, label: `${d.tourCount} tours available` },
-        ].filter((m) => m.label)}
+          { icon: <Clock size={16} />, label: `Ideal stay: ${idealStay}` },
+          { icon: <BadgeCheck size={16} />, label: `${d.tourCount} tours` },
+        ]}
+        pills={highlights}
       />
 
       {/* Quick facts */}
@@ -90,62 +103,35 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
         <div className="shell">
           <div className="facts reveal">
             {d.quickFacts.map((f) => (
-              <div className="fact" key={f.label}>
-                <small>{f.label}</small>
-                <b>{f.value}</b>
-              </div>
+              <div className="fact" key={f.label}><small>{f.label}</small><b>{f.value}</b></div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Main + sidebar */}
+      {/* Intro + planner */}
       <section className="sec">
         <div className="shell">
           <div className="article">
             <div className="article__main">
-              <Prose sections={sections} />
-
-              <h2 className="subhead" style={{ marginTop: 48 }}>Where to stay</h2>
-              <div className="flist flist--2">
-                {d.whereToStay.map((w) => (
-                  <div className="fitem" key={w.area}>
-                    <span className="fi"><Pin size={20} /></span>
-                    <div>
-                      <b>{w.area}</b>
-                      <p>{w.note}</p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <h2 className="subhead" style={{ marginTop: 48 }}>Things to do</h2>
-              <div className="flist">
-                {d.thingsToDo.map((t) => (
-                  <div className="fitem" key={t.title}>
-                    <span className="fi"><BadgeCheck size={20} /></span>
-                    <div>
-                      <b>{t.title}</b>
-                      <p>{t.text}</p>
-                    </div>
-                  </div>
-                ))}
+              <div className="kicker reveal"><i>—</i> <span>Why {d.name}</span> <span className="ln" /></div>
+              <div className="reveal" data-delay="1" style={{ marginTop: 18 }}>
+                <Prose sections={d.overview} />
               </div>
             </div>
-
             <aside className="sidecol">
-              <div className="sidecard">
-                <h4>Plan a trip to {d.name}</h4>
-                <div className="row"><span><Calendar size={16} /> Best time</span><b>{d.quickFacts[1]?.value ?? "Flexible"}</b></div>
+              <div className="sidecard reveal">
+                <h4>Plan your {d.name} stay</h4>
+                <div className="row"><span><Clock size={16} /> Ideal stay</span><b>{idealStay}</b></div>
                 <div className="row"><span><Pin size={16} /> Region</span><b>{d.region}</b></div>
                 <div className="row"><span><BadgeCheck size={16} /> Tours</span><b>{d.tourCount} available</b></div>
-                <Link href="/#cta" className="btn btn--solid">Get a fair quote <ArrowRight size={16} /></Link>
+                <Link href="/#cta" className="btn btn--solid">Ask for a tailored plan <ArrowRight size={16} /></Link>
               </div>
-              <div className="sidecard">
+              <div className="sidecard reveal" data-delay="1">
                 <h4>Why book with us</h4>
                 <p style={{ fontSize: 14, color: "var(--muted)", lineHeight: 1.7 }}>
-                  Licensed local guides, private air-conditioned transport, and honest itemised pricing — with
-                  real human support from first message to final drop-off.
+                  Licensed local guides, private air-conditioned transport, and honest itemised pricing — with real
+                  human support from first message to final drop-off.
                 </p>
               </div>
             </aside>
@@ -153,14 +139,80 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
         </div>
       </section>
 
+      {/* Things to do */}
+      <section className="sec" style={{ background: "var(--sand)" }}>
+        <div className="shell">
+          <div className="sec-top">
+            <div className="kicker reveal"><i>—</i> <span>Things to do</span> <span className="ln" /></div>
+            <div className="sec-top__row">
+              <h2 className="display reveal" data-delay="1">The experiences that define {d.name}.</h2>
+              <p className="reveal" data-delay="2">The places and moments worth building your days around.</p>
+            </div>
+          </div>
+          <div className="xgrid">
+            {d.thingsToDo.map((t, i) => (
+              <article className="xcard reveal" data-delay={(i % 4) + 1} key={t.title}>
+                <span className="n">{String(i + 1).padStart(2, "0")}</span>
+                <h3>{t.title}</h3>
+                <p>{t.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* How long to stay */}
+      <section className="sec">
+        <div className="shell">
+          <div className="duration reveal">
+            <div className="d-copy">
+              <div className="kicker"><i>—</i> <span>Suggested duration</span> <span className="ln" /></div>
+              <h2>How long should you stay?</h2>
+              <p>
+                Rushing {d.name} is the most common mistake. Give it room to breathe — early starts, unhurried
+                visits, and softer evenings make the whole trip more rewarding. {d.bestTime}
+              </p>
+            </div>
+            <div className="d-stay">
+              <b>{idealStay}</b>
+              <span>Recommended</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Where to stay */}
+      <section className="sec" style={{ background: "var(--sand)" }}>
+        <div className="shell">
+          <div className="sec-top">
+            <div className="kicker reveal"><i>—</i> <span>Where to stay</span> <span className="ln" /></div>
+            <div className="sec-top__row">
+              <h2 className="display reveal" data-delay="1">Pick the base that fits your trip.</h2>
+              <p className="reveal" data-delay="2">Where you stay quietly shapes the whole experience — here&apos;s how each area feels.</p>
+            </div>
+          </div>
+          <div className="staygrid">
+            {d.whereToStay.map((w, i) => (
+              <article className="staycard reveal" data-delay={(i % 2) + 1} key={w.area}>
+                <span className="num">{String(i + 1).padStart(2, "0")}</span>
+                <div>
+                  <h3>{w.area}</h3>
+                  <p>{w.note}</p>
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Related tours */}
       {relatedTours.length > 0 ? (
-        <section className="sec" style={{ background: "var(--sand)" }}>
+        <section className="sec">
           <div className="shell">
             <div className="sec-top">
-              <div className="kicker reveal"><i>—</i> <span>Tours in {d.name}</span> <span className="ln" /></div>
+              <div className="kicker reveal"><i>—</i> <span>Private tours in {d.name}</span> <span className="ln" /></div>
               <div className="sec-top__row">
-                <h2 className="display reveal" data-delay="1">Fair-priced trips here.</h2>
+                <h2 className="display reveal" data-delay="1">Fair-priced trips, better arranged.</h2>
                 <Link className="btn btn--outline reveal" data-delay="2" href="/tours">All tours <ArrowRight size={16} /></Link>
               </div>
             </div>
@@ -170,6 +222,29 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
           </div>
         </section>
       ) : null}
+
+      {/* Good to know */}
+      <section className="sec" style={{ background: "var(--sand)" }}>
+        <div className="shell">
+          <div className="tipwrap">
+            <div>
+              <div className="kicker reveal"><i>—</i> <span>Good to know</span> <span className="ln" /></div>
+              <h2 className="display reveal" data-delay="1" style={{ marginTop: 18 }}>The practical details matter.</h2>
+              <p className="reveal" data-delay="2" style={{ color: "var(--muted)", marginTop: 14, maxWidth: "34ch" }}>
+                Small decisions — timing, routing, and where you base yourself — make the biggest difference to how {d.name} feels.
+              </p>
+            </div>
+            <div className="tipgrid">
+              {tips.map((t) => (
+                <div className="tipcard reveal" key={t.b}>
+                  <span className="ti">{t.icon}</span>
+                  <div><b>{t.b}</b><p>{t.p}</p></div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* Gallery */}
       <section className="sec">
@@ -186,7 +261,28 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
         </div>
       </section>
 
-      <Cta />
+      {/* FAQ */}
+      <section className="sec" style={{ background: "var(--sand)" }}>
+        <div className="shell">
+          <div className="sec-top">
+            <div className="kicker reveal"><i>—</i> <span>FAQ</span> <span className="ln" /></div>
+            <div className="sec-top__row">
+              <h2 className="display reveal" data-delay="1">Questions travellers ask before {d.name}.</h2>
+              <p className="reveal" data-delay="2">Honest answers, drawn from how we actually plan these trips.</p>
+            </div>
+          </div>
+          <div className="faq-grid">
+            {faqs.map((f, i) => (
+              <article className="fcard reveal" data-delay={(i % 2) + 1} key={f.q}>
+                <h4><i>Q.</i>{f.q}</h4>
+                <p>{f.a}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <Cta heading={`Tell us your dates — we'll shape the right ${d.name} stay.`} />
       <Footer />
     </>
   );
