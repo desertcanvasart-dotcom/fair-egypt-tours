@@ -13,7 +13,6 @@ export const site = {
 export const navLinks = [
   { href: "/tours", label: "Tours" },
   { href: "/destinations", label: "Destinations" },
-  { href: "/hotels", label: "Hotels" },
   { href: "/travel-tips", label: "Travel Tips" },
   { href: "/blog", label: "Blog" },
   { href: "/about", label: "About" },

@@ -18,35 +18,46 @@ async function seedCollection<T extends { slug: string; category?: string; featu
   label: string,
   items: T[],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  model: any
+  model: any,
+  // When true, refresh existing records from the lib source (code is the
+  // source of truth for this collection). Otherwise create-only-if-missing
+  // so dashboard edits are never overwritten by a re-seed.
+  refresh = false
 ) {
-  // Create-only-if-missing: never overwrite records edited via the dashboard.
   let created = 0;
+  let updated = 0;
   let i = 0;
   for (const item of items) {
     const exists = await model.findUnique({ where: { slug: item.slug }, select: { id: true } });
+    const payload = {
+      status: "published",
+      category: item.category ?? null,
+      featured: item.featured ?? false,
+      sortOrder: i,
+      data: item as object,
+    };
     if (!exists) {
-      await model.create({
-        data: {
-          slug: item.slug,
-          status: "published",
-          category: item.category ?? null,
-          featured: item.featured ?? false,
-          sortOrder: i,
-          data: item as object,
-        },
-      });
+      await model.create({ data: { slug: item.slug, ...payload } });
       created++;
+    } else if (refresh) {
+      await model.update({ where: { slug: item.slug }, data: payload });
+      updated++;
     }
     i++;
   }
-  console.log(`  ${label}: ${created} created, ${items.length - created} already existed`);
+  if (refresh) {
+    console.log(`  ${label}: ${created} created, ${updated} refreshed`);
+  } else {
+    console.log(`  ${label}: ${created} created, ${items.length - created} already existed`);
+  }
 }
 
 async function main() {
   console.log("Seeding from lib/*.ts ...");
   await seedCollection("tours", tours, prisma.tour);
-  await seedCollection("destinations", destinations, prisma.destination);
+  // Destinations are refreshed from code — the full city guides live in
+  // lib/destinations.ts and are not edited via the dashboard.
+  await seedCollection("destinations", destinations, prisma.destination, true);
   await seedCollection("hotels", hotels, prisma.hotel);
   await seedCollection("tips", tips, prisma.tip);
   await seedCollection("posts", posts, prisma.post);

@@ -126,6 +126,42 @@ export const hotels: Hotel[] = [
     amenities: ["Central location", "Free Wi-Fi", "Breakfast included", "24h reception", "Airport transfer"],
     category: "Value",
   },
+  {
+    slug: "zamalek-boutique-cairo",
+    name: "Zamalek Boutique House",
+    city: "Cairo",
+    area: "Zamalek, Nile island",
+    stars: 4,
+    rating: "4.7",
+    reviewCount: 640,
+    pricePerNight: 78,
+    image: H("photo-1551882547-ff40c63fe5fa"),
+    gallery: [H("photo-1551882547-ff40c63fe5fa"), H("photo-1582719478250-c89cae4dc85b"), H("photo-1566073771259-6a8506099945")],
+    description: [
+      "A characterful boutique stay on the leafy island of Zamalek, surrounded by cafés, galleries, and quiet tree-lined streets — a calmer side of Cairo a short hop from downtown.",
+      "Individually styled rooms, a rooftop for evening tea, and a genuinely personal welcome.",
+    ],
+    amenities: ["Zamalek location", "Rooftop terrace", "Free Wi-Fi", "Breakfast included", "Airport transfer"],
+    category: "Boutique",
+  },
+  {
+    slug: "garden-city-nile-cairo",
+    name: "Garden City Nile Suites",
+    city: "Cairo",
+    area: "Garden City, Nile-front",
+    stars: 5,
+    rating: "4.8",
+    reviewCount: 1120,
+    pricePerNight: 105,
+    image: H("photo-1582719478250-c89cae4dc85b"),
+    gallery: [H("photo-1582719478250-c89cae4dc85b"), H("photo-1566073771259-6a8506099945"), H("photo-1551882547-ff40c63fe5fa")],
+    description: [
+      "A polished, central five-star on the Nile in Garden City — minutes from the Grand Egyptian Museum, Old Cairo, and the river corniche. Calm, spacious rooms, many with a Nile view.",
+      "Our pick for travellers who want comfort and a genuinely central base for sightseeing.",
+    ],
+    amenities: ["Nile-view rooms", "Rooftop pool", "Spa", "Free Wi-Fi", "Breakfast included", "Airport transfer"],
+    category: "Luxury",
+  },
 ];
 
 export const getHotel = (slug: string) => hotels.find((h) => h.slug === slug);

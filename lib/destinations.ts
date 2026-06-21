@@ -14,7 +14,7 @@ export type Destination = {
   history: string[];
   gettingThere: string[];
   whereToStay: { area: string; note: string }[];
-  thingsToDo: { title: string; text: string }[];
+  thingsToDo: { title: string; text: string; image?: string }[];
   bestTime: string;
   gallery: string[];
   tourSlugs: string[];
@@ -28,50 +28,93 @@ export const destinations: Destination[] = [
     slug: "cairo",
     name: "Cairo & Giza",
     region: "Lower Egypt",
-    tagline: "The pyramids, the museum, and a thousand years of layered history.",
+    tagline: "The pyramids, the great museum, and a thousand years of layered history.",
     heroImage: U("1572252009286-268acec5ca0a", 1900),
     cardImage: U("1572252009286-268acec5ca0a", 800),
     tourCount: 14,
     intro:
-      "Egypt's vast capital pairs the last surviving Ancient Wonder with medieval mosques, Coptic churches, and the world's greatest collection of pharaonic treasure.",
+      "Egypt's vast capital is where almost every journey begins — the last surviving Ancient Wonder on one edge of the city, the world's greatest collection of pharaonic treasure at its heart, and a thousand years of medieval mosques, Coptic churches, and bazaars in between.",
     quickFacts: [
       { label: "Best for", value: "First-time visitors" },
-      { label: "Ideal stay", value: "2–3 days" },
-      { label: "Highlight", value: "Pyramids of Giza" },
-      { label: "Airport", value: "Cairo (CAI)" },
+      { label: "Ideal stay", value: "2–4 days" },
+      { label: "Signature", value: "Pyramids + Grand Egyptian Museum" },
+      { label: "Best base", value: "Giza · Zamalek · Garden City" },
+      { label: "Airport", value: "Cairo International (CAI)" },
     ],
     overview: [
       {
         heading: "Why visit Cairo & Giza",
         paras: [
-          "Cairo is where almost every Egypt trip begins. On its western edge, the Pyramids of Giza and the Great Sphinx rise straight out of the desert, a short drive from the city's hotels. It is the only place on earth where you can stand beside a 4,500-year-old wonder in the morning and wander a medieval bazaar by night.",
-          "Beyond the pyramids, Cairo rewards curiosity: the Grand Egyptian Museum, the alleys of Islamic Cairo, the hanging churches of Coptic Cairo, and the spice-scented lanes of Khan el-Khalili. It rewards a guide even more — the city is big, busy, and far easier with someone who knows it.",
+          "Cairo and Giza are not simply a stop before the Nile — they are the opening chapter of Egypt. On the city's western edge, the Pyramids of Giza and the Great Sphinx rise straight out of the desert, a short drive from your hotel. It is the only place on earth where you can stand beside a 4,500-year-old wonder in the morning and walk a 14th-century bazaar by night.",
+          "Beyond Giza, Cairo holds the brand-new Grand Egyptian Museum, the necropolis of Saqqara where pyramid-building was born, the medieval skyline of Islamic Cairo crowned by the Citadel of Salah al-Din, the old churches of Coptic Cairo, and the spice-scented lanes of Khan el-Khalili. Few cities pack so many eras into one skyline.",
+        ],
+      },
+      {
+        heading: "How to think about the destination",
+        paras: [
+          "Giza gives you the monumental image of Egypt. Saqqara and Dahshur explain how that image was born. The Grand Egyptian Museum gives the whole story context. Islamic and Coptic Cairo show the city's medieval and religious layers, and the Nile gives you pause between them all.",
+          "The most common mistake is trying to 'do Cairo' in one overloaded day. A better stay has rhythm: early starts for the desert sites, unhurried museum time, a good lunch, a historic walk in the cooler afternoon, and a soft evening by the river.",
+        ],
+      },
+      {
+        heading: "Our planning principle",
+        paras: [
+          "We don't build Cairo days as a checklist. We shape them around pace, traffic, heat, hotel location, opening times, and the kind of traveller you are — first-timer, family, history lover, photographer, or slow walker. Two full days is the sensible minimum; three or four make the city feel rewarding rather than overwhelming.",
         ],
       },
     ],
     history: [
-      "Giza's pyramids were built during the Fourth Dynasty (around 2600–2500 BC) as tombs for the pharaohs Khufu, Khafre, and Menkaure. The Great Pyramid stood as the tallest human-made structure for nearly 4,000 years.",
-      "Cairo itself is far younger, founded in 969 AD by the Fatimid dynasty. Over the centuries it grew into the largest city in the medieval Islamic world, leaving a skyline of minarets, madrasas, and gates that still define Old Cairo today.",
+      "Giza's pyramids were built during the Fourth Dynasty, around 2600–2500 BC, as tombs for the pharaohs Khufu, Khafre, and Menkaure. The Great Pyramid of Khufu stood as the tallest human-made structure on earth for nearly 4,000 years, and the Great Sphinx has guarded the plateau ever since.",
+      "Just south at Saqqara stands the Step Pyramid of Djoser (c. 2670 BC) — the world's oldest large stone building and the prototype from which the true pyramids evolved. The nearby fields of Memphis were Egypt's first capital.",
+      "Cairo itself is far younger, founded in 969 AD by the Fatimid dynasty. It grew into the largest city of the medieval Islamic world; Salah al-Din (Saladin) fortified it with the great Citadel in the 12th century, leaving the skyline of minarets, madrasas, and gates that still defines Old Cairo today.",
     ],
     gettingThere: [
-      "Cairo International Airport (CAI) is the main gateway, with direct flights from most of Europe, the Gulf, and beyond. It sits about 45–60 minutes from Giza depending on traffic.",
-      "We include private airport pick-up with every multi-day plan, so a driver meets you at arrivals — no taxi haggling after a long flight.",
-      "Within the city, private car with a driver is the easiest way to get around; ride-hailing apps also work well. We handle all transfers between sights on our tours.",
+      "Cairo International Airport (CAI) is the main gateway, with direct flights from most of Europe, the Gulf, and beyond. It sits roughly 45–60 minutes from Giza depending on traffic.",
+      "We include a private airport pick-up with every multi-day plan, so a driver and guide meet you at arrivals — no taxi haggling after a long flight.",
+      "Within the city, a private car with a driver is by far the easiest way to move; ride-hailing apps work well too. Cairo's traffic is real, so a route planned by geography — not just by wish-list — saves hours every day. We handle all transfers between sights.",
     ],
     whereToStay: [
-      { area: "Giza / Pyramids", note: "Wake up to a pyramid view from your window — best for sunrise photos and an early start." },
-      { area: "Zamalek", note: "A leafy island district with calmer streets, cafés, and boutique hotels by the Nile." },
-      { area: "Downtown / Garden City", note: "Central, walkable, and close to the Egyptian Museum and the river." },
+      { area: "Giza / Pyramids", note: "Wake to a pyramid view from your window — the most dramatic first impression and the easiest early start at Giza. Expect longer drives into central Cairo." },
+      { area: "Zamalek (Nile island)", note: "Leafy, calmer, and full of cafés, restaurants, and galleries. The choice for repeat visitors and softer evenings by the river." },
+      { area: "Garden City / Downtown", note: "Classic Nile-side hotels and the most central base — close to the Grand Egyptian Museum, Old Cairo, and Islamic Cairo." },
+      { area: "New Cairo / Airport", note: "Best for late arrivals, early flights, or business stays — practical, but less atmospheric for sightseeing." },
     ],
     thingsToDo: [
-      { title: "Pyramids of Giza & the Sphinx", text: "Explore the three great pyramids, go inside one, and meet the Sphinx face to face." },
-      { title: "Grand Egyptian Museum", text: "The world's largest archaeological museum, home to Tutankhamun's complete collection." },
-      { title: "Khan el-Khalili Bazaar", text: "A 14th-century market for lanterns, spices, silver, and strong mint tea." },
-      { title: "Islamic & Coptic Cairo", text: "The Citadel of Saladin, the Hanging Church, and centuries of layered faith." },
+      {
+        title: "Pyramids of Giza & the Great Sphinx",
+        text: "The iconic morning: the three great pyramids of Khufu, Khafre, and Menkaure, the chance to go inside one, a panoramic viewpoint, an optional camel ride, and the Sphinx face to face.",
+        image: U("1572252009286-268acec5ca0a", 1100),
+      },
+      {
+        title: "Grand Egyptian Museum (GEM)",
+        text: "The world's largest archaeological museum, beside the pyramids — home to the complete Tutankhamun collection and the grand staircase of colossal statues. Best visited with a guide for context.",
+        image: U("1601050690597-df0568f70950", 1100),
+      },
+      {
+        title: "Saqqara & the Step Pyramid",
+        text: "Where pyramid-building began: Djoser's Step Pyramid, painted tombs, and the open fields of Memphis — often paired with the Red and Bent Pyramids of Dahshur for a deeper ancient-Egypt day.",
+        image: U("1539768942893-daf53e448371", 1100),
+      },
+      {
+        title: "Citadel of Salah al-Din",
+        text: "Saladin's 12th-century fortress on the Mokattam hills, crowned by the alabaster Mosque of Muhammad Ali, with one of the finest panoramas over the whole of Cairo.",
+        image: U("1568322445389-f64ac2515020", 1100),
+      },
+      {
+        title: "Khan el-Khalili & Islamic Cairo",
+        text: "The medieval heart of the city: the 14th-century bazaar for lanterns, spices, silver, and mint tea, plus the historic mosques, gates, and craft streets of Al-Muizz.",
+        image: U("1578321272176-b7bbc0679853", 1100),
+      },
     ],
     bestTime:
-      "October to April brings comfortable, sunny days ideal for sightseeing. Summer (June–August) is hot, so we start tours early and build in shade and rest.",
-    gallery: [U("1572252009286-268acec5ca0a"), U("1578321272176-b7bbc0679853"), U("1601050690597-df0568f70950")],
+      "October to April brings comfortable, sunny days that are ideal for sightseeing — the peak window, so book ahead. Summer (June–August) is hot but quieter and cheaper; we simply start at sunrise, build in shade and rest, and keep afternoons lighter.",
+    gallery: [
+      U("1572252009286-268acec5ca0a"),
+      U("1578321272176-b7bbc0679853"),
+      U("1601050690597-df0568f70950"),
+      U("1568322445389-f64ac2515020"),
+      U("1539768942893-daf53e448371"),
+    ],
     tourSlugs: ["pyramids-sphinx-museum", "islamic-coptic-cairo"],
   },
   {

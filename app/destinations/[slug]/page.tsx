@@ -46,7 +46,7 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
   const allHotels = await getHotels();
   const cityHotels = allHotels
     .filter((h) => d.name.toLowerCase().includes(h.city.toLowerCase()) || (d.slug === "red-sea" && /hurghada/i.test(h.city)))
-    .slice(0, 3);
+    .slice(0, 5);
 
   // Photo pool for the experience bento (real destination imagery).
   const pool = [d.gallery[0], d.gallery[1], d.gallery[2], d.heroImage, d.cardImage].filter(Boolean) as string[];
@@ -151,8 +151,8 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
           </div>
           <div className="xbento reveal">
             {d.thingsToDo.map((t, i) => (
-              <article key={t.title} className={`xtile${i === 0 ? " xtile--big" : i === 3 ? " xtile--wide" : ""}`}>
-                <div className="img" style={{ backgroundImage: `url('${pool[i % pool.length]}')` }} />
+              <article key={t.title} className={`xtile${i === 0 ? " xtile--big" : d.thingsToDo.length === 4 && i === 3 ? " xtile--wide" : ""}`}>
+                <div className="img" style={{ backgroundImage: `url('${t.image ?? pool[i % pool.length]}')` }} />
                 <div className="xtile__b">
                   <span className="k">{d.name}</span>
                   <h3>{t.title}</h3>
@@ -203,9 +203,9 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
 
           {cityHotels.length > 0 ? (
             <>
-              <h3 className="subhead reveal" style={{ marginTop: 52 }}>Hand-picked stays in {d.name}</h3>
-              <div className="hgrid">
-                {cityHotels.map((h, i) => <HotelCard key={h.slug} hotel={h} delay={(i % 3) + 1} />)}
+              <h3 className="subhead reveal" style={{ marginTop: 52 }}>Where to actually stay in {d.name}</h3>
+              <div className="deststay">
+                {cityHotels.map((h, i) => <HotelCard key={h.slug} hotel={h} delay={(i % 5) + 1} />)}
               </div>
             </>
           ) : null}

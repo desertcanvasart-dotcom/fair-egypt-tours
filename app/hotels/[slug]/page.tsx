@@ -56,14 +56,14 @@ export default async function HotelPage({ params }: { params: Promise<{ slug: st
   return (
     <>
       <JsonLdScript data={schema} />
-      <BreadcrumbJsonLd items={[{ name: "Hotels", url: "/hotels" }, { name: h.name }]} />
+      <BreadcrumbJsonLd items={[{ name: "Destinations", url: "/destinations" }, { name: h.name }]} />
       <Header />
       <PageHero
         kicker={`${h.stars}-Star · ${h.category}`}
         title={h.name}
         subtitle={`${h.area}, ${h.city}`}
         image={h.image}
-        crumbs={[{ label: "Hotels", href: "/hotels" }, { label: h.name }]}
+        crumbs={[{ label: "Destinations", href: "/destinations" }, { label: h.name }]}
         meta={[
           { icon: <Star size={16} />, label: `${h.rating} (${h.reviewCount.toLocaleString()} reviews)` },
           { icon: <Pin size={16} />, label: h.city },
@@ -140,7 +140,7 @@ export default async function HotelPage({ params }: { params: Promise<{ slug: st
             <div className="kicker reveal"><i>—</i> <span>More stays</span> <span className="ln" /></div>
             <div className="sec-top__row">
               <h2 className="display reveal" data-delay="1">Other hotels you might like.</h2>
-              <Link className="btn btn--outline reveal" data-delay="2" href="/hotels">All hotels <ArrowRight size={16} /></Link>
+              <Link className="btn btn--outline reveal" data-delay="2" href="/destinations">Browse destinations <ArrowRight size={16} /></Link>
             </div>
           </div>
           <div className="hgrid">

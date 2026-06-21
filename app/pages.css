@@ -217,6 +217,9 @@ a.rcard, a.hcard, a.bcard { text-decoration: none; color: inherit; }
 
 /* ---------- Hotels ---------- */
 .hgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 24px; }
+/* destination "best stays" — fits 3–5 hotels in one row, collapses on mobile */
+.deststay { display: grid; grid-template-columns: repeat(auto-fit, minmax(215px, 1fr)); gap: 18px; }
+@media (max-width: 560px) { .deststay { grid-template-columns: 1fr; } }
 .hcard { background: #fff; border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: var(--sh-sm); display: flex; flex-direction: column; transition: transform .5s var(--ease), box-shadow .5s var(--ease); }
 .hcard:hover { transform: translateY(-7px); box-shadow: var(--sh-md); }
 .hcard__media { position: relative; height: 210px; overflow: hidden; }

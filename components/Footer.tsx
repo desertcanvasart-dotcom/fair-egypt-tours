@@ -30,7 +30,6 @@ export default async function Footer() {
             <h5>Explore</h5>
             <Link href="/tours">Tours</Link>
             <Link href="/destinations">Destinations</Link>
-            <Link href="/hotels">Hotels</Link>
             <Link href="/blog">Blog</Link>
           </div>
           <div className="footer__col">

@@ -10,7 +10,6 @@ export async function GET() {
   const corePages = [
     ["Tours", "/tours", "Browse fair-priced day tours and multi-day Egypt packages with prices up front."],
     ["Destinations", "/destinations", "In-depth travel guides to Egypt's regions — history, where to stay, what to do."],
-    ["Hotels", "/hotels", "Hand-picked, fair-priced hotels across Egypt, from value stays to Nile-view luxury."],
     ["Travel Tips", "/travel-tips", "Practical advice: best time to visit, planning a first trip, visas, budgets."],
     ["Blog", "/blog", "Itineraries, guides and honest stories about travelling Egypt."],
     ["About", "/about", "Who we are, our story, and what 'fair' means to us."],
