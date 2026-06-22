@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import Cta from "@/components/Cta";
 import HotelCard from "@/components/HotelCard";
+import Gallery from "@/components/Gallery";
 import JsonLdScript from "@/components/JsonLdScript";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { getHotel, getHotels, getHotelSlugs } from "@/lib/cms";
@@ -38,7 +39,15 @@ export default async function HotelPage({ params }: { params: Promise<{ slug: st
   const h = await getHotel(slug);
   if (!h) notFound();
 
-  const others = (await getHotels()).filter((x) => x.slug !== h.slug).slice(0, 3);
+  // Nearby hotels first (same destination), then fill from the rest.
+  const allOthers = (await getHotels()).filter((x) => x.slug !== h.slug);
+  const others = [
+    ...allOthers.filter((x) => x.destination === h.destination),
+    ...allOthers.filter((x) => x.destination !== h.destination),
+  ].slice(0, 3);
+
+  // Real photos of the hotel itself.
+  const hotelGallery = h.gallery;
 
   const schema = {
     "@context": "https://schema.org",
@@ -65,8 +74,8 @@ export default async function HotelPage({ params }: { params: Promise<{ slug: st
         image={h.image}
         crumbs={[{ label: "Destinations", href: "/destinations" }, { label: h.name }]}
         meta={[
-          { icon: <Star size={16} />, label: `${h.rating} (${h.reviewCount.toLocaleString()} reviews)` },
-          { icon: <Pin size={16} />, label: h.city },
+          { icon: <Star size={16} />, label: `${h.stars}-star · ${h.category}` },
+          { icon: <Pin size={16} />, label: `${h.area}, ${h.city}` },
           { icon: <BadgeCheck size={16} />, label: `From $${h.pricePerNight} / night` },
         ]}
       />
@@ -76,29 +85,25 @@ export default async function HotelPage({ params }: { params: Promise<{ slug: st
           <div className="article">
             <div className="article__main">
               <h2 className="subhead">About this hotel</h2>
+              <div className="hotelfacts">
+                <span><Star size={15} /> {h.stars}-star</span>
+                <span><BadgeCheck size={15} /> {h.category}</span>
+                <span><Pin size={15} /> {h.area}, {h.city}</span>
+                <span className="hotelfacts__pr">from ${h.pricePerNight}/night</span>
+              </div>
               <div className="prose">
                 {h.description.map((p, i) => <p key={i}>{p}</p>)}
               </div>
 
               <h2 className="subhead" style={{ marginTop: 46 }}>Amenities</h2>
-              <div className="flist flist--2">
+              <ul className="amenlist">
                 {h.amenities.map((a) => (
-                  <div className="fitem" key={a}>
-                    <span className="fi"><BadgeCheck size={20} /></span>
-                    <div><b>{a}</b></div>
-                  </div>
+                  <li key={a}><span className="amenlist__ic"><BadgeCheck size={15} /></span>{a}</li>
                 ))}
-              </div>
+              </ul>
 
-              <h2 className="subhead" style={{ marginTop: 46 }}>Gallery</h2>
-              <figure style={{ margin: 0 }}>
-                <div className="gallery">
-                  {h.gallery.map((g, i) => (
-                    <div key={i} role="img" aria-label={`${h.name} — photo ${i + 1}`} className={`g${i === 0 ? " g--big" : ""}`} style={{ backgroundImage: `url('${g}')` }} />
-                  ))}
-                </div>
-                <figcaption className="sr-only">Photo gallery of {h.name}, {h.city}.</figcaption>
-              </figure>
+              <h2 className="subhead" style={{ marginTop: 46 }}>Photos</h2>
+              <Gallery images={hotelGallery} label={h.name} />
             </div>
 
             <aside className="sidecol">

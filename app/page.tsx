@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
-import Marquee from "@/components/Marquee";
 import Tours from "@/components/Tours";
 import Destinations from "@/components/Destinations";
 import About from "@/components/About";
@@ -19,7 +18,6 @@ export default async function Home() {
       <Header overHero />
       <main id="top">
         <Hero hero={home.hero} />
-        <Marquee />
         <Tours />
         <Destinations />
         <About />

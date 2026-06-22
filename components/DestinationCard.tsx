@@ -6,12 +6,10 @@ export default function DestinationCard({ d, index }: { d: Destination; index: n
   return (
     <Link className="dtile reveal" data-delay={(index % 4) + 1} href={`/destinations/${d.slug}`}>
       <div className="img" style={{ backgroundImage: `url('${d.cardImage}')` }} />
-      <span className="dnum">{String(index + 1).padStart(2, "0")}</span>
-      <span className="dcount">{d.tourCount} tours</span>
       <div className="dtile__b">
+        <span className="dtile__k">{d.region}</span>
         <h3>{d.name}</h3>
-        <p>{d.region}</p>
-        <span className="dgo">Explore <span className="c"><ArrowRight size={14} /></span></span>
+        <span className="dtile__go">Explore guide <ArrowRight size={14} /></span>
       </div>
     </Link>
   );

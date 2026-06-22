@@ -18,16 +18,13 @@ export default function Destinations() {
 
         <div className="dgrid">
           {destinations.map((d, i) => (
-            <article className="dtile reveal" data-delay={i + 1} key={d.name}>
+            <Link className="dtile reveal" data-delay={(i % 4) + 1} key={d.name} href="/destinations">
               <div className="img" style={{ backgroundImage: `url('${d.img}')` }} />
-              <span className="dnum">{d.num}</span>
-              <span className="dcount">{d.count}</span>
               <div className="dtile__b">
                 <h3>{d.name}</h3>
-                <p>{d.sub}</p>
-                <span className="dgo">Explore <span className="c"><ArrowRight size={14} /></span></span>
+                <span className="dtile__go">Explore <ArrowRight size={14} /></span>
               </div>
-            </article>
+            </Link>
           ))}
         </div>
 

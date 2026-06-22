@@ -73,10 +73,19 @@ export default function Interactions() {
       hdrObs.observe(sentinel);
     }
 
+    // --- Flip cards: tap to flip on touch devices (desktop uses :hover) ---
+    const coarse = window.matchMedia("(hover: none)").matches;
+    const onFlipTap = (e: Event) => {
+      const card = (e.target as HTMLElement).closest<HTMLElement>("[data-flip]");
+      if (card) card.classList.toggle("is-flipped");
+    };
+    if (coarse) document.addEventListener("click", onFlipTap);
+
     return () => {
       revealObs?.disconnect();
       hdrObs?.disconnect();
       sentinel?.remove();
+      if (coarse) document.removeEventListener("click", onFlipTap);
     };
   }, [pathname]);
 

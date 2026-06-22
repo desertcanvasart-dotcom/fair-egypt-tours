@@ -19,10 +19,13 @@ async function seedCollection<T extends { slug: string; category?: string; featu
   items: T[],
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   model: any,
-  // When true, refresh existing records from the lib source (code is the
-  // source of truth for this collection). Otherwise create-only-if-missing
-  // so dashboard edits are never overwritten by a re-seed.
-  refresh = false
+  // refresh: update existing records from the lib source (code is the source
+  //   of truth). Otherwise create-only-if-missing so dashboard edits survive.
+  // prune: also delete DB rows whose slug is no longer in the code list — used
+  //   for fully code-authored collections (destinations, hotels) so removed
+  //   entries (e.g. the old red-sea destination, placeholder hotels) disappear.
+  refresh = false,
+  prune = false
 ) {
   let created = 0;
   let updated = 0;
@@ -45,8 +48,14 @@ async function seedCollection<T extends { slug: string; category?: string; featu
     }
     i++;
   }
-  if (refresh) {
-    console.log(`  ${label}: ${created} created, ${updated} refreshed`);
+  let removed = 0;
+  if (prune) {
+    const slugs = items.map((x) => x.slug);
+    const res = await model.deleteMany({ where: { slug: { notIn: slugs } } });
+    removed = res.count;
+  }
+  if (refresh || prune) {
+    console.log(`  ${label}: ${created} created, ${updated} refreshed, ${removed} removed`);
   } else {
     console.log(`  ${label}: ${created} created, ${items.length - created} already existed`);
   }
@@ -55,10 +64,11 @@ async function seedCollection<T extends { slug: string; category?: string; featu
 async function main() {
   console.log("Seeding from lib/*.ts ...");
   await seedCollection("tours", tours, prisma.tour);
-  // Destinations are refreshed from code — the full city guides live in
-  // lib/destinations.ts and are not edited via the dashboard.
-  await seedCollection("destinations", destinations, prisma.destination, true);
-  await seedCollection("hotels", hotels, prisma.hotel);
+  // Destinations and hotels are fully code-authored (the city guides and the
+  // curated hotel list live in lib/*.ts), so we refresh from code and prune
+  // anything no longer listed.
+  await seedCollection("destinations", destinations, prisma.destination, true, true);
+  await seedCollection("hotels", hotels, prisma.hotel, true, true);
   await seedCollection("tips", tips, prisma.tip);
   await seedCollection("posts", posts, prisma.post);
 

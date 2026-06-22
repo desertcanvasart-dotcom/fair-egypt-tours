@@ -9,12 +9,12 @@ import { getDestinations } from "@/lib/cms";
 export const metadata: Metadata = {
   title: "Egypt Destinations & Travel Guides",
   description:
-    "Explore Egypt region by region — Cairo & Giza, Luxor, Aswan, and the Red Sea. In-depth travel guides with history, how to get there, where to stay, things to do, and the best time to visit.",
+    "Explore Egypt region by region — Cairo & Giza, Luxor, Aswan, Abu Simbel, Alexandria, Sharm El Sheikh, the North Coast and Siwa. In-depth guides with history, how to get there, where to stay, things to do, and the best time to visit.",
   alternates: { canonical: "/destinations" },
   openGraph: {
     title: "Egypt Destinations & Travel Guides | Fair Egypt Tours",
     description:
-      "In-depth guides to Cairo, Luxor, Aswan and the Red Sea — history, where to stay, things to do, and the best time to visit.",
+      "In-depth guides to Cairo, Luxor, Aswan, Abu Simbel, Alexandria, Sharm El Sheikh, the North Coast and Siwa — history, where to stay, things to do, and the best time to visit.",
     url: "/destinations",
   },
 };
@@ -37,7 +37,7 @@ export default async function DestinationsPage() {
 
       <section className="sec dest">
         <div className="shell">
-          <div className="dgrid">
+          <div className="dgrid dgrid--four">
             {destinations.map((d, i) => (
               <DestinationCard key={d.slug} d={d} index={i} />
             ))}
