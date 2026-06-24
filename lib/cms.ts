@@ -1,6 +1,7 @@
 import "server-only";
 import { prisma } from "./db";
 import type { TourDetail } from "./tours";
+import type { TourCategory } from "./tour-categories";
 import type { Destination } from "./destinations";
 import type { Hotel } from "./hotels";
 import type { Tip } from "./tips";
@@ -23,6 +24,20 @@ export async function getTour(slug: string): Promise<TourDetail | null> {
 }
 export async function getTourSlugs(): Promise<string[]> {
   const r = await prisma.tour.findMany({ where: PUBLISHED, select: { slug: true } });
+  return r.map((x) => x.slug);
+}
+
+/* ------------------------- Tour categories ------------------------ */
+export async function getTourCategories(): Promise<TourCategory[]> {
+  const rows = await prisma.tourCategory.findMany({ where: PUBLISHED, orderBy: ORDER });
+  return rows.map((r) => r.data as unknown as TourCategory);
+}
+export async function getTourCategory(slug: string): Promise<TourCategory | null> {
+  const r = await prisma.tourCategory.findFirst({ where: { slug, ...PUBLISHED } });
+  return r ? (r.data as unknown as TourCategory) : null;
+}
+export async function getTourCategorySlugs(): Promise<string[]> {
+  const r = await prisma.tourCategory.findMany({ where: PUBLISHED, select: { slug: true } });
   return r.map((x) => x.slug);
 }
 
@@ -92,8 +107,9 @@ export async function getSiteSettings(): Promise<{ site: typeof fallbackSite; na
 /* ----------------------- Sitemap entries -------------------------- */
 export async function getSitemapEntries(): Promise<{ path: string; lastModified: Date }[]> {
   const sel = { slug: true, updatedAt: true } as const;
-  const [tours, dests, hotels, tips, posts] = await Promise.all([
+  const [tours, cats, dests, hotels, tips, posts] = await Promise.all([
     prisma.tour.findMany({ where: PUBLISHED, select: sel }),
+    prisma.tourCategory.findMany({ where: PUBLISHED, select: sel }),
     prisma.destination.findMany({ where: PUBLISHED, select: sel }),
     prisma.hotel.findMany({ where: PUBLISHED, select: sel }),
     prisma.tip.findMany({ where: PUBLISHED, select: sel }),
@@ -103,6 +119,7 @@ export async function getSitemapEntries(): Promise<{ path: string; lastModified:
     rows.map((r) => ({ path: `${base}/${r.slug}`, lastModified: r.updatedAt }));
   return [
     ...map(tours, "/tours"),
+    ...map(cats, "/tours/category"),
     ...map(dests, "/destinations"),
     ...map(hotels, "/hotels"),
     ...map(tips, "/travel-tips"),

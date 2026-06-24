@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import Cta from "@/components/Cta";
 import TourCard from "@/components/TourCard";
+import Gallery from "@/components/Gallery";
 import JsonLdScript from "@/components/JsonLdScript";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ORG_ID } from "@/components/JsonLd";
@@ -21,13 +22,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const t = await getTour(slug);
   if (!t) return {};
+  const metaTitle = t.metaTitle?.trim();
+  const description = t.metaDescription?.trim() || t.summary;
   return {
-    title: `${t.title} — ${t.place}`,
-    description: t.summary,
+    title: metaTitle ? { absolute: metaTitle } : `${t.title} — ${t.place}`,
+    description,
     alternates: { canonical: `/tours/${t.slug}` },
     openGraph: {
-      title: `${t.title} | Fair Egypt Tours`,
-      description: t.summary,
+      title: metaTitle || `${t.title} | Fair Egypt Tours`,
+      description,
       url: `/tours/${t.slug}`,
       images: [{ url: t.heroImage }],
     },
@@ -100,19 +103,19 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
               </div>
 
               <h2 className="subhead" style={{ marginTop: 46 }}>Highlights</h2>
-              <div className="flist flist--2">
-                {t.highlights.map((h) => (
-                  <div className="fitem" key={h}>
-                    <span className="fi"><BadgeCheck size={20} /></span>
-                    <div><b>{h}</b></div>
-                  </div>
+              <ul className="hlist">
+                {t.highlights.map((h, i) => (
+                  <li className="hlist__i" key={h}>
+                    <span className="hlist__n">{String(i + 1).padStart(2, "0")}</span>
+                    <span className="hlist__t">{h}</span>
+                  </li>
                 ))}
-              </div>
+              </ul>
 
-              <h2 className="subhead" style={{ marginTop: 46 }}>Itinerary</h2>
+              <h2 className="subhead" style={{ marginTop: 46 }}>{t.type === "Package" ? "Day-by-day itinerary" : "Itinerary"}</h2>
               <div className="itin">
-                {t.itinerary.map((s) => (
-                  <div className="istop" key={s.time}>
+                {t.itinerary.map((s, i) => (
+                  <div className="istop" key={i}>
                     <span className="t">{s.time}</span>
                     <h4>{s.title}</h4>
                     <p>{s.text}</p>
@@ -137,14 +140,7 @@ export default async function TourPage({ params }: { params: Promise<{ slug: str
               </div>
 
               <h2 className="subhead" style={{ marginTop: 46 }}>Gallery</h2>
-              <figure style={{ margin: 0 }}>
-                <div className="gallery">
-                  {t.gallery.map((g, i) => (
-                    <div key={i} role="img" aria-label={`${t.title} — photo ${i + 1}`} className={`g${i === 0 ? " g--big" : ""}`} style={{ backgroundImage: `url('${g}')` }} />
-                  ))}
-                </div>
-                <figcaption className="sr-only">Photo gallery of {t.title}, {t.place}.</figcaption>
-              </figure>
+              <Gallery images={t.gallery} label={t.title} />
             </div>
 
             <aside className="sidecol">

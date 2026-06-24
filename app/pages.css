@@ -81,6 +81,14 @@
 .fitem b { display: block; color: var(--nile); font-size: 16px; margin-bottom: 4px; }
 .fitem p { font-size: 14px; color: var(--muted); margin: 0; }
 
+/* Tour highlights — editorial numbered list (no boxes) */
+.hlist { display: grid; grid-template-columns: 1fr 1fr; gap: 0 44px; margin: 0; padding: 0; list-style: none; }
+.hlist__i { display: flex; align-items: baseline; gap: 16px; padding: 16px 4px 16px 0; border-bottom: 1px solid var(--line); transition: padding-left .35s var(--ease); }
+.hlist__i:hover { padding-left: 6px; }
+.hlist__n { font-family: var(--font-playfair), serif; font-style: italic; font-size: 17px; color: var(--clay); flex-shrink: 0; min-width: 22px; }
+.hlist__t { font-size: 15.5px; color: var(--nile); font-weight: 600; line-height: 1.5; }
+@media (max-width: 620px) { .hlist { grid-template-columns: 1fr; } }
+
 /* ===================================================================
    DESTINATION GUIDE (detail page) — editorial sections
    =================================================================== */
@@ -322,6 +330,7 @@ a.rcard, a.hcard, a.bcard { text-decoration: none; color: inherit; }
 }
 .mmenu.open { opacity: 1; visibility: visible; transform: none; }
 .mmenu__links { display: flex; flex-direction: column; border-top: 1px solid var(--line); }
+.mmenu__links a.mmenu__sub { font-family: var(--font-inter), sans-serif; font-size: clamp(16px, 4.5vw, 20px); font-weight: 600; color: var(--clay-dark); padding: 13px 0 13px 22px; }
 .mmenu__links a {
   font-family: var(--font-playfair), serif; font-size: clamp(28px, 8vw, 40px);
   color: var(--nile); padding: 18px 0; border-bottom: 1px solid var(--line);
@@ -392,6 +401,41 @@ a.rcard, a.hcard, a.bcard { text-decoration: none; color: inherit; }
 .filters a { padding: 9px 18px; border-radius: 999px; border: 1px solid var(--line-2); font-size: 13.5px; font-weight: 600; color: var(--nile); transition: background .3s var(--ease), color .3s var(--ease), border-color .3s var(--ease); }
 .filters a:hover { background: var(--nile); color: #fff; border-color: var(--nile); }
 .filters a.is-active { background: var(--clay); color: #fff; border-color: var(--clay); }
+/* primary type toggle (Day Tours / Travel Packages) sits above the category chips */
+.filters--type { margin-bottom: 16px; }
+.filters--type a { padding: 10px 20px; font-size: 14px; font-weight: 700; }
+.tours-empty { text-align: center; padding: 54px 20px 72px; }
+.tours-empty .subhead { margin-bottom: 10px; }
+.tours-empty p { color: var(--muted); max-width: 48ch; margin: 0 auto 22px; line-height: 1.7; }
+
+/* Tour-category cards (shown on destination pages) */
+.catrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); gap: 18px; }
+.catcard { display: block; background: #fff; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; box-shadow: 0 14px 30px -22px rgba(16,43,58,.5); transition: transform .45s var(--ease), box-shadow .45s var(--ease); }
+.catcard:hover { transform: translateY(-5px); box-shadow: 0 26px 46px -24px rgba(16,43,58,.55); }
+.catcard .img { aspect-ratio: 16 / 10; background-size: cover; background-position: center; transition: transform 1s var(--ease); }
+.catcard:hover .img { transform: scale(1.05); }
+.catcard__b { padding: 16px 18px 18px; }
+.catcard__b .k { font-size: 11px; letter-spacing: .14em; text-transform: uppercase; color: var(--clay-dark); font-weight: 800; }
+.catcard__b h3 { font-family: var(--font-playfair), serif; font-size: 20px; color: var(--nile); margin: 7px 0 12px; line-height: 1.15; }
+.catcard__go { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; font-weight: 700; color: var(--nile); transition: gap .3s var(--ease), color .3s var(--ease); }
+.catcard__go svg { transition: transform .3s var(--ease); }
+.catcard:hover .catcard__go { color: var(--clay); }
+.catcard:hover .catcard__go svg { transform: translateX(3px); }
+@media (max-width: 560px) { .catrow { grid-template-columns: 1fr 1fr; } }
+
+/* Blog: related-links callout + FAQ section */
+.postrel { margin: 46px 0 8px; padding: 24px 26px; background: var(--sand); border: 1px solid var(--line); border-radius: 16px; }
+.postrel h3 { font-family: var(--font-playfair), serif; font-size: 19px; color: var(--nile); margin-bottom: 10px; }
+.postrel ul { list-style: none; margin: 0; padding: 0; }
+.postrel li { border-top: 1px solid var(--line); }
+.postrel li:first-child { border-top: none; }
+.postrel li a { display: inline-flex; align-items: center; gap: 8px; padding: 11px 0; font-size: 15px; font-weight: 600; color: var(--clay-dark); transition: gap .3s var(--ease), color .3s var(--ease); }
+.postrel li a:hover { gap: 12px; color: var(--clay); }
+.postfaq { margin-top: 50px; padding-top: 36px; border-top: 1px solid var(--line-2); }
+.postfaq h2 { font-family: var(--font-playfair), serif; font-size: clamp(24px, 3vw, 30px); color: var(--nile); margin-bottom: 6px; }
+.postfaq__i { padding: 22px 0; border-bottom: 1px solid var(--line); }
+.postfaq__i h3 { font-family: var(--font-playfair), serif; font-size: 18px; color: var(--nile); margin-bottom: 8px; line-height: 1.3; }
+.postfaq__i p { color: var(--muted); font-size: 15px; line-height: 1.75; margin: 0; }
 
 /* ---------- Two-column rich content ---------- */
 .split { display: grid; grid-template-columns: 1fr 1fr; gap: 56px; align-items: center; }

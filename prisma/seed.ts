@@ -8,6 +8,7 @@
 import bcrypt from "bcryptjs";
 import { prisma } from "../lib/db";
 import { tours } from "../lib/tours";
+import { tourCategories } from "../lib/tour-categories";
 import { destinations } from "../lib/destinations";
 import { hotels } from "../lib/hotels";
 import { tips } from "../lib/tips";
@@ -61,9 +62,23 @@ async function seedCollection<T extends { slug: string; category?: string; featu
   }
 }
 
+// Old placeholder tours (from the first launch) that were replaced by the
+// dashboard-authored catalogue. Removed by slug — never touches new tours.
+const RETIRED_TOUR_SLUGS = [
+  "pyramids-sphinx-museum",
+  "valley-of-the-kings-karnak",
+  "abu-simbel-nile-sail",
+  "nile-cruise-coast-escape",
+  "islamic-coptic-cairo",
+  "alexandria-day-trip",
+];
+
 async function main() {
   console.log("Seeding from lib/*.ts ...");
+  const retired = await prisma.tour.deleteMany({ where: { slug: { in: RETIRED_TOUR_SLUGS } } });
+  if (retired.count) console.log(`  tours: removed ${retired.count} retired placeholder tours`);
   await seedCollection("tours", tours, prisma.tour);
+  await seedCollection("tour-categories", tourCategories, prisma.tourCategory);
   // Destinations and hotels are fully code-authored (the city guides and the
   // curated hotel list live in lib/*.ts), so we refresh from code and prune
   // anything no longer listed.

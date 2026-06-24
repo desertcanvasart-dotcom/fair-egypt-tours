@@ -26,13 +26,30 @@ export default function RecordForm({
   const action = saveRecord.bind(null, collectionKey, id);
   const [state, formAction, pending] = useActionState<SaveState, FormData>(action, undefined);
 
+  // Group fields into titled sections, preserving first-seen order.
+  const groups: { name: string; fields: Field[] }[] = [];
+  for (const f of fields) {
+    const g = f.group ?? "Details";
+    let bucket = groups.find((x) => x.name === g);
+    if (!bucket) { bucket = { name: g, fields: [] }; groups.push(bucket); }
+    bucket.fields.push(f);
+  }
+
+  const singular = collectionPlural.replace(/s$/, "");
+
   return (
     <form action={formAction} className="aform aform--wide">
-      <div className="aform__grid">
-        {fields.map((f) => <FieldInput key={f.name} field={f} data={data} />)}
-      </div>
+      {groups.map((g) => (
+        <section className="aform__sec" key={g.name}>
+          <h3 className="aform__sec-h">{g.name}</h3>
+          <div className="aform__grid">
+            {g.fields.map((f) => <FieldInput key={f.name} field={f} data={data} />)}
+          </div>
+        </section>
+      ))}
 
-      <div className="panel" style={{ padding: 20, marginTop: 8 }}>
+      <section className="aform__sec">
+        <h3 className="aform__sec-h">Publish</h3>
         <div className="aform__grid">
           <div className="afield">
             <label htmlFor="__slug">URL slug</label>
@@ -57,18 +74,20 @@ export default function RecordForm({
               <input name="__featured" type="checkbox" defaultChecked={meta.featured} style={{ width: 18, height: 18 }} />
               Featured
             </label>
-            <span className="hint">Highlights this item (e.g. featured blog post).</span>
+            <span className="hint">Highlights this item (e.g. a featured tour).</span>
           </div>
         </div>
-      </div>
+      </section>
 
       {state?.error ? <p className="aform__err">{state.error}</p> : null}
 
-      <div className="aform__actions">
-        <button type="submit" className="abtn abtn--primary" disabled={pending}>
-          {pending ? "Saving…" : id ? "Save changes" : `Create ${collectionPlural.replace(/s$/, "")}`}
-        </button>
-        <Link href={`/admin/${collectionKey}`} className="abtn abtn--ghost">Cancel</Link>
+      <div className="aform__bar">
+        <div className="aform__bar-in">
+          <Link href={`/admin/${collectionKey}`} className="abtn abtn--ghost">Cancel</Link>
+          <button type="submit" className="abtn abtn--primary" disabled={pending}>
+            {pending ? "Saving…" : id ? "Save changes" : `Create ${singular}`}
+          </button>
+        </div>
       </div>
     </form>
   );

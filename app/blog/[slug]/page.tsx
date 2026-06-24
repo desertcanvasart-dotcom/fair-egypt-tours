@@ -22,16 +22,19 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params;
   const p = await getPost(slug);
   if (!p) return {};
+  const metaTitle = p.metaTitle?.trim();
+  const description = p.metaDescription?.trim() || p.excerpt;
   return {
-    title: p.title,
-    description: p.excerpt,
+    title: metaTitle ? { absolute: metaTitle } : p.title,
+    description,
     alternates: { canonical: `/blog/${p.slug}` },
     openGraph: {
-      title: `${p.title} | Fair Egypt Tours`,
-      description: p.excerpt,
+      title: metaTitle || `${p.title} | Fair Egypt Tours`,
+      description,
       url: `/blog/${p.slug}`,
       type: "article",
       publishedTime: p.isoDate,
+      modifiedTime: p.updatedIso ?? p.isoDate,
       authors: [p.author.name],
       images: [{ url: p.image }],
     },
@@ -52,7 +55,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     description: p.excerpt,
     image: p.image,
     datePublished: p.isoDate,
-    dateModified: p.isoDate,
+    dateModified: p.updatedIso ?? p.isoDate,
     author: {
       "@type": "Person",
       name: p.author.name,
@@ -62,10 +65,18 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     publisher: { "@id": ORG_ID },
     mainEntityOfPage: `${site.url}/blog/${p.slug}`,
   };
+  const faqSchema = p.faqs?.length
+    ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        mainEntity: p.faqs.map((f) => ({ "@type": "Question", name: f.q, acceptedAnswer: { "@type": "Answer", text: f.a } })),
+      }
+    : null;
 
   return (
     <>
       <JsonLdScript data={schema} />
+      {faqSchema ? <JsonLdScript data={faqSchema} /> : null}
       <BreadcrumbJsonLd items={[{ name: "Blog", url: "/blog" }, { name: p.title }]} />
       <Header />
       <PageHero
@@ -93,6 +104,31 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </div>
 
             <Prose sections={p.body} />
+
+            {p.related?.length ? (
+              <div className="postrel">
+                <h3>Keep planning your trip</h3>
+                <ul>
+                  {p.related.map((r) => (
+                    <li key={r.href}>
+                      <Link href={r.href}>{r.label} <ArrowRight size={14} /></Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+
+            {p.faqs?.length ? (
+              <div className="postfaq">
+                <h2>Frequently asked questions</h2>
+                {p.faqs.map((f, i) => (
+                  <div className="postfaq__i" key={i}>
+                    <h3>{f.q}</h3>
+                    <p>{f.a}</p>
+                  </div>
+                ))}
+              </div>
+            ) : null}
           </div>
         </div>
       </section>

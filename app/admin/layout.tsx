@@ -15,9 +15,10 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const user = await requireUser();
 
   const live = { deletedAt: null };
-  const [posts, tours, dests, hotels, tips] = await Promise.all([
+  const [posts, tours, tourCats, dests, hotels, tips] = await Promise.all([
     prisma.post.count({ where: live }),
     prisma.tour.count({ where: live }),
+    prisma.tourCategory.count({ where: live }),
     prisma.destination.count({ where: live }),
     prisma.hotel.count({ where: live }),
     prisma.tip.count({ where: live }),
@@ -26,6 +27,7 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   const counts: Record<string, number> = {
     "/admin/blog": posts,
     "/admin/tours": tours,
+    "/admin/tour-categories": tourCats,
     "/admin/destinations": dests,
     "/admin/hotels": hotels,
     "/admin/travel-tips": tips,

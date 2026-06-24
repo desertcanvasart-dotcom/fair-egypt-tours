@@ -7,9 +7,12 @@ export type FieldType =
   | "textarea"
   | "number"
   | "select"
+  | "datalist" // free text with autocomplete suggestions (e.g. category)
   | "checkbox"
   | "lines" // string[] — one per line
   | "json" // nested arrays/objects — edited as JSON
+  | "itinerary" // structured day/time steps — { time, title, text }[]
+  | "richtext" // WYSIWYG HTML body
   | "image"
   | "date";
 
@@ -21,11 +24,14 @@ export type Field = {
   options?: string[];
   placeholder?: string;
   full?: boolean; // span both columns
+  group?: string; // section heading the field is rendered under
+  /** For "itinerary": "time" shows a time column, "day" shows a day column. */
+  mode?: "time" | "day";
 };
 
 export type Collection = {
   key: string; // URL segment (matches public route base): blog, tours, ...
-  model: "post" | "tour" | "destination" | "hotel" | "tip";
+  model: "post" | "tour" | "destination" | "hotel" | "tip" | "tourCategory";
   singular: string;
   plural: string;
   titleField: string;
@@ -66,24 +72,79 @@ export const collections: Record<string, Collection> = {
     titleField: "title",
     imageField: "cardImage",
     fields: [
-      { name: "title", label: "Title", type: "text", full: true },
-      { name: "summary", label: "Summary", type: "textarea", full: true },
-      { name: "place", label: "Place", type: "text" },
-      { name: "category", label: "Category", type: "text", placeholder: "Day Tour" },
-      { name: "duration", label: "Duration", type: "text" },
-      { name: "groupSize", label: "Group size", type: "text" },
-      { name: "languages", label: "Languages", type: "text" },
-      { name: "rating", label: "Rating", type: "text", placeholder: "4.9" },
-      { name: "reviewCount", label: "Review count", type: "number" },
-      { name: "price", label: "Price (USD)", type: "number" },
-      { name: "heroImage", label: "Hero image", type: "image" },
-      { name: "cardImage", label: "Card image", type: "image" },
-      { name: "overview", label: "Overview paragraphs", type: "lines", full: true, hint: "One paragraph per line." },
-      { name: "highlights", label: "Highlights", type: "lines", hint: "One per line." },
-      { name: "included", label: "Included", type: "lines", hint: "One per line." },
-      { name: "notIncluded", label: "Not included", type: "lines", hint: "One per line." },
-      { name: "gallery", label: "Gallery image URLs", type: "lines", hint: "One URL per line." },
-      { name: "itinerary", label: "Itinerary", type: "json", full: true, hint: 'JSON array: [{ "time", "title", "text" }]' },
+      // --- Basics ---
+      { name: "title", label: "Title", type: "text", full: true, group: "Basics" },
+      { name: "type", label: "Type", type: "select", options: ["Day Tour", "Package"], group: "Basics", hint: "Day Tour = single day · Package = multi-day." },
+      {
+        name: "category", label: "Category", type: "datalist", group: "Basics",
+        placeholder: "e.g. Cairo Day Tours",
+        hint: "The group this appears under. Pick one or type a new name.",
+        options: [
+          "Cairo Day Tours", "Giza Day Tours", "Luxor Day Tours", "Aswan Day Tours", "Alexandria Day Tours",
+          "Classic Egypt Packages", "Family Holiday Packages", "Luxury Holiday Packages", "Nile Cruise Packages", "Honeymoon Packages",
+        ],
+      },
+      {
+        name: "destination", label: "Destination", type: "datalist", group: "Basics",
+        placeholder: "Cairo & Giza",
+        hint: "Links this tour to a destination page, where it appears automatically.",
+        options: ["Cairo & Giza", "Luxor", "Aswan", "Abu Simbel", "Alexandria", "Sharm El Sheikh", "North Coast", "Siwa Oasis"],
+      },
+      { name: "place", label: "Place / meeting point", type: "text", group: "Basics", placeholder: "Giza" },
+      { name: "summary", label: "Short summary", type: "textarea", full: true, group: "Basics", hint: "One or two sentences shown on cards and search." },
+
+      // --- Details ---
+      { name: "duration", label: "Duration", type: "text", group: "Details", placeholder: "8 hours / 5 days" },
+      { name: "groupSize", label: "Group size", type: "text", group: "Details", placeholder: "Private" },
+      { name: "languages", label: "Languages", type: "text", group: "Details", placeholder: "English, Arabic" },
+      { name: "price", label: "Price from (USD)", type: "number", group: "Details" },
+      { name: "rating", label: "Rating", type: "text", placeholder: "4.9", group: "Details" },
+      { name: "reviewCount", label: "Review count", type: "number", group: "Details" },
+
+      // --- Media ---
+      { name: "heroImage", label: "Hero image", type: "image", group: "Media" },
+      { name: "heroImageAlt", label: "Hero image alt text", type: "text", group: "Media", hint: "Describes the image for SEO & screen readers." },
+      { name: "cardImage", label: "Card image", type: "image", group: "Media" },
+      { name: "cardImageAlt", label: "Card image alt text", type: "text", group: "Media" },
+      { name: "gallery", label: "Gallery image URLs", type: "lines", full: true, group: "Media", hint: "One URL per line (or paste from the media library)." },
+
+      // --- Content ---
+      { name: "overview", label: "Overview paragraphs", type: "lines", full: true, group: "Content", hint: "One paragraph per line." },
+      { name: "highlights", label: "Highlights", type: "lines", group: "Content", hint: "One per line." },
+      { name: "included", label: "What's included", type: "lines", group: "Content", hint: "One per line." },
+      { name: "notIncluded", label: "Not included", type: "lines", group: "Content", hint: "One per line." },
+
+      // --- Itinerary ---
+      { name: "itinerary", label: "Itinerary", type: "itinerary", full: true, group: "Itinerary", mode: "time" },
+
+      // --- SEO ---
+      { name: "metaTitle", label: "Meta title", type: "text", full: true, group: "SEO", hint: "Browser/search title. ~60 characters. Falls back to the tour title." },
+      { name: "metaDescription", label: "Meta description", type: "textarea", full: true, group: "SEO", hint: "Search snippet. ~155 characters. Falls back to the summary." },
+    ],
+  },
+  "tour-categories": {
+    key: "tour-categories",
+    model: "tourCategory",
+    singular: "Tour Category",
+    plural: "Tour Categories",
+    titleField: "name",
+    imageField: "cardImage",
+    fields: [
+      { name: "name", label: "Category name", type: "text", full: true, group: "Basics", hint: "e.g. Cairo Day Tours. Any tour whose Category matches this name appears on this page." },
+      { name: "type", label: "Type", type: "select", options: ["Day Tour", "Package"], group: "Basics" },
+      {
+        name: "destination", label: "Destination", type: "datalist", group: "Basics",
+        placeholder: "Cairo & Giza",
+        hint: "Links this category to a destination page, where it appears as a card.",
+        options: ["Cairo & Giza", "Luxor", "Aswan", "Abu Simbel", "Alexandria", "Sharm El Sheikh", "North Coast", "Siwa Oasis"],
+      },
+      { name: "intro", label: "Intro / lead", type: "textarea", full: true, group: "Basics", hint: "Lead paragraph shown in the hero and used as the meta-description fallback." },
+      { name: "heroImage", label: "Hero image", type: "image", group: "Media" },
+      { name: "heroImageAlt", label: "Hero image alt text", type: "text", group: "Media", hint: "Describes the image for SEO & screen readers." },
+      { name: "cardImage", label: "Card image", type: "image", group: "Media", hint: "Used where this category is shown as a card." },
+      { name: "body", label: "Body paragraphs", type: "lines", full: true, group: "Content", hint: "One paragraph per line. Extra SEO copy shown below the tours." },
+      { name: "metaTitle", label: "Meta title", type: "text", full: true, group: "SEO", hint: "~60 characters. Falls back to the category name." },
+      { name: "metaDescription", label: "Meta description", type: "textarea", full: true, group: "SEO", hint: "~155 characters. Falls back to the intro." },
     ],
   },
   destinations: {
@@ -94,22 +155,25 @@ export const collections: Record<string, Collection> = {
     titleField: "name",
     imageField: "cardImage",
     fields: [
-      { name: "name", label: "Name", type: "text", full: true },
-      { name: "region", label: "Region", type: "text" },
-      { name: "tourCount", label: "Tour count", type: "number" },
-      { name: "tagline", label: "Tagline", type: "text", full: true },
-      { name: "intro", label: "Intro", type: "textarea", full: true },
-      { name: "heroImage", label: "Hero image", type: "image" },
-      { name: "cardImage", label: "Card image", type: "image" },
-      { name: "bestTime", label: "Best time to visit", type: "textarea", full: true },
-      { name: "history", label: "History paragraphs", type: "lines", full: true, hint: "One paragraph per line." },
-      { name: "gettingThere", label: "Getting there", type: "lines", full: true, hint: "One paragraph per line." },
-      { name: "gallery", label: "Gallery URLs", type: "lines", hint: "One per line." },
-      { name: "tourSlugs", label: "Related tour slugs", type: "lines", hint: "One slug per line." },
-      { name: "overview", label: "Overview", type: "json", full: true, hint: SECTIONS_HINT },
-      { name: "quickFacts", label: "Quick facts", type: "json", full: true, hint: 'JSON array: [{ "label", "value" }]' },
-      { name: "whereToStay", label: "Where to stay", type: "json", full: true, hint: 'JSON array: [{ "area", "note" }]' },
-      { name: "thingsToDo", label: "Things to do", type: "json", full: true, hint: 'JSON array: [{ "title", "text" }]' },
+      { name: "name", label: "Name", type: "text", full: true, group: "Basics" },
+      { name: "region", label: "Region", type: "text", group: "Basics" },
+      { name: "tourCount", label: "Tour count", type: "number", group: "Basics" },
+      { name: "tagline", label: "Tagline", type: "text", full: true, group: "Basics" },
+      { name: "intro", label: "Intro", type: "textarea", full: true, group: "Basics", hint: "Answer-first summary shown in the hero and as the meta fallback." },
+      { name: "heroImage", label: "Hero image", type: "image", group: "Media" },
+      { name: "cardImage", label: "Card image", type: "image", group: "Media" },
+      { name: "gallery", label: "Gallery URLs", type: "lines", full: true, group: "Media", hint: "One per line." },
+      { name: "bestTime", label: "Best time to visit", type: "textarea", full: true, group: "Content" },
+      { name: "history", label: "History paragraphs", type: "lines", full: true, group: "Content", hint: "One paragraph per line." },
+      { name: "gettingThere", label: "Getting there", type: "lines", full: true, group: "Content", hint: "One paragraph per line." },
+      { name: "tourSlugs", label: "Related tour slugs", type: "lines", group: "Content", hint: "One slug per line." },
+      { name: "overview", label: "Overview", type: "json", full: true, group: "Content", hint: SECTIONS_HINT },
+      { name: "quickFacts", label: "Quick facts", type: "json", full: true, group: "Content", hint: 'JSON array: [{ "label", "value" }]' },
+      { name: "whereToStay", label: "Where to stay", type: "json", full: true, group: "Content", hint: 'JSON array: [{ "area", "note" }]' },
+      { name: "thingsToDo", label: "Things to do", type: "json", full: true, group: "Content", hint: 'JSON array: [{ "title", "text" }]' },
+      { name: "faqs", label: "FAQs", type: "json", full: true, group: "Content", hint: 'JSON array: [{ "q", "a" }]' },
+      { name: "metaTitle", label: "Meta title", type: "text", full: true, group: "SEO", hint: "~60 characters. Falls back to '<Name> Travel Guide'." },
+      { name: "metaDescription", label: "Meta description", type: "textarea", full: true, group: "SEO", hint: "~155 characters. Falls back to the summary/intro." },
     ],
   },
   hotels: {

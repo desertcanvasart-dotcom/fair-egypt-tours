@@ -33,7 +33,8 @@ function buildData(fields: Field[], formData: FormData): Record<string, any> {
       case "lines":
         val = String(raw ?? "").split(/\r?\n/).map((s) => s.trim()).filter(Boolean);
         break;
-      case "json": {
+      case "json":
+      case "itinerary": {
         const t = String(raw ?? "").trim();
         val = t ? JSON.parse(t) : [];
         break;

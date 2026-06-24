@@ -11,7 +11,7 @@ import HotelCard from "@/components/HotelCard";
 import Gallery from "@/components/Gallery";
 import JsonLdScript from "@/components/JsonLdScript";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
-import { getDestination, getDestinationSlugs, getTour, getHotels } from "@/lib/cms";
+import { getDestination, getDestinationSlugs, getTour, getTours, getTourCategories, getHotels } from "@/lib/cms";
 import { Pin, Clock, BadgeCheck, ArrowRight, Whatsapp } from "@/components/icons";
 
 export function generateStaticParams() {
@@ -23,8 +23,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const d = await getDestination(slug);
   if (!d) return {};
   const metaDesc = d.metaDescription ?? d.summary ?? d.intro;
+  const metaTitle = d.metaTitle?.trim();
   return {
-    title: d.metaTitle ?? `${d.name} Travel Guide`,
+    title: metaTitle ? { absolute: metaTitle } : `${d.name} Travel Guide`,
     description: metaDesc,
     alternates: { canonical: `/destinations/${d.slug}` },
     openGraph: {
@@ -41,7 +42,16 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
   const d = await getDestination(slug);
   if (!d) notFound();
 
-  const relatedTours = (await Promise.all(d.tourSlugs.map((s) => getTour(s)))).filter(Boolean);
+  // Tours wired to this destination: auto-matched by the tour's `destination`
+  // field, plus any explicitly listed in tourSlugs — de-duped by slug.
+  const slugTours = (await Promise.all((d.tourSlugs ?? []).map((s) => getTour(s)))).filter(Boolean);
+  const destTours = (await getTours()).filter((t) => t.destination === d.name);
+  const relatedTours = Array.from(
+    new Map([...destTours, ...slugTours].filter(Boolean).map((t) => [t!.slug, t!])).values()
+  );
+
+  // Tour categories wired to this destination (shown as cards).
+  const destCategories = (await getTourCategories()).filter((c) => c.destination === d.name);
   const idealStay = d.quickFacts.find((f) => /stay|days/i.test(f.label))?.value ?? "2–3 days";
 
   // Real hotel suggestions for this destination, from the hotels collection.
@@ -234,20 +244,38 @@ export default async function DestinationPage({ params }: { params: Promise<{ sl
         </div>
       </section>
 
-      {/* Related tours */}
-      {relatedTours.length > 0 ? (
+      {/* Tours & categories wired to this destination */}
+      {destCategories.length > 0 || relatedTours.length > 0 ? (
         <section className="sec">
           <div className="shell">
             <div className="sec-top">
-              <div className="kicker reveal"><i>—</i> <span>Private tours in {d.name}</span> <span className="ln" /></div>
+              <div className="kicker reveal"><i>—</i> <span>Tours in {d.name}</span> <span className="ln" /></div>
               <div className="sec-top__row">
                 <h2 className="display reveal" data-delay="1">Fair-priced trips, better arranged.</h2>
                 <Link className="btn btn--outline reveal" data-delay="2" href="/tours">All tours <ArrowRight size={16} /></Link>
               </div>
             </div>
-            <div className="tours-grid">
-              {relatedTours.map((t, i) => t && <TourCard key={t.slug} tour={t} delay={(i % 4) + 1} />)}
-            </div>
+
+            {destCategories.length > 0 ? (
+              <div className="catrow reveal">
+                {destCategories.map((c) => (
+                  <Link key={c.slug} className="catcard" href={`/tours/category/${c.slug}`}>
+                    <div className="img" style={{ backgroundImage: `url('${c.cardImage || c.heroImage}')` }} />
+                    <div className="catcard__b">
+                      <span className="k">{c.type || "Tours"}</span>
+                      <h3>{c.name}</h3>
+                      <span className="catcard__go">Explore <ArrowRight size={14} /></span>
+                    </div>
+                  </Link>
+                ))}
+              </div>
+            ) : null}
+
+            {relatedTours.length > 0 ? (
+              <div className="tours-grid" style={{ marginTop: destCategories.length > 0 ? 28 : 0 }}>
+                {relatedTours.map((t, i) => t && <TourCard key={t.slug} tour={t} delay={(i % 4) + 1} />)}
+              </div>
+            ) : null}
           </div>
         </section>
       ) : null}

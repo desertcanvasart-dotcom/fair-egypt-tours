@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
 import { navLinks } from "@/lib/data";
 import { Menu, Whatsapp, Phone, ArrowRight } from "./icons";
@@ -50,9 +50,16 @@ export default function MobileNav({
       <div className={`mmenu${open ? " open" : ""}`} role="dialog" aria-modal="true" aria-hidden={!open}>
         <nav className="mmenu__links" aria-label="Mobile">
           {navLinks.map((l, i) => (
-            <Link key={l.href} href={l.href} onClick={close} style={{ transitionDelay: `${0.06 * i + 0.05}s` }}>
-              {l.label}
-            </Link>
+            <Fragment key={l.href}>
+              <Link href={l.href} onClick={close} style={{ transitionDelay: `${0.06 * i + 0.05}s` }}>
+                {l.label}
+              </Link>
+              {l.children?.map((c) => (
+                <Link key={c.href} className="mmenu__sub" href={c.href} onClick={close} style={{ transitionDelay: `${0.06 * i + 0.09}s` }}>
+                  {c.label}
+                </Link>
+              ))}
+            </Fragment>
           ))}
         </nav>
         <div className="mmenu__foot">

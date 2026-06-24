@@ -55,6 +55,23 @@ model Tour {
   @@index([status, deletedAt])
 }
 
+/// Tour categories — editable SEO landing pages that group tours
+/// (e.g. "Cairo Day Tours", "Luxury Holiday Packages").
+model TourCategory {
+  id        String    @id @default(cuid())
+  slug      String    @unique
+  status    String    @default("published")
+  category  String?
+  featured  Boolean   @default(false)
+  sortOrder Int       @default(0)
+  data      Json
+  deletedAt DateTime?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  @@index([status, deletedAt])
+}
+
 /// Destinations / travel guides.
 model Destination {
   id        String    @id @default(cuid())

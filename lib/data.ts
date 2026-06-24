@@ -10,8 +10,17 @@ export const site = {
   url: "https://www.fairegypttours.com",
 };
 
-export const navLinks = [
-  { href: "/tours", label: "Tours" },
+export type NavLink = { href: string; label: string; children?: { href: string; label: string }[] };
+
+export const navLinks: NavLink[] = [
+  {
+    href: "/tours",
+    label: "Tours",
+    children: [
+      { href: "/tours?type=day-tours", label: "Day Tours" },
+      { href: "/tours?type=packages", label: "Travel Packages" },
+    ],
+  },
   { href: "/destinations", label: "Destinations" },
   { href: "/travel-tips", label: "Travel Tips" },
   { href: "/blog", label: "Blog" },

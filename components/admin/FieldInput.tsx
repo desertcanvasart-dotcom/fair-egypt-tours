@@ -1,6 +1,7 @@
 "use client";
 
 import ImageInput from "./ImageInput";
+import ItineraryInput from "./ItineraryInput";
 import { getPath, type Field } from "@/lib/collections";
 
 export function initialValue(field: Field, data: Record<string, unknown>): string {
@@ -8,6 +9,7 @@ export function initialValue(field: Field, data: Record<string, unknown>): strin
   if (v == null) return "";
   if (field.type === "lines") return Array.isArray(v) ? (v as string[]).join("\n") : String(v);
   if (field.type === "json") return JSON.stringify(v, null, 2);
+  if (field.type === "itinerary") return JSON.stringify(v);
   return String(v);
 }
 
@@ -27,6 +29,15 @@ export default function FieldInput({ field, data }: { field: Field; data: Record
         <select id={id} name={field.name} defaultValue={dv}>
           {(field.options ?? []).map((o) => <option key={o} value={o}>{o}</option>)}
         </select>
+      ) : field.type === "datalist" ? (
+        <>
+          <input id={id} name={field.name} type="text" defaultValue={dv} placeholder={field.placeholder} list={`${id}__opts`} autoComplete="off" />
+          <datalist id={`${id}__opts`}>
+            {(field.options ?? []).map((o) => <option key={o} value={o} />)}
+          </datalist>
+        </>
+      ) : field.type === "itinerary" ? (
+        <ItineraryInput name={field.name} defaultValue={dv} mode={field.mode ?? "time"} />
       ) : field.type === "number" ? (
         <input id={id} name={field.name} type="number" step="any" defaultValue={dv} placeholder={field.placeholder} />
       ) : field.type === "date" ? (

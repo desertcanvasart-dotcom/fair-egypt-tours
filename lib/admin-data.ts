@@ -7,6 +7,7 @@ export function modelFor(key: string): any {
   switch (getCollection(key)?.model) {
     case "post": return prisma.post;
     case "tour": return prisma.tour;
+    case "tourCategory": return prisma.tourCategory;
     case "destination": return prisma.destination;
     case "hotel": return prisma.hotel;
     case "tip": return prisma.tip;

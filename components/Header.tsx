@@ -20,9 +20,23 @@ export default async function Header({ overHero = false }: { overHero?: boolean 
             <b>{site.name}</b>
           </Link>
           <nav className="hdr__nav" aria-label="Primary">
-            {navLinks.map((l) => (
-              <Link key={l.href} href={l.href}>{l.label}</Link>
-            ))}
+            {navLinks.map((l) =>
+              l.children?.length ? (
+                <div className="hdr__has" key={l.href}>
+                  <Link href={l.href} className="hdr__top">
+                    {l.label}
+                    <svg className="hdr__caret" width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round"><path d="M6 9l6 6 6-6" /></svg>
+                  </Link>
+                  <div className="hdr__drop">
+                    {l.children.map((c) => (
+                      <Link key={c.href} href={c.href}>{c.label}</Link>
+                    ))}
+                  </div>
+                </div>
+              ) : (
+                <Link key={l.href} href={l.href}>{l.label}</Link>
+              )
+            )}
           </nav>
           <div className="hdr__act">
             <Link href="/#cta" className="hdr__cta">
