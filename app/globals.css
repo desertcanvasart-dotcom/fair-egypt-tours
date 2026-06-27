@@ -99,6 +99,21 @@
     .hdr__cta:active{transform:translateY(1px)}
     .hdr__cta svg{transition:transform .3s var(--ease)}
     .hdr__cta:hover svg{transform:translateX(3px)}
+    /* language switcher */
+    .langsw{position:relative;display:flex;align-items:center}
+    .langsw__btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border:1px solid var(--line-2);border-radius:999px;background:transparent;color:var(--nile);font-weight:700;font-size:13px;cursor:pointer;transition:background .3s var(--ease),border-color .3s var(--ease)}
+    .hdr.on-dark .langsw__btn{color:#fff;border-color:rgba(255,255,255,.34)}
+    .langsw__btn:hover{background:var(--sand)}
+    .hdr.on-dark .langsw__btn:hover{background:rgba(255,255,255,.12)}
+    .langsw__caret{transition:transform .3s var(--ease);opacity:.7}
+    .langsw:hover .langsw__caret,.langsw:focus-within .langsw__caret{transform:rotate(180deg)}
+    .langsw__menu{position:absolute;top:100%;right:0;transform:translateY(4px);min-width:172px;background:var(--paper);border:1px solid var(--line);border-radius:12px;box-shadow:0 22px 46px -24px rgba(16,43,58,.5);padding:7px;opacity:0;visibility:hidden;transition:opacity .25s var(--ease),transform .25s var(--ease);z-index:80}
+    .langsw__menu::before{content:'';position:absolute;top:-12px;left:0;right:0;height:12px}
+    .langsw:hover .langsw__menu,.langsw:focus-within .langsw__menu{opacity:1;visibility:visible;transform:translateY(8px)}
+    .langsw__menu a{display:flex;align-items:center;gap:8px;padding:9px 12px;border-radius:8px;font-size:13.5px;color:var(--nile)!important;white-space:nowrap;transition:background .2s var(--ease)}
+    .langsw__menu a b{color:var(--clay-dark);min-width:22px}
+    .langsw__menu a:hover{background:var(--sand)}
+    .langsw__menu a.is-active{background:var(--sand)}
     .hdr__burger{display:none;width:46px;height:46px;border:1.5px solid var(--line-2);border-radius:4px;background:transparent;cursor:pointer;place-items:center;color:var(--nile)}
     .hdr.on-dark .hdr__burger{border-color:rgba(255,255,255,.4);color:#fff}
 

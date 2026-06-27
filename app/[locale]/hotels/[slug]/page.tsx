@@ -17,7 +17,7 @@ export async function generateStaticParams() {
   return (await getHotelSlugs()).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const h = await getHotel(slug);
   if (!h) return {};
@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function HotelPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function HotelPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { slug } = await params;
   const h = await getHotel(slug);
   if (!h) notFound();

@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   return (await getTipSlugs()).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const t = await getTip(slug);
   if (!t) return {};
@@ -36,7 +36,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function TipPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function TipPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { slug } = await params;
   const t = await getTip(slug);
   if (!t) notFound();

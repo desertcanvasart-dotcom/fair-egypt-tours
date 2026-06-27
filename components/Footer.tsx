@@ -1,20 +1,26 @@
 import Link from "next/link";
 import { getPage } from "@/lib/cms";
+import { getLocale } from "@/lib/locale";
+import { localeHref } from "@/lib/i18n";
+import { t } from "@/lib/messages";
 import { LogoMarkLight, Mail, Whatsapp, Instagram, Facebook } from "./icons";
 
 export default async function Footer() {
   const site = await getPage("site");
+  const locale = await getLocale();
+  const m = t(locale);
+  const L = (p: string) => localeHref(locale, p);
   return (
     <footer className="footer" id="footer">
       <div className="shell">
         <div className="footer__cta">
-          <h3>Ready to see Egypt — fairly?</h3>
+          <h3>{m.footer.heading}</h3>
           <form className="footer__news" action="#">
             <div className="ctl">
               <Mail size={16} />
-              <input type="email" name="email" placeholder="Your email for trip ideas" aria-label="Email" />
+              <input type="email" name="email" placeholder={m.footer.emailPh} aria-label="Email" />
             </div>
-            <Link href="/#cta" className="btn btn--solid">Subscribe</Link>
+            <Link href={L("/#cta")} className="btn btn--solid">{m.footer.subscribe}</Link>
           </form>
         </div>
 
@@ -24,36 +30,36 @@ export default async function Footer() {
               <LogoMarkLight size={46} />
               <span><b>{site.name}</b><small>{site.tagline.toUpperCase()}</small></span>
             </div>
-            <p>Affordable Egypt travel with honesty, organisation, and genuine care.</p>
+            <p>{m.footer.brand}</p>
           </div>
           <div className="footer__col">
-            <h5>Explore</h5>
-            <Link href="/tours">Tours</Link>
-            <Link href="/destinations">Destinations</Link>
-            <Link href="/blog">Blog</Link>
+            <h5>{m.footer.explore}</h5>
+            <Link href={L("/tours")}>{m.nav.tours}</Link>
+            <Link href={L("/destinations")}>{m.nav.destinations}</Link>
+            <Link href={L("/blog")}>{m.nav.blog}</Link>
           </div>
           <div className="footer__col">
-            <h5>Company</h5>
-            <Link href="/about">About Us</Link>
-            <Link href="/travel-tips">Travel Tips</Link>
-            <Link href="/destinations">Travel Guides</Link>
-            <Link href="/#faq">FAQ</Link>
+            <h5>{m.footer.company}</h5>
+            <Link href={L("/about")}>{m.footer.aboutUs}</Link>
+            <Link href={L("/travel-tips")}>{m.nav.travelTips}</Link>
+            <Link href={L("/destinations")}>{m.footer.travelGuides}</Link>
+            <Link href={L("/#faq")}>{m.footer.faq}</Link>
           </div>
           <div className="footer__col">
-            <h5>Contact</h5>
+            <h5>{m.footer.contact}</h5>
             <address style={{ fontStyle: "normal", display: "contents" }}>
               <a href={site.whatsapp}>WhatsApp</a>
               <a href={`mailto:${site.email}`}>{site.email}</a>
               <a href={site.phoneHref}>{site.phone}</a>
             </address>
-            <Link href="/">Back to top</Link>
+            <Link href={L("/")}>{m.footer.backToTop}</Link>
           </div>
         </div>
 
         <div className="footer__word" aria-hidden="true">FAIR EGYPT</div>
 
         <div className="footer__bot">
-          <span>© 2026 <b>{site.name}</b>. All rights reserved.</span>
+          <span>© 2026 <b>{site.name}</b>. {m.footer.rights}</span>
           <div className="footer__social">
             <a href={site.instagram} aria-label="Instagram"><Instagram size={18} /></a>
             <a href={site.facebook} aria-label="Facebook"><Facebook size={18} /></a>

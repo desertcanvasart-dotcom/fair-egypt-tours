@@ -18,7 +18,7 @@ export async function generateStaticParams() {
   return (await getTourSlugs()).map((slug) => ({ slug }));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const t = await getTour(slug);
   if (!t) return {};
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function TourPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function TourPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { slug } = await params;
   const t = await getTour(slug);
   if (!t) notFound();

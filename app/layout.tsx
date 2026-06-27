@@ -1,9 +1,11 @@
 import type { Metadata, Viewport } from "next";
+import { headers } from "next/headers";
 import { Inter, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import "./pages.css";
 import JsonLd from "@/components/JsonLd";
 import Interactions from "@/components/Interactions";
+import { normalizeLocale, localeTag } from "@/lib/i18n";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -92,9 +94,10 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({ children }: { children: React.ReactNode }) {
+export default async function RootLayout({ children }: { children: React.ReactNode }) {
+  const locale = normalizeLocale((await headers()).get("x-locale"));
   return (
-    <html lang="en" className={`${inter.variable} ${playfair.variable}`}>
+    <html lang={localeTag[locale]} className={`${inter.variable} ${playfair.variable}`}>
       <body>
         <JsonLd />
         {children}

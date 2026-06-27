@@ -18,7 +18,7 @@ export function generateStaticParams() {
   return getDestinationSlugs().then((slugs) => slugs.map((slug) => ({ slug })));
 }
 
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const d = await getDestination(slug);
   if (!d) return {};
@@ -37,7 +37,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   };
 }
 
-export default async function DestinationPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function DestinationPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { slug } = await params;
   const d = await getDestination(slug);
   if (!d) notFound();

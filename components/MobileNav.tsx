@@ -2,14 +2,21 @@
 
 import { Fragment, useEffect, useState } from "react";
 import Link from "next/link";
-import { navLinks } from "@/lib/data";
 import { Menu, Whatsapp, Phone, ArrowRight } from "./icons";
 
+type Nav = { href: string; label: string; children?: { href: string; label: string }[] };
+
 export default function MobileNav({
+  nav,
+  cta,
+  ctaHref,
   phone,
   phoneHref,
   whatsapp,
 }: {
+  nav: Nav[];
+  cta: string;
+  ctaHref: string;
   phone: string;
   phoneHref: string;
   whatsapp: string;
@@ -49,7 +56,7 @@ export default function MobileNav({
 
       <div className={`mmenu${open ? " open" : ""}`} role="dialog" aria-modal="true" aria-hidden={!open}>
         <nav className="mmenu__links" aria-label="Mobile">
-          {navLinks.map((l, i) => (
+          {nav.map((l, i) => (
             <Fragment key={l.href}>
               <Link href={l.href} onClick={close} style={{ transitionDelay: `${0.06 * i + 0.05}s` }}>
                 {l.label}
@@ -65,7 +72,7 @@ export default function MobileNav({
         <div className="mmenu__foot">
           <a href={phoneHref} className="mmenu__contact" onClick={close}><Phone size={18} /> {phone}</a>
           <a href={whatsapp} className="btn btn--solid" onClick={close}><Whatsapp size={16} /> WhatsApp us</a>
-          <Link href="/#cta" className="btn btn--nile" onClick={close}>Get a fair quote <ArrowRight size={16} /></Link>
+          <Link href={ctaHref} className="btn btn--nile" onClick={close}>{cta} <ArrowRight size={16} /></Link>
         </div>
       </div>
     </>
