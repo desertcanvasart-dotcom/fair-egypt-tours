@@ -1,18 +1,21 @@
 import Link from "next/link";
-import { tours } from "@/lib/data";
+import { tours as defaultTours, type Tour } from "@/lib/data";
 import { Star, ArrowUpRight, ArrowRight } from "./icons";
+import { getLocale } from "@/lib/locale";
+import { localeHref } from "@/lib/i18n";
+import { t } from "@/lib/messages";
 
-export default function Tours() {
+export default async function Tours({ tours = defaultTours }: { tours?: Tour[] }) {
+  const locale = await getLocale();
+  const m = t(locale).home;
   return (
     <section className="sec tours" id="tours">
       <div className="shell">
         <div className="sec-top">
-          <div className="kicker reveal"><i>02</i> <span>Featured Tours</span> <span className="ln" /></div>
+          <div className="kicker reveal"><i>02</i> <span>{m.toursKicker}</span> <span className="ln" /></div>
           <div className="sec-top__row">
-            <h2 className="display reveal" data-delay="1">Fair-priced trips,<br />fully organised.</h2>
-            <p className="reveal" data-delay="2">
-              Every tour shows its real price up front, with a clear list of what&apos;s included.
-            </p>
+            <h2 className="display reveal" data-delay="1">{m.toursHeading}</h2>
+            <p className="reveal" data-delay="2">{m.toursSub}</p>
           </div>
         </div>
 
@@ -28,7 +31,7 @@ export default function Tours() {
                 <span className="dur">{t.duration}</span>
                 <h3>{t.title}</h3>
                 <div className="rcard__foot">
-                  <div className="pr"><small>from</small><b>{t.price}</b></div>
+                  <div className="pr"><small>{m.priceFrom}</small><b>{t.price}</b></div>
                   <span className="go"><ArrowUpRight size={16} /></span>
                 </div>
               </div>
@@ -37,7 +40,7 @@ export default function Tours() {
         </div>
 
         <div className="tours-foot reveal">
-          <Link href="/tours" className="btn btn--nile">View all tours <ArrowRight size={16} /></Link>
+          <Link href={localeHref(locale, "/tours")} className="btn btn--nile">{m.viewAll} <ArrowRight size={16} /></Link>
         </div>
       </div>
     </section>

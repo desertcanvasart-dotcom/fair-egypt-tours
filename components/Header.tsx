@@ -61,10 +61,10 @@ export default async function Header({ overHero = false }: { overHero?: boolean 
           </nav>
           <div className="hdr__act">
             <LanguageSwitcher locale={locale} />
-            <Link href={localeHref(locale, "/#cta")} className="hdr__cta">
+            <Link href={localeHref(locale, "/booking")} className="hdr__cta">
               {m.cta} <ArrowRight size={15} />
             </Link>
-            <MobileNav nav={nav} cta={m.cta} ctaHref={localeHref(locale, "/#cta")} phone={site.phone} phoneHref={site.phoneHref} whatsapp={site.whatsapp} />
+            <MobileNav nav={nav} cta={m.cta} ctaHref={localeHref(locale, "/booking")} phone={site.phone} phoneHref={site.phoneHref} whatsapp={site.whatsapp} />
           </div>
         </div>
       </div>

@@ -139,7 +139,7 @@ export const destinations: Destination[] = [
       img("cairo", "khan.jpg"),
       img("cairo", "g-museum.jpg"),
     ],
-    tourSlugs: ["pyramids-sphinx-museum", "islamic-coptic-cairo"],
+    tourSlugs: ["giza-pyramids-day-tour", "grand-egyptian-museum-day-tour", "cairo-city-day-tour", "saqqara-citadel-coptic-cairo-day-tour"],
   },
 
   /* ================================ LUXOR ================================ */
@@ -578,7 +578,7 @@ export const destinations: Destination[] = [
       img("alexandria", "montaza.jpg"),
       img("alexandria", "g-amphitheatre.jpg"),
     ],
-    tourSlugs: ["alexandria-day-trip"],
+    tourSlugs: ["alexandria-day-tour-from-cairo"],
   },
 
   /* =========================== SHARM EL SHEIKH =========================== */

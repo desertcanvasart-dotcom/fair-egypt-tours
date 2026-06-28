@@ -1,14 +1,17 @@
 import { homeDefault } from "@/lib/page-content";
+import { getLocale } from "@/lib/locale";
+import { t } from "@/lib/messages";
 
-export default function HowItWorks({ steps = homeDefault.steps }: { steps?: typeof homeDefault.steps }) {
+export default async function HowItWorks({ steps = homeDefault.steps }: { steps?: typeof homeDefault.steps }) {
+  const m = t(await getLocale()).home;
   return (
     <section className="sec how">
       <div className="shell">
         <div className="sec-top">
-          <div className="kicker reveal"><i>05</i> <span>How It Works</span> <span className="ln" /></div>
+          <div className="kicker reveal"><i>05</i> <span>{m.howKicker}</span> <span className="ln" /></div>
           <div className="sec-top__row">
-            <h2 className="display reveal" data-delay="1">A fair trip in three simple steps.</h2>
-            <p className="reveal" data-delay="2">No pushy sales, no confusing packages. Just tell us what you want.</p>
+            <h2 className="display reveal" data-delay="1">{m.howHeading}</h2>
+            <p className="reveal" data-delay="2">{m.howSub}</p>
           </div>
         </div>
         <div className="timeline">

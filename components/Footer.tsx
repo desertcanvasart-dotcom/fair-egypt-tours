@@ -36,14 +36,14 @@ export default async function Footer() {
             <h5>{m.footer.explore}</h5>
             <Link href={L("/tours")}>{m.nav.tours}</Link>
             <Link href={L("/destinations")}>{m.nav.destinations}</Link>
+            <Link href={L("/booking")}>{m.links.book}</Link>
             <Link href={L("/blog")}>{m.nav.blog}</Link>
           </div>
           <div className="footer__col">
             <h5>{m.footer.company}</h5>
             <Link href={L("/about")}>{m.footer.aboutUs}</Link>
             <Link href={L("/travel-tips")}>{m.nav.travelTips}</Link>
-            <Link href={L("/destinations")}>{m.footer.travelGuides}</Link>
-            <Link href={L("/#faq")}>{m.footer.faq}</Link>
+            <Link href={L("/faq")}>{m.links.faq}</Link>
           </div>
           <div className="footer__col">
             <h5>{m.footer.contact}</h5>
@@ -60,6 +60,11 @@ export default async function Footer() {
 
         <div className="footer__bot">
           <span>© 2026 <b>{site.name}</b>. {m.footer.rights}</span>
+          <nav className="footer__legal" aria-label={m.links.legal}>
+            <Link href={L("/privacy")}>{m.links.privacy}</Link>
+            <Link href={L("/terms")}>{m.links.terms}</Link>
+            <Link href={L("/cookies")}>{m.links.cookies}</Link>
+          </nav>
           <div className="footer__social">
             <a href={site.instagram} aria-label="Instagram"><Instagram size={18} /></a>
             <a href={site.facebook} aria-label="Facebook"><Facebook size={18} /></a>

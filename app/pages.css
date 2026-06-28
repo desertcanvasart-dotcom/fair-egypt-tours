@@ -461,3 +461,152 @@ a.rcard, a.hcard, a.bcard { text-decoration: none; color: inherit; }
   .gallery { grid-template-columns: 1fr; }
   .gallery .g--big { grid-column: span 1; }
 }
+
+/* =================================================================
+   FAQ PAGE
+   ================================================================= */
+.faqwrap { max-width: 880px; }
+.faqintro { font-size: 17px; line-height: 1.75; color: var(--muted); margin: 0 0 40px; padding-bottom: 28px; border-bottom: 1px solid var(--line); }
+.faqcat { margin-bottom: 40px; }
+.faqcat > h2 { font-family: var(--font-playfair), serif; font-size: clamp(20px, 2.4vw, 26px); color: var(--nile); margin: 0 0 14px; letter-spacing: -.01em; }
+.faqlist { border-top: 1px solid var(--line); }
+.faqq { border-bottom: 1px solid var(--line); }
+.faqq > summary {
+  list-style: none; cursor: pointer; padding: 20px 2px; display: flex; align-items: flex-start;
+  justify-content: space-between; gap: 18px; font-weight: 600; font-size: 16.5px; color: var(--nile);
+  line-height: 1.45; transition: color .2s var(--ease);
+}
+.faqq > summary::-webkit-details-marker { display: none; }
+.faqq > summary:hover { color: var(--clay-dark); }
+.faqq__i { flex: none; margin-top: 3px; color: var(--clay); transition: transform .28s var(--ease); }
+.faqq[open] > summary .faqq__i { transform: rotate(45deg); }
+.faqa { padding: 0 2px 24px; }
+.faqa p { margin: 0; color: var(--muted); font-size: 15.5px; line-height: 1.8; max-width: 70ch; }
+.faqcta {
+  margin-top: 16px; padding: 34px; border-radius: 18px; text-align: center;
+  background: var(--nile); color: #fff; box-shadow: var(--sh-md);
+}
+.faqcta h2 { font-family: var(--font-playfair), serif; font-size: clamp(22px, 2.6vw, 28px); color: #fff; margin: 0 0 8px; }
+.faqcta p { color: rgba(255,255,255,.82); font-size: 15.5px; line-height: 1.7; max-width: 56ch; margin: 0 auto 22px; }
+
+/* =================================================================
+   LEGAL PAGES (Privacy / Terms / Cookies)
+   ================================================================= */
+.legal { max-width: 800px; }
+.legal__updated { font-size: 13px; letter-spacing: .04em; text-transform: uppercase; color: var(--clay-dark); margin: 0 0 18px; font-weight: 600; }
+.legal__intro { font-size: 17px; line-height: 1.78; color: var(--ink); margin: 0 0 14px; padding-bottom: 30px; border-bottom: 1px solid var(--line); }
+.legal__sec { margin-top: 34px; }
+.legal__sec > h2 { font-family: var(--font-playfair), serif; font-size: clamp(19px, 2.2vw, 23px); color: var(--nile); margin: 0 0 12px; }
+.legal__sec p { color: var(--muted); font-size: 15.5px; line-height: 1.8; margin: 0 0 12px; }
+.legal__sec ul { margin: 0 0 12px; padding-left: 0; list-style: none; }
+.legal__sec li { position: relative; padding-left: 22px; color: var(--muted); font-size: 15.5px; line-height: 1.7; margin-bottom: 10px; }
+.legal__sec li::before { content: ""; position: absolute; left: 4px; top: 11px; width: 6px; height: 6px; border-radius: 50%; background: var(--clay); }
+
+/* =================================================================
+   BOOKING PAGE
+   ================================================================= */
+.bookwrap { display: grid; grid-template-columns: 1.55fr 1fr; gap: 34px; align-items: start; }
+.bookform { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 30px; box-shadow: var(--sh-sm); }
+.bookform > h3 { font-family: var(--font-playfair), serif; font-size: 22px; color: var(--nile); margin: 0 0 18px; }
+.booktabs { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 22px; }
+.booktabs button {
+  text-align: left; padding: 14px 16px; border-radius: 13px; border: 1.5px solid var(--line);
+  background: var(--paper); cursor: pointer; transition: all .2s var(--ease); display: block;
+}
+.booktabs button b { display: block; color: var(--nile); font-size: 15px; margin-bottom: 3px; }
+.booktabs button span { display: block; color: var(--muted); font-size: 12.5px; line-height: 1.4; }
+.booktabs button:hover { border-color: var(--clay-soft); }
+.booktabs button.is-active { border-color: var(--clay); background: #fff; box-shadow: var(--sh-sm); }
+.bookgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.bookform textarea {
+  width: 100%; border: 1.5px solid var(--line); border-radius: 12px; padding: 12px 14px; font: inherit;
+  font-size: 15px; color: var(--ink); background: var(--paper); resize: vertical; line-height: 1.6;
+}
+.bookform textarea:focus { outline: none; border-color: var(--clay); background: #fff; }
+.bookform .field { margin-bottom: 14px; }
+.bookform__go { width: 100%; justify-content: center; margin-top: 6px; }
+.bookform__alt { display: flex; align-items: flex-start; gap: 8px; color: var(--muted); font-size: 13px; line-height: 1.5; margin: 14px 0 0; }
+.bookform__alt svg { flex: none; margin-top: 2px; color: var(--palm); }
+.bookside { background: var(--nile); color: #fff; border-radius: 20px; padding: 28px; box-shadow: var(--sh-md); position: sticky; top: 100px; }
+.bookside h4 { display: flex; align-items: center; gap: 9px; font-size: 16px; color: #fff; margin: 0 0 18px; font-weight: 600; }
+.bookside h4 svg { color: var(--clay-soft); }
+.bookside ul { list-style: none; padding: 0; margin: 0; }
+.bookside li { display: flex; align-items: flex-start; gap: 11px; color: rgba(255,255,255,.88); font-size: 14.5px; line-height: 1.6; padding: 12px 0; border-top: 1px solid rgba(255,255,255,.12); }
+.bookside li:first-child { border-top: none; padding-top: 0; }
+.bookside li svg { flex: none; margin-top: 3px; color: var(--clay-soft); }
+
+/* footer legal links */
+.footer__legal { display: flex; gap: 18px; flex-wrap: wrap; }
+.footer__legal a { color: rgba(255,255,255,.62); font-size: 13px; transition: color .2s var(--ease); }
+.footer__legal a:hover { color: #fff; }
+
+@media (max-width: 900px) {
+  .bookwrap { grid-template-columns: 1fr; }
+  .bookside { position: static; }
+}
+@media (max-width: 560px) {
+  .booktabs, .bookgrid { grid-template-columns: 1fr; }
+  .faqcta { padding: 26px 20px; }
+}
+
+/* =================================================================
+   THINGS TO DO — expanding accordion gallery (replaces flip cards)
+   ================================================================= */
+.expo { display: flex; gap: 14px; height: 460px; }
+.expo__p {
+  position: relative; flex: 1 1 0; min-width: 0; border-radius: 20px; overflow: hidden;
+  background-size: cover; background-position: center; cursor: pointer; outline: none;
+  transition: flex-grow .6s var(--ease-soft), box-shadow .4s var(--ease);
+  box-shadow: var(--sh-sm);
+}
+.expo__p::before {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(7,28,40,.06) 0%, rgba(7,28,40,.30) 55%, rgba(7,28,40,.82) 100%);
+  transition: opacity .4s var(--ease);
+}
+.expo__p:focus-visible { box-shadow: 0 0 0 3px var(--clay-soft), var(--sh-md); }
+
+/* widths: default-open first panel, hovered/focused panel */
+.expo__p.is-open { flex-grow: 3.6; }
+.expo__p:hover, .expo__p:focus { flex-grow: 3.6; }
+.expo:hover .expo__p:not(:hover) { flex-grow: 1; }
+.expo__p:hover { box-shadow: var(--sh-lg); }
+
+/* collapsed rail: vertical title + index, anchored bottom-left */
+.expo__rail {
+  position: absolute; left: 0; bottom: 0; z-index: 2; padding: 22px 20px;
+  display: flex; align-items: center; gap: 16px;
+  writing-mode: vertical-rl; transform: rotate(180deg); transform-origin: center;
+  color: #fff; transition: opacity .35s var(--ease); white-space: nowrap;
+}
+.expo__rail i { font-style: normal; font-family: var(--font-playfair), serif; font-size: 15px; color: var(--clay-soft); letter-spacing: .04em; }
+.expo__rail b { font-family: var(--font-playfair), serif; font-weight: 600; font-size: 19px; letter-spacing: .01em; max-height: 300px; overflow: hidden; text-overflow: ellipsis; }
+
+/* expanded card: kicker + title + text over a bottom scrim */
+.expo__card {
+  position: absolute; left: 0; right: 0; bottom: 0; z-index: 2; padding: 30px 32px;
+  color: #fff; opacity: 0; transition: opacity .5s var(--ease) .08s; pointer-events: none;
+}
+.expo__card .expo__k { display: block; font-size: 12px; letter-spacing: .14em; text-transform: uppercase; color: var(--clay-soft); margin-bottom: 10px; font-weight: 600; }
+.expo__card h3 { font-family: var(--font-playfair), serif; font-size: clamp(22px, 2.2vw, 30px); line-height: 1.1; margin: 0 0 12px; color: #fff; letter-spacing: -.01em; }
+.expo__card p { font-size: 14.5px; line-height: 1.7; color: rgba(255,255,255,.86); margin: 0; max-width: 44ch; }
+
+/* state toggles: rail ↔ card */
+.expo__p.is-open .expo__rail,
+.expo__p:hover .expo__rail,
+.expo__p:focus .expo__rail { opacity: 0; }
+.expo__p.is-open .expo__card,
+.expo__p:hover .expo__card,
+.expo__p:focus .expo__card { opacity: 1; }
+/* while interacting with the gallery, release the default-open panel */
+.expo:hover .expo__p.is-open:not(:hover) .expo__rail { opacity: 1; }
+.expo:hover .expo__p.is-open:not(:hover) .expo__card { opacity: 0; }
+
+@media (max-width: 860px) {
+  .expo { flex-direction: column; height: auto; gap: 16px; }
+  .expo__p { flex: none; height: 230px; border-radius: 18px; }
+  .expo__p:hover, .expo:hover .expo__p:not(:hover) { flex-grow: 0; }
+  .expo__rail { display: none; }
+  .expo__card { opacity: 1; position: absolute; }
+  .expo__card p { max-width: none; }
+}

@@ -1,14 +1,17 @@
 import { homeDefault } from "@/lib/page-content";
+import { getLocale } from "@/lib/locale";
+import { t } from "@/lib/messages";
 
-export default function Faq({ faqs = homeDefault.faqs }: { faqs?: typeof homeDefault.faqs }) {
+export default async function Faq({ faqs = homeDefault.faqs }: { faqs?: typeof homeDefault.faqs }) {
+  const m = t(await getLocale()).home;
   return (
     <section className="sec faq" id="faq">
       <div className="shell">
         <div className="sec-top">
-          <div className="kicker reveal"><i>08</i> <span>Good To Know</span> <span className="ln" /></div>
+          <div className="kicker reveal"><i>08</i> <span>{m.faqKicker}</span> <span className="ln" /></div>
           <div className="sec-top__row">
-            <h2 className="display reveal" data-delay="1">Questions, answered honestly.</h2>
-            <p className="reveal" data-delay="2">Can&apos;t find what you need? Message us — a real person replies.</p>
+            <h2 className="display reveal" data-delay="1">{m.faqHeading}</h2>
+            <p className="reveal" data-delay="2">{m.faqSub}</p>
           </div>
         </div>
         <div className="faq-grid">

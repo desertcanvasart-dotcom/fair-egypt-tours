@@ -11,8 +11,17 @@ import JsonLdScript from "@/components/JsonLdScript";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ORG_ID } from "@/components/JsonLd";
 import { getPost, getPosts, getPostSlugs } from "@/lib/cms";
+import { postsI18n } from "@/lib/posts-i18n";
+import { homeTranslations } from "@/lib/home-i18n";
+import type { Post } from "@/lib/blog";
+import { getLocale } from "@/lib/locale";
+import { localeHref } from "@/lib/i18n";
+import { t } from "@/lib/messages";
 import { site } from "@/lib/data";
 import { Clock, Calendar, ArrowRight } from "@/components/icons";
+
+const localizePost = (p: Post, locale: string): Post =>
+  locale === "en" ? p : { ...p, ...(postsI18n[p.slug]?.[locale as "es" | "pt"] ?? {}) };
 
 export async function generateStaticParams() {
   return (await getPostSlugs()).map((slug) => ({ slug }));
@@ -20,18 +29,21 @@ export async function generateStaticParams() {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
-  const p = await getPost(slug);
-  if (!p) return {};
+  const raw = await getPost(slug);
+  if (!raw) return {};
+  const locale = await getLocale();
+  const p = localizePost(raw, locale);
   const metaTitle = p.metaTitle?.trim();
   const description = p.metaDescription?.trim() || p.excerpt;
+  const url = localeHref(locale, `/blog/${p.slug}`);
   return {
     title: metaTitle ? { absolute: metaTitle } : p.title,
     description,
-    alternates: { canonical: `/blog/${p.slug}` },
+    alternates: { canonical: url },
     openGraph: {
       title: metaTitle || `${p.title} | Fair Egypt Tours`,
       description,
-      url: `/blog/${p.slug}`,
+      url,
       type: "article",
       publishedTime: p.isoDate,
       modifiedTime: p.updatedIso ?? p.isoDate,
@@ -43,10 +55,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default async function BlogPostPage({ params }: { params: Promise<{ locale: string; slug: string }> }) {
   const { slug } = await params;
-  const p = await getPost(slug);
-  if (!p) notFound();
+  const raw = await getPost(slug);
+  if (!raw) notFound();
 
-  const related = (await getPosts()).filter((x) => x.slug !== p.slug).slice(0, 3);
+  const locale = await getLocale();
+  const m = t(locale).blog;
+  const p = localizePost(raw, locale);
+  const related = (await getPosts()).filter((x) => x.slug !== p.slug).slice(0, 3).map((x) => localizePost(x, locale));
 
   const schema = {
     "@context": "https://schema.org",
@@ -80,11 +95,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
       <BreadcrumbJsonLd items={[{ name: "Blog", url: "/blog" }, { name: p.title }]} />
       <Header />
       <PageHero
-        kicker={`Blog · ${p.category}`}
+        kicker={`${m.detailKicker} · ${(m.cats as Record<string, string>)[p.category] ?? p.category}`}
         title={p.title}
         subtitle={p.excerpt}
         image={p.image}
-        crumbs={[{ label: "Blog", href: "/blog" }, { label: p.title }]}
+        crumbs={[{ label: m.kicker, href: localeHref(locale, "/blog") }, { label: p.title }]}
         meta={[
           { icon: <Calendar size={16} />, label: p.date },
           { icon: <Clock size={16} />, label: p.readTime },
@@ -107,11 +122,11 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
 
             {p.related?.length ? (
               <div className="postrel">
-                <h3>Keep planning your trip</h3>
+                <h3>{m.keepPlanning}</h3>
                 <ul>
                   {p.related.map((r) => (
                     <li key={r.href}>
-                      <Link href={r.href}>{r.label} <ArrowRight size={14} /></Link>
+                      <Link href={localeHref(locale, r.href)}>{r.label} <ArrowRight size={14} /></Link>
                     </li>
                   ))}
                 </ul>
@@ -120,7 +135,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
 
             {p.faqs?.length ? (
               <div className="postfaq">
-                <h2>Frequently asked questions</h2>
+                <h2>{m.faq}</h2>
                 {p.faqs.map((f, i) => (
                   <div className="postfaq__i" key={i}>
                     <h3>{f.q}</h3>
@@ -136,10 +151,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
       <section className="sec" style={{ background: "var(--sand)", paddingTop: 0 }}>
         <div className="shell" style={{ paddingTop: "clamp(72px,9vw,120px)" }}>
           <div className="sec-top">
-            <div className="kicker reveal"><i>—</i> <span>Read next</span> <span className="ln" /></div>
+            <div className="kicker reveal"><i>—</i> <span>{m.readNext}</span> <span className="ln" /></div>
             <div className="sec-top__row">
-              <h2 className="display reveal" data-delay="1">More from the blog.</h2>
-              <Link className="btn btn--outline reveal" data-delay="2" href="/blog">All articles <ArrowRight size={16} /></Link>
+              <h2 className="display reveal" data-delay="1">{m.moreTitle}</h2>
+              <Link className="btn btn--outline reveal" data-delay="2" href={localeHref(locale, "/blog")}>{m.allArticles} <ArrowRight size={16} /></Link>
             </div>
           </div>
           <div className="bgrid">
@@ -148,7 +163,10 @@ export default async function BlogPostPage({ params }: { params: Promise<{ local
         </div>
       </section>
 
-      <Cta />
+      <Cta
+        heading={locale === "en" ? undefined : homeTranslations[locale as "es" | "pt"].cta.heading}
+        text={locale === "en" ? undefined : homeTranslations[locale as "es" | "pt"].cta.text}
+      />
       <Footer />
     </>
   );

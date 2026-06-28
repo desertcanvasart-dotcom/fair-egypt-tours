@@ -114,6 +114,9 @@
     .langsw__menu a b{color:var(--clay-dark);min-width:22px}
     .langsw__menu a:hover{background:var(--sand)}
     .langsw__menu a.is-active{background:var(--sand)}
+    .flag{display:inline-flex;flex:none;border-radius:3px;overflow:hidden;line-height:0;box-shadow:0 0 0 1px rgba(16,43,58,.14)}
+    .flag svg{display:block;width:100%;height:100%}
+    .hdr.on-dark .langsw__btn .flag{box-shadow:0 0 0 1px rgba(255,255,255,.32)}
     .hdr__burger{display:none;width:46px;height:46px;border:1.5px solid var(--line-2);border-radius:4px;background:transparent;cursor:pointer;place-items:center;color:var(--nile)}
     .hdr.on-dark .hdr__burger{border-color:rgba(255,255,255,.4);color:#fff}
 

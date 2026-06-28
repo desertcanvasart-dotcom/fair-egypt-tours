@@ -85,7 +85,10 @@ async function main() {
   await seedCollection("destinations", destinations, prisma.destination, true, true);
   await seedCollection("hotels", hotels, prisma.hotel, true, true);
   await seedCollection("tips", tips, prisma.tip);
-  await seedCollection("posts", posts, prisma.post);
+  // Blog posts are code-authored in lib/blog.ts, so refresh + prune: anything
+  // not listed there is removed (currently empty — all posts were cleared for
+  // a rewrite).
+  await seedCollection("posts", posts, prisma.post, true, true);
 
   // Static page singletons (home, about, site). Created only if missing so
   // dashboard edits are never overwritten by a re-seed.

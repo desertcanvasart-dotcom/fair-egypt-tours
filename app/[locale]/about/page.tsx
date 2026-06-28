@@ -6,27 +6,36 @@ import PageHero from "@/components/PageHero";
 import HowItWorks from "@/components/HowItWorks";
 import Cta from "@/components/Cta";
 import { getPage } from "@/lib/cms";
+import { getLocale } from "@/lib/locale";
+import { localeHref } from "@/lib/i18n";
+import { t } from "@/lib/messages";
+import { aboutTranslations } from "@/lib/about-i18n";
+import { homeTranslations } from "@/lib/home-i18n";
 import { Pin, BadgeCheck, User, Star, ArrowRight } from "@/components/icons";
 
-export const metadata: Metadata = {
-  title: "About Us — Fair, Local, Honest Egypt Travel",
-  description:
-    "Fair Egypt Tours is a local, Egypt-based team offering affordable, carefully planned tours with licensed guides, private transport, and honest, itemised pricing. Learn our story and what 'fair' means to us.",
-  alternates: { canonical: "/about" },
-  openGraph: {
-    title: "About Fair Egypt Tours",
-    description:
-      "A local, Egypt-based team. Affordable tours, licensed guides, private transport, and honest pricing — here's our story.",
-    url: "/about",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const m = t(locale).about;
+  const url = localeHref(locale, "/about");
+  return {
+    title: m.metaTitle,
+    description: m.metaDescription,
+    alternates: { canonical: url },
+    openGraph: { title: m.ogTitle, description: m.ogDescription, url },
+  };
+}
 
 const VALUE_ICONS = [<Pin size={22} key="p" />, <BadgeCheck size={22} key="b" />, <User size={22} key="u" />, <Star size={22} key="s" />];
 const ABOUT_HERO_IMG =
   "https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1900&q=85";
 
 export default async function AboutPage() {
-  const about = await getPage("about");
+  const locale = await getLocale();
+  const m = t(locale).about;
+  // English: editable content from the DB. es/pt: translation overlay.
+  const about = locale === "en" ? await getPage("about") : aboutTranslations[locale];
+  // Shared sections reused on this page need their localized data too.
+  const tr = locale === "en" ? null : homeTranslations[locale];
 
   return (
     <>
@@ -36,7 +45,7 @@ export default async function AboutPage() {
         title={<>{about.hero.titleLead} <em>{about.hero.titleEm}</em></>}
         subtitle={about.hero.subtitle}
         image={ABOUT_HERO_IMG}
-        crumbs={[{ label: "About" }]}
+        crumbs={[{ label: m.crumb }]}
       />
 
       {/* Story */}
@@ -45,13 +54,13 @@ export default async function AboutPage() {
           <div className="split split--media">
             <div className="media reveal" style={{ backgroundImage: `url('${about.story.image}')` }} />
             <div>
-              <div className="kicker reveal"><i>—</i> <span>Our Story</span> <span className="ln" /></div>
-              <h2 className="display reveal" data-delay="1">A fair price should still come with care.</h2>
+              <div className="kicker reveal"><i>—</i> <span>{m.storyKicker}</span> <span className="ln" /></div>
+              <h2 className="display reveal" data-delay="1">{m.storyHeading}</h2>
               {about.story.paras.map((p, i) => (
                 <p className="reveal" data-delay={i + 1} key={i}>{p}</p>
               ))}
-              <Link href="/tours" className="btn btn--solid reveal" data-delay="2">
-                Browse our tours <ArrowRight size={16} />
+              <Link href={localeHref(locale, "/tours")} className="btn btn--solid reveal" data-delay="2">
+                {m.browseTours} <ArrowRight size={16} />
               </Link>
             </div>
           </div>
@@ -76,10 +85,10 @@ export default async function AboutPage() {
       <section className="sec" style={{ background: "var(--sand)" }}>
         <div className="shell">
           <div className="sec-top">
-            <div className="kicker reveal"><i>—</i> <span>What &ldquo;Fair&rdquo; Means</span> <span className="ln" /></div>
+            <div className="kicker reveal"><i>—</i> <span>{m.valuesKicker}</span> <span className="ln" /></div>
             <div className="sec-top__row">
-              <h2 className="display reveal" data-delay="1">Four promises behind every trip.</h2>
-              <p className="reveal" data-delay="2">The brand should never say &ldquo;cheap.&rdquo; It says clear, balanced, respectful, and well-arranged.</p>
+              <h2 className="display reveal" data-delay="1">{m.valuesHeading}</h2>
+              <p className="reveal" data-delay="2">{m.valuesSub}</p>
             </div>
           </div>
           <div className="flist flist--2">
@@ -96,8 +105,8 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      <HowItWorks />
-      <Cta />
+      <HowItWorks steps={tr?.steps} />
+      <Cta heading={tr?.cta.heading} text={tr?.cta.text} />
       <Footer />
     </>
   );

@@ -1,10 +1,13 @@
 import { Pin, Calendar, User, ArrowRight } from "./icons";
 import { homeDefault, type HomeContent } from "@/lib/page-content";
+import { getLocale } from "@/lib/locale";
+import { t } from "@/lib/messages";
 
 const HERO_IMG =
   "https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1900&q=85";
 
-export default function Hero({ hero = homeDefault.hero }: { hero?: HomeContent["hero"] }) {
+export default async function Hero({ hero = homeDefault.hero }: { hero?: HomeContent["hero"] }) {
+  const m = t(await getLocale()).home;
   return (
     <section
       className="hero"
@@ -26,44 +29,37 @@ export default function Hero({ hero = homeDefault.hero }: { hero?: HomeContent["
           </div>
 
           <form className="widget reveal" data-delay="2" action="#cta">
-            <h3>Plan your trip</h3>
-            <span>Get a fair, itemised quote — no obligation.</span>
+            <h3>{m.planTrip}</h3>
+            <span>{m.quoteNote}</span>
             <div className="field">
-              <label htmlFor="h-dest">Destination</label>
+              <label htmlFor="h-dest">{m.destination}</label>
               <div className="ctl">
                 <Pin size={18} />
-                <select id="h-dest" name="destination" defaultValue="Cairo & Giza">
-                  <option>Cairo &amp; Giza</option>
-                  <option>Luxor</option>
-                  <option>Aswan</option>
-                  <option>Red Sea &amp; Coast</option>
-                  <option>Custom plan</option>
+                <select id="h-dest" name="destination" defaultValue={m.destOptions[0]}>
+                  {m.destOptions.map((o) => <option key={o}>{o}</option>)}
                 </select>
               </div>
             </div>
             <div className="widget__row">
               <div className="field">
-                <label htmlFor="h-date">Dates</label>
+                <label htmlFor="h-date">{m.dates}</label>
                 <div className="ctl">
                   <Calendar size={18} />
-                  <input id="h-date" name="dates" type="text" placeholder="When?" />
+                  <input id="h-date" name="dates" type="text" placeholder={m.whenPh} />
                 </div>
               </div>
               <div className="field">
-                <label htmlFor="h-trav">Travellers</label>
+                <label htmlFor="h-trav">{m.travellers}</label>
                 <div className="ctl">
                   <User size={18} />
-                  <select id="h-trav" name="travellers" defaultValue="2 adults">
-                    <option>2 adults</option>
-                    <option>1 adult</option>
-                    <option>Family</option>
-                    <option>Group</option>
+                  <select id="h-trav" name="travellers" defaultValue={m.travOptions[0]}>
+                    {m.travOptions.map((o) => <option key={o}>{o}</option>)}
                   </select>
                 </div>
               </div>
             </div>
             <a className="btn btn--solid" href="#cta">
-              Get my fair quote <ArrowRight size={16} />
+              {m.getQuote} <ArrowRight size={16} />
             </a>
           </form>
         </div>
