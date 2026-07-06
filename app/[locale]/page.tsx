@@ -38,7 +38,7 @@ export default async function Home() {
 
   // Real tours & destinations from the CMS, localized for the active locale.
   const tours = allTours.slice(0, 4).map((x) => localize(x, locale === "en" ? undefined : toursI18n[x.slug]?.[locale]));
-  const destinations = allDestinations.map((x) => localize(x, locale === "en" ? undefined : destinationsI18n[x.slug]?.[locale]));
+  const destinations = allDestinations.slice(0, 4).map((x) => localize(x, locale === "en" ? undefined : destinationsI18n[x.slug]?.[locale]));
 
   return (
     <>
