@@ -589,6 +589,251 @@ export const tours: TourDetail[] = [
     notIncluded: ["Guide (optional add-on)", "Gratuities (at your discretion)", "Personal expenses"],
     gallery: [T("desert-buggy.jpg"), T("giza-camel.jpg"), T("giza-desert.jpg"), T("fayoum-safari.jpg"), T("desert-camel.jpg")],
   },
+{
+    "slug": "cairo-alexandria-fayoum-tour",
+    "title": "4-Day Cairo, Alexandria & Fayoum Tour",
+    "place": "Cairo, Alexandria & Fayoum",
+    "type": "Package",
+    "destination": "Cairo & Giza",
+    "category": "Multi-Day Packages",
+    "metaTitle": "4-Day Cairo, Alexandria & Fayoum Tour | Fair Egypt Tours",
+    "metaDescription": "A 4-day private tour of Cairo's pyramids and museums, Islamic & Coptic Cairo, a Nile dinner cruise, a full day in Alexandria, and a desert escape to Fayoum.",
+    "duration": "4 days / 3 nights",
+    "groupSize": "Private",
+    "languages": "English & Arabic (more on request)",
+    "rating": "4.9",
+    "reviewCount": 68,
+    "price": 340,
+    "heroImage": "/img/tours/pkg-caf/hero.jpg",
+    "heroImageAlt": "A camel rider before the Pyramids of Giza at sunset",
+    "cardImage": "/img/tours/pkg-caf/card.jpg",
+    "cardImageAlt": "The Pyramids and Sphinx of Giza",
+    "summary": "A balanced four-day private tour that pairs Cairo's ancient wonders and old-city heritage with the Mediterranean charm of Alexandria and a soft desert adventure in Fayoum — history, culture, Nile dining, sea air, and open desert, all privately guided.",
+    "overview": [
+        "This four-day private tour weaves together the best of Cairo, the Greco-Roman charm of Alexandria, and a gentle desert escape to Fayoum — a genuinely varied program of ancient wonders, living culture, Nile dining, sea air, and wide-open dunes.",
+        "You'll stand before the Pyramids and the new Grand Egyptian Museum, explore Islamic and Coptic Cairo and the lanes of Khan el-Khalili, dine on the Nile, trace Alexandria's Mediterranean past, and finish among the lakes, dunes, and waterfalls of Fayoum. Everything is private, air-conditioned, and guided — at a pace that never feels rushed."
+    ],
+    "highlights": [
+        "The Giza Pyramids, the Great Sphinx and the Valley Temple",
+        "The new Grand Egyptian Museum",
+        "The Citadel of Salah al-Din & the Alabaster Mosque",
+        "Coptic Cairo and the Holy Family church",
+        "Khan el-Khalili bazaar and a Nile dinner cruise",
+        "Alexandria — catacombs, Pompey's Pillar & Qaitbay Citadel",
+        "Fayoum's Magic Lake, sandboarding & Wadi El Rayan Waterfalls"
+    ],
+    "itinerary": [
+        {
+            "time": "Day 1",
+            "title": "Giza Pyramids, papyrus & the Grand Egyptian Museum",
+            "text": "Start with the legendary Pyramids of Giza — the pyramids of Khufu, Khafre and Menkaure, the Great Sphinx, and the Valley Temple tied to the plateau's funerary rituals. Stop at a papyrus institute to see how the ancient Egyptians made paper, then explore the Grand Egyptian Museum, the vast new home of Egypt's greatest treasures. Lunch is included before we return to your hotel."
+        },
+        {
+            "time": "Day 2",
+            "title": "Islamic & Coptic Cairo, Khan el-Khalili & a Nile dinner cruise",
+            "text": "Visit the Citadel of Salah al-Din and the beautiful Ottoman Mosque of Muhammad Ali, with sweeping views over the city from the panorama point. Continue to Coptic Cairo and the church over the cave where tradition says the Holy Family sheltered, then wander the historic lanes of Khan el-Khalili. Lunch is included, and after a rest at the hotel you'll enjoy a relaxing two-hour Nile dinner cruise."
+        },
+        {
+            "time": "Day 3",
+            "title": "A full day in Alexandria",
+            "text": "Drive to the Mediterranean city of Alexandria for its Greco-Roman highlights: the Catacombs of Kom El Shoqafa, where Egyptian, Greek and Roman styles meet; Pompey's Pillar; and the seafront Qaitbay Citadel, built on the site of the ancient Lighthouse. Where time and opening hours allow, we also visit the striking Bibliotheca Alexandrina. Lunch is included before the drive back to Cairo."
+        },
+        {
+            "time": "Day 4",
+            "title": "Fayoum desert, Magic Lake & Wadi El Rayan",
+            "text": "Head out to Fayoum, one of Egypt's most beautiful desert landscapes. Enjoy the soft dunes and wide scenery, relax at the Magic Lake, and try sandboarding — a fun, easy adventure for most travellers — followed by Bedouin-style tea by the water. Continue to the Wadi El Rayan Waterfalls for photos before lunch and the return to Cairo."
+        }
+    ],
+    "included": [
+        "Private air-conditioned transport throughout the tour",
+        "Hotel pick-up & drop-off in Cairo",
+        "Licensed Egyptologist guide on sightseeing days",
+        "Lunch as listed in the itinerary",
+        "2-hour Nile dinner cruise in Cairo",
+        "Fayoum desert visit with sandboarding",
+        "Bedouin tea at Magic Lake",
+        "All taxes & service charges"
+    ],
+    "notIncluded": [
+        "International & domestic flights",
+        "Accommodation (available as an add-on)",
+        "Entry tickets to the sites (unless added to your quote)",
+        "Drinks with meals",
+        "Tipping for guide, driver & staff",
+        "Travel insurance",
+        "Personal expenses"
+    ],
+    "gallery": [
+        "/img/tours/pkg-caf/g-gem.jpg",
+        "/img/tours/pkg-caf/g-citadel.jpg",
+        "/img/tours/pkg-caf/g-coptic.jpg",
+        "/img/tours/pkg-caf/g-khan.jpg",
+        "/img/tours/pkg-caf/g-alex.jpg",
+        "/img/tours/pkg-caf/g-fayoum.jpg"
+    ]
+},
+{
+    "slug": "cairo-luxor-highlights-tour",
+    "title": "4-Day Cairo & Luxor Highlights Tour",
+    "place": "Cairo & Luxor",
+    "type": "Package",
+    "destination": "Cairo & Giza",
+    "category": "Multi-Day Packages",
+    "metaTitle": "4-Day Cairo & Luxor Highlights Tour | Fair Egypt Tours",
+    "metaDescription": "A 4-day private tour of Egypt's essentials — the Giza Pyramids and Grand Egyptian Museum, Karnak and Luxor temples, the Valley of the Kings, and a sunrise balloon.",
+    "duration": "4 days / 3 nights",
+    "groupSize": "Private",
+    "languages": "English & Arabic (more on request)",
+    "rating": "5.0",
+    "reviewCount": 54,
+    "price": 470,
+    "heroImage": "/img/tours/pkg-cl/hero.jpg",
+    "heroImageAlt": "A hot-air balloon over Luxor's West Bank at sunrise",
+    "cardImage": "/img/tours/pkg-cl/card.jpg",
+    "cardImageAlt": "The columns of Karnak Temple in Luxor",
+    "summary": "A short, beautifully arranged private tour of Egypt's two essential cities — the Giza Pyramids and the Grand Egyptian Museum in Cairo, then the great temples of Luxor, the Valley of the Kings, and an unforgettable sunrise hot-air balloon over the West Bank.",
+    "overview": [
+        "This four-day private tour is built for travellers who want Egypt's essential highlights in one tight, well-paced program — the icons of Cairo and Luxor, without the filler.",
+        "You'll explore the Giza Pyramids and the new Grand Egyptian Museum, then fly south to Luxor for Karnak and Luxor Temple, a charming horse-carriage tour of the city, a sunrise hot-air balloon over the Nile and the West Bank, the Valley of the Kings, and the elegant Temple of Hatshepsut. Private, guided, and door to door throughout."
+    ],
+    "highlights": [
+        "The Giza Pyramids, Sphinx and papyrus experience",
+        "The new Grand Egyptian Museum",
+        "The Karnak Temple complex",
+        "Luxor Temple and an evening horse-carriage tour",
+        "A sunrise hot-air balloon over the West Bank",
+        "The Valley of the Kings",
+        "The Temple of Queen Hatshepsut at Deir el-Bahari"
+    ],
+    "itinerary": [
+        {
+            "time": "Day 1",
+            "title": "Arrival in Cairo",
+            "text": "Our representative meets and assists you at Cairo International Airport, helps with the arrival formalities, and transfers you by private air-conditioned vehicle to your hotel to check in and relax after your flight."
+        },
+        {
+            "time": "Day 2",
+            "title": "Giza Pyramids, Sphinx, papyrus & the Grand Egyptian Museum",
+            "text": "Begin with the world-famous Pyramids of Giza and the Great Sphinx, the guardian of the plateau, then stop at a papyrus institute to see how ancient paper was made. Continue to the Grand Egyptian Museum and its extraordinary collection. Lunch is included, and depending on your flight schedule you'll transfer for your domestic flight to Luxor (or fly the next morning)."
+        },
+        {
+            "time": "Day 3",
+            "title": "Luxor East Bank — Karnak, Luxor Temple & a carriage tour",
+            "text": "Explore the vast Karnak Temple complex — its great courts, giant columns, sacred lake, and chapels to Amun-Ra — then the beautifully preserved Luxor Temple in the heart of the city, once linked to Karnak by the Avenue of Sphinxes. After some rest, enjoy a relaxed evening horse-carriage tour along the Nile corniche and through Luxor's lively streets."
+        },
+        {
+            "time": "Day 4",
+            "title": "Sunrise balloon, Valley of the Kings, Hatshepsut & return",
+            "text": "Rise early for a hot-air balloon over Luxor — wonderful views of the Nile, the fields, the temples and the West Bank mountains. Then visit the Valley of the Kings, the royal burial place of the New Kingdom pharaohs, and the elegant cliff-side Temple of Queen Hatshepsut. Lunch is included before your transfer to Luxor Airport for the flight back to Cairo."
+        }
+    ],
+    "included": [
+        "Meet & assist at Cairo International Airport",
+        "Private airport transfers",
+        "Private air-conditioned transport during tours",
+        "Licensed Egyptologist guide on sightseeing days",
+        "Cairo and Luxor (East & West Bank) sightseeing",
+        "Lunch as listed in the itinerary",
+        "Evening horse-carriage tour in Luxor",
+        "Sunrise hot-air balloon ride in Luxor",
+        "All taxes & service charges"
+    ],
+    "notIncluded": [
+        "International flights",
+        "Domestic flights Cairo–Luxor (available as an add-on)",
+        "Accommodation (available as an add-on)",
+        "Entry tickets to the sites (unless added to your quote)",
+        "Drinks with meals",
+        "Tipping for guide, driver, hotel & balloon crew",
+        "Travel insurance",
+        "Personal expenses"
+    ],
+    "gallery": [
+        "/img/tours/pkg-cl/g-giza.jpg",
+        "/img/tours/pkg-cl/g-gem.jpg",
+        "/img/tours/pkg-cl/g-karnak.jpg",
+        "/img/tours/pkg-cl/g-luxor-temple.jpg",
+        "/img/tours/pkg-cl/g-valley.jpg",
+        "/img/tours/pkg-cl/g-hatshepsut.jpg"
+    ]
+},
+{
+    "slug": "cairo-alexandria-tour",
+    "title": "3-Day Cairo & Alexandria Tour",
+    "place": "Cairo & Alexandria",
+    "type": "Package",
+    "destination": "Cairo & Giza",
+    "category": "Multi-Day Packages",
+    "metaTitle": "3-Day Cairo & Alexandria Tour | Fair Egypt Tours",
+    "metaDescription": "A 3-day private tour of Cairo's pyramids and Grand Egyptian Museum, the Citadel and Coptic Cairo, a Nile dinner cruise, and a full day in Mediterranean Alexandria.",
+    "duration": "3 days / 2 nights",
+    "groupSize": "Private",
+    "languages": "English & Arabic (more on request)",
+    "rating": "4.9",
+    "reviewCount": 81,
+    "price": 270,
+    "heroImage": "/img/tours/pkg-ca/hero.jpg",
+    "heroImageAlt": "A camel rider before the Pyramids of Giza at sunset",
+    "cardImage": "/img/tours/pkg-ca/card.jpg",
+    "cardImageAlt": "The Stanley Bridge on the Alexandria seafront",
+    "summary": "A three-day private tour combining Cairo's ancient wonders and old-city heritage — the Pyramids, the Grand Egyptian Museum, the Citadel, Coptic Cairo and Khan el-Khalili, plus a Nile dinner cruise — with a full day in Mediterranean Alexandria.",
+    "overview": [
+        "This three-day private tour is the perfect short introduction to northern Egypt: the timeless icons of Cairo, its Islamic and Coptic heritage, an evening on the Nile, and a full day exploring the Greco-Roman city of Alexandria.",
+        "You'll see the Giza Pyramids and the Grand Egyptian Museum, visit the Citadel and the Holy Family church in Coptic Cairo, shop the lanes of Khan el-Khalili, dine on the river, and spend a day among Alexandria's catacombs, monuments, and seafront. Private, air-conditioned, and fully guided throughout."
+    ],
+    "highlights": [
+        "The Giza Pyramids, Sphinx and Valley Temple",
+        "The new Grand Egyptian Museum",
+        "The Citadel & the Alabaster Mosque of Muhammad Ali",
+        "Coptic Cairo and the Holy Family cave church",
+        "Khan el-Khalili bazaar",
+        "A 2-hour Nile dinner cruise with entertainment",
+        "A full day in Alexandria — catacombs, Pompey's Pillar & Qaitbay"
+    ],
+    "itinerary": [
+        {
+            "time": "Day 1",
+            "title": "Giza Pyramids, papyrus & the Grand Egyptian Museum",
+            "text": "Start with the world-famous Pyramids of Giza, the Great Sphinx and the Valley Temple on the plateau, then visit a traditional papyrus institute to see how one of history's earliest writing materials was made. After lunch at a local restaurant, explore the Grand Egyptian Museum and its remarkable collection before returning to your hotel."
+        },
+        {
+            "time": "Day 2",
+            "title": "Citadel, Coptic Cairo, Khan el-Khalili & a Nile dinner cruise",
+            "text": "Visit the Citadel of Salah al-Din and the alabaster Mosque of Muhammad Ali, with a panoramic view over the city. Continue to Coptic Cairo, going down to the cave beneath the church where tradition says the Holy Family rested, then browse the lively lanes of Khan el-Khalili. In the evening, enjoy a two-hour Nile dinner cruise with a buffet dinner and onboard entertainment — which may include oriental and western music, a belly-dance show, and a tanoura performance."
+        },
+        {
+            "time": "Day 3",
+            "title": "A full day in Alexandria",
+            "text": "Drive about 2.5 hours to Alexandria for a full day on the Mediterranean. Visit the Catacombs of Kom El Shoqafa, where Egyptian, Greek and Roman worlds meet; Pompey's Pillar; and the seafront Qaitbay Citadel on the site of the ancient Lighthouse. Where time and opening hours allow, we also stop at the Bibliotheca Alexandrina. Lunch is included before the drive back to Cairo."
+        }
+    ],
+    "included": [
+        "Private air-conditioned transport throughout the tour",
+        "Hotel pick-up & drop-off in Cairo",
+        "Licensed Egyptologist guide on sightseeing days",
+        "Lunch on Day 1 and on Day 3 in Alexandria",
+        "2-hour Nile dinner cruise with buffet dinner",
+        "Papyrus-making demonstration",
+        "All taxes & service charges"
+    ],
+    "notIncluded": [
+        "International & domestic flights",
+        "Accommodation (available as an add-on)",
+        "Entry tickets to the sites (unless added to your quote)",
+        "Drinks with meals",
+        "Tipping for guide, driver & staff",
+        "Travel insurance",
+        "Personal expenses"
+    ],
+    "gallery": [
+        "/img/tours/pkg-ca/g-gem.jpg",
+        "/img/tours/pkg-ca/g-citadel.jpg",
+        "/img/tours/pkg-ca/g-coptic.jpg",
+        "/img/tours/pkg-ca/g-cruise.jpg",
+        "/img/tours/pkg-ca/g-catacombs.jpg",
+        "/img/tours/pkg-ca/g-library.jpg"
+    ]
+}
 ];
 
 export const getTour = (slug: string) => tours.find((t) => t.slug === slug);
