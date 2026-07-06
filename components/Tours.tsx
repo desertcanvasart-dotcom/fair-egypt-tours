@@ -1,11 +1,12 @@
 import Link from "next/link";
-import { tours as defaultTours, type Tour } from "@/lib/data";
-import { Star, ArrowUpRight, ArrowRight } from "./icons";
+import type { TourDetail } from "@/lib/tours";
+import TourCard from "./TourCard";
+import { ArrowRight } from "./icons";
 import { getLocale } from "@/lib/locale";
 import { localeHref } from "@/lib/i18n";
 import { t } from "@/lib/messages";
 
-export default async function Tours({ tours = defaultTours }: { tours?: Tour[] }) {
+export default async function Tours({ tours }: { tours: TourDetail[] }) {
   const locale = await getLocale();
   const m = t(locale).home;
   return (
@@ -20,22 +21,8 @@ export default async function Tours({ tours = defaultTours }: { tours?: Tour[] }
         </div>
 
         <div className="tours-grid">
-          {tours.map((t, i) => (
-            <article className="rcard reveal" data-delay={(i % 4) + 1} key={t.title}>
-              <div className="img" style={{ backgroundImage: `url('${t.img}')` }} />
-              <div className="rcard__top">
-                <span className="rcard__place">{t.place}</span>
-                <span className="rcard__rate"><Star size={13} style={{ color: "#DDA45F" }} />{t.rating}</span>
-              </div>
-              <div className="rcard__b">
-                <span className="dur">{t.duration}</span>
-                <h3>{t.title}</h3>
-                <div className="rcard__foot">
-                  <div className="pr"><small>{m.priceFrom}</small><b>{t.price}</b></div>
-                  <span className="go"><ArrowUpRight size={16} /></span>
-                </div>
-              </div>
-            </article>
+          {tours.map((tour, i) => (
+            <TourCard key={tour.slug} tour={tour} delay={(i % 4) + 1} />
           ))}
         </div>
 

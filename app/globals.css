@@ -65,7 +65,7 @@
     .topbar__r a:hover{color:#fff}
     .topbar__r svg{color:var(--clay-soft)}
 
-    .hdr{position:sticky;top:0;z-index:70;transition:background .5s var(--ease),box-shadow .5s var(--ease),border-color .5s var(--ease);
+    .hdr{position:sticky;top:0;z-index:70;transition:background .28s var(--ease),box-shadow .28s var(--ease),border-color .28s var(--ease);
       background:transparent;border-bottom:1px solid transparent}
     .hdr.solid{background:rgba(251,244,230,.86);backdrop-filter:blur(16px) saturate(140%);-webkit-backdrop-filter:blur(16px) saturate(140%);
       box-shadow:var(--sh-sm);border-bottom-color:var(--line)}
@@ -121,7 +121,7 @@
     .hdr.on-dark .hdr__burger{border-color:rgba(255,255,255,.4);color:#fff}
 
     /* =============== HERO (full-bleed + booking widget) =============== */
-    .hero{position:relative;min-height:100dvh;margin-top:-73px;display:flex;align-items:flex-end;
+    .hero{position:relative;min-height:100dvh;margin-top:-88px;display:flex;align-items:flex-end;
       background:linear-gradient(180deg,rgba(7,28,40,.55) 0%,rgba(7,28,40,.15) 35%,rgba(7,28,40,.78) 100%),
       url('https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1900&q=85') center/cover fixed}
     .hero__grid{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:end;width:100%;padding:0 0 64px;color:#fff}
@@ -224,8 +224,9 @@
     .stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-top:64px;border-top:1px solid var(--line-2);border-bottom:1px solid var(--line-2)}
     .stat{padding:38px 18px;border-right:1px solid var(--line)}
     .stat:last-child{border-right:none}
-    .stat b{font-family:var(--font-playfair),serif;font-size:clamp(38px,4.5vw,56px);color:var(--nile);display:block;line-height:1}
-    .stat span{font-size:13px;color:var(--muted);letter-spacing:.04em;margin-top:10px;display:block}
+    .stat b{font-family:var(--font-playfair),serif;font-size:clamp(38px,4.5vw,56px);color:var(--nile);display:block;line-height:1;white-space:nowrap}
+    .stat b span{display:inline;font-size:.5em;margin:0;vertical-align:baseline}
+    .stat>span{font-size:13px;color:var(--muted);letter-spacing:.04em;margin-top:10px;display:block}
 
     /* =============== HOW IT WORKS — horizontal timeline =============== */
     .how{background:var(--paper)}
@@ -243,7 +244,8 @@
     .promise__grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:64px;align-items:center;position:relative}
     .promise .kicker{color:var(--clay-soft)}.promise .kicker .ln{background:rgba(255,255,255,.3)}
     .promise h2{font-size:clamp(30px,3.8vw,52px);color:#fff;margin:22px 0 20px}
-    .promise>.promise__grid>div>p{color:rgba(255,255,255,.74);font-size:16px;max-width:40ch;margin-bottom:30px}
+    .promise .promise__grid>div>p{color:rgba(255,255,255,.74);font-size:16px;max-width:40ch;margin-bottom:34px}
+    .promise .btn--solid{border-radius:12px}
     .pblock{margin-bottom:30px}
     .pblock h4{display:flex;align-items:center;gap:10px;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:#fff;margin-bottom:16px}
     .pblock h4 svg{color:var(--clay-soft)}
@@ -302,7 +304,7 @@
     /* =============== FOOTER — big wordmark editorial =============== */
     .footer{background:var(--nile-deep);color:rgba(255,255,255,.62);overflow:hidden}
     .footer__cta{display:flex;align-items:center;justify-content:space-between;gap:30px;flex-wrap:wrap;padding:42px 0;border-bottom:1px solid rgba(255,255,255,.1)}
-    .footer__cta h3{font-family:var(--font-playfair),serif;font-size:clamp(24px,2.6vw,34px);color:#fff;max-width:18ch}
+    .footer__cta h3{font-family:var(--font-playfair),serif;font-size:clamp(24px,2.6vw,34px);color:#fff;max-width:16ch;text-wrap:balance;flex:1 1 auto}
     .footer__news{display:flex;gap:10px;flex-wrap:wrap}
     .footer__news .ctl{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.18);border-radius:8px;padding:13px 16px;min-width:260px}
     .footer__news input{background:transparent;border:none;outline:none;color:#fff;width:100%;font-size:14px}

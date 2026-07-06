@@ -36,13 +36,13 @@ export default async function Footer() {
             <h5>{m.footer.explore}</h5>
             <Link href={L("/tours")}>{m.nav.tours}</Link>
             <Link href={L("/destinations")}>{m.nav.destinations}</Link>
+            <Link href={L("/travel-tips")}>{m.nav.travelTips}</Link>
             <Link href={L("/booking")}>{m.links.book}</Link>
             <Link href={L("/blog")}>{m.nav.blog}</Link>
           </div>
           <div className="footer__col">
             <h5>{m.footer.company}</h5>
             <Link href={L("/about")}>{m.footer.aboutUs}</Link>
-            <Link href={L("/travel-tips")}>{m.nav.travelTips}</Link>
             <Link href={L("/faq")}>{m.links.faq}</Link>
           </div>
           <div className="footer__col">

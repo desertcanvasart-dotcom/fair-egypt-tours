@@ -9,17 +9,23 @@ import Reviews from "@/components/Reviews";
 import Faq from "@/components/Faq";
 import Cta from "@/components/Cta";
 import Footer from "@/components/Footer";
-import { getPage } from "@/lib/cms";
-import { tours as enTours, destinations as enDestinations, stats as enStats } from "@/lib/data";
+import { getPage, getTours, getDestinations } from "@/lib/cms";
+import { stats as enStats } from "@/lib/data";
 import { getLocale } from "@/lib/locale";
+import { localize } from "@/lib/localize";
 import { homeTranslations } from "@/lib/home-i18n";
+import { toursI18n } from "@/lib/tours-i18n";
+import { destinationsI18n } from "@/lib/destinations-i18n";
 
 export default async function Home() {
+  // NOTE: the `Promise` component is imported below, which shadows the global,
+  // so fetch sequentially rather than using Promise.all.
   const home = await getPage("home");
+  const allTours = await getTours();
+  const allDestinations = await getDestinations();
   const locale = await getLocale();
 
-  // English: editable content from the DB + marketing cards from lib/data.
-  // es/pt: overlay the translated data layer.
+  // English: editable content from the DB. es/pt: overlay the translated layer.
   const tr = locale === "en" ? null : homeTranslations[locale];
   const hero = tr?.hero ?? home.hero;
   const steps = tr?.steps ?? home.steps;
@@ -28,9 +34,11 @@ export default async function Home() {
   const faqs = tr?.faqs ?? home.faqs;
   const promise = tr?.promise ?? home.promise;
   const cta = tr?.cta ?? home.cta;
-  const tours = tr?.tours ?? enTours;
-  const destinations = tr?.destinations ?? enDestinations;
   const stats = tr?.stats ?? enStats;
+
+  // Real tours & destinations from the CMS, localized for the active locale.
+  const tours = allTours.slice(0, 4).map((x) => localize(x, locale === "en" ? undefined : toursI18n[x.slug]?.[locale]));
+  const destinations = allDestinations.map((x) => localize(x, locale === "en" ? undefined : destinationsI18n[x.slug]?.[locale]));
 
   return (
     <>

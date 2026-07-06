@@ -54,8 +54,11 @@ export default function Interactions() {
     let sentinel: HTMLDivElement | null = null;
 
     if (hdr && hdr.dataset.overHero === "true") {
+      // Sentinel sits just below the header; as soon as the user scrolls a
+      // little (past ~header height), it leaves the viewport and the header
+      // flips to its solid background.
       sentinel = document.createElement("div");
-      sentinel.style.cssText = "position:absolute;top:70vh;height:1px;width:1px;pointer-events:none";
+      sentinel.style.cssText = "position:absolute;top:64px;height:1px;width:1px;pointer-events:none";
       document.body.appendChild(sentinel);
 
       hdrObs = new IntersectionObserver(
@@ -68,7 +71,7 @@ export default function Interactions() {
             hdr.classList.remove("on-dark");
           }
         },
-        { threshold: 0, rootMargin: "-120px 0px 0px 0px" }
+        { threshold: 0 }
       );
       hdrObs.observe(sentinel);
     }

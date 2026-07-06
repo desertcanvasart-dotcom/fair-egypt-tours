@@ -1,11 +1,11 @@
 import Link from "next/link";
-import { destinations as defaultDestinations, type Destination } from "@/lib/data";
+import type { Destination } from "@/lib/destinations";
 import { ArrowRight } from "./icons";
 import { getLocale } from "@/lib/locale";
 import { localeHref } from "@/lib/i18n";
 import { t } from "@/lib/messages";
 
-export default async function Destinations({ destinations = defaultDestinations }: { destinations?: Destination[] }) {
+export default async function Destinations({ destinations }: { destinations: Destination[] }) {
   const locale = await getLocale();
   const m = t(locale).home;
   return (
@@ -21,8 +21,8 @@ export default async function Destinations({ destinations = defaultDestinations 
 
         <div className="dgrid">
           {destinations.map((d, i) => (
-            <Link className="dtile reveal" data-delay={(i % 4) + 1} key={d.name} href={localeHref(locale, "/destinations")}>
-              <div className="img" style={{ backgroundImage: `url('${d.img}')` }} />
+            <Link className="dtile reveal" data-delay={(i % 4) + 1} key={d.slug} href={localeHref(locale, `/destinations/${d.slug}`)}>
+              <div className="img" style={{ backgroundImage: `url('${d.cardImage}')` }} />
               <div className="dtile__b">
                 <h3>{d.name}</h3>
                 <span className="dtile__go">{m.destExplore} <ArrowRight size={14} /></span>
