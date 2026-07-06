@@ -6,7 +6,7 @@ import BookingForm from "@/components/BookingForm";
 import { getLocale } from "@/lib/locale";
 import { localeHref } from "@/lib/i18n";
 import { bookingContent } from "@/lib/booking-content";
-import { getTours, getPage } from "@/lib/cms";
+import { getPage } from "@/lib/cms";
 import { BadgeCheck, Check } from "@/components/icons";
 
 const HERO =
@@ -27,8 +27,7 @@ export async function generateMetadata(): Promise<Metadata> {
 export default async function BookingPage() {
   const locale = await getLocale();
   const s = bookingContent[locale];
-  const [tours, site] = await Promise.all([getTours(), getPage("site")]);
-  const tourOpts = tours.map((t) => ({ title: t.title, type: t.type }));
+  const site = await getPage("site");
 
   return (
     <>
@@ -45,7 +44,7 @@ export default async function BookingPage() {
         <div className="shell">
           <div className="bookwrap">
             <div className="bookwrap__form reveal">
-              <BookingForm s={s} tours={tourOpts} whatsapp={site.whatsapp} />
+              <BookingForm s={s} whatsapp={site.whatsapp} />
             </div>
             <aside className="bookwrap__side reveal" data-delay="1">
               <div className="bookside">

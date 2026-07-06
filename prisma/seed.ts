@@ -77,8 +77,11 @@ async function main() {
   console.log("Seeding from lib/*.ts ...");
   const retired = await prisma.tour.deleteMany({ where: { slug: { in: RETIRED_TOUR_SLUGS } } });
   if (retired.count) console.log(`  tours: removed ${retired.count} retired placeholder tours`);
-  await seedCollection("tours", tours, prisma.tour);
-  await seedCollection("tour-categories", tourCategories, prisma.tourCategory);
+  // Tours are code-authored in lib/tours.ts, so refresh from code (keeps them
+  // in sync when fields like recommendedHotels are added). No prune, so any
+  // dashboard-only tours are preserved.
+  await seedCollection("tours", tours, prisma.tour, true);
+  await seedCollection("tour-categories", tourCategories, prisma.tourCategory, true);
   // Destinations and hotels are fully code-authored (the city guides and the
   // curated hotel list live in lib/*.ts), so we refresh from code and prune
   // anything no longer listed.

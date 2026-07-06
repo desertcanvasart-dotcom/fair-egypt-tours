@@ -6,13 +6,15 @@ import Footer from "@/components/Footer";
 import PageHero from "@/components/PageHero";
 import Cta from "@/components/Cta";
 import TourCard from "@/components/TourCard";
+import TourBookingForm from "@/components/TourBookingForm";
+import HotelCard from "@/components/HotelCard";
 import Gallery from "@/components/Gallery";
 import JsonLdScript from "@/components/JsonLdScript";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
 import { ORG_ID } from "@/components/JsonLd";
-import { getTour, getTours, getTourSlugs } from "@/lib/cms";
+import { getTour, getTours, getTourSlugs, getHotels } from "@/lib/cms";
 import { site } from "@/lib/data";
-import { Clock, User, Star, BadgeCheck, Check, Plus, ArrowRight, Whatsapp, Pin } from "@/components/icons";
+import { Clock, User, Star, BadgeCheck, Check, Plus, ArrowRight, Pin } from "@/components/icons";
 
 export async function generateStaticParams() {
   return (await getTourSlugs()).map((slug) => ({ slug }));
@@ -43,6 +45,13 @@ export default async function TourPage({ params }: { params: Promise<{ locale: s
   if (!t) notFound();
 
   const related = (await getTours()).filter((x) => x.slug !== t.slug).slice(0, 3);
+
+  // Hand-picked recommended hotels (packages), in the order listed on the tour.
+  const recHotels = t.recommendedHotels?.length
+    ? (await getHotels())
+        .filter((h) => t.recommendedHotels!.includes(h.slug))
+        .sort((a, b) => t.recommendedHotels!.indexOf(a.slug) - t.recommendedHotels!.indexOf(b.slug))
+    : [];
 
   const schema = {
     "@context": "https://schema.org",
@@ -150,17 +159,31 @@ export default async function TourPage({ params }: { params: Promise<{ locale: s
                 <div className="row"><span><User size={16} /> Group</span><b>{t.groupSize}</b></div>
                 <div className="row"><span><Star size={16} /> Rating</span><b>{t.rating} / 5</b></div>
                 <div className="row"><span><BadgeCheck size={16} /> Languages</span><b>{t.languages}</b></div>
-                <Link href="/#cta" className="btn btn--solid">Book / get a quote <ArrowRight size={16} /></Link>
-                <a href={site.whatsapp} className="btn btn--outline" style={{ width: "100%", justifyContent: "center", marginTop: 10 }}>
-                  <Whatsapp size={16} /> Ask on WhatsApp
-                </a>
+                <TourBookingForm tourTitle={t.title} whatsapp={site.whatsapp} />
               </div>
             </aside>
           </div>
         </div>
       </section>
 
-      <section className="sec" style={{ background: "var(--sand)" }}>
+      {recHotels.length > 0 ? (
+        <section className="sec" style={{ background: "var(--sand)" }}>
+          <div className="shell">
+            <div className="sec-top">
+              <div className="kicker reveal"><i>—</i> <span>Where to stay</span> <span className="ln" /></div>
+              <div className="sec-top__row">
+                <h2 className="display reveal" data-delay="1">Recommended hotels</h2>
+                <p className="reveal" data-delay="2">Comfortable, well-located stays we&apos;d happily book for this trip — add any of them to your package.</p>
+              </div>
+            </div>
+            <div className="deststay">
+              {recHotels.map((h, i) => <HotelCard key={h.slug} hotel={h} delay={(i % 4) + 1} />)}
+            </div>
+          </div>
+        </section>
+      ) : null}
+
+      <section className="sec">
         <div className="shell">
           <div className="sec-top">
             <div className="kicker reveal"><i>—</i> <span>More tours</span> <span className="ln" /></div>

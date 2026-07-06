@@ -30,6 +30,8 @@ export type TourDetail = {
   included: string[];
   notIncluded: string[];
   gallery: string[];
+  /** Hand-picked hotel slugs shown as 'Recommended hotels' (packages). */
+  recommendedHotels?: string[];
 };
 
 const D = (s: string) => `/img/dest/${s}`;
@@ -591,6 +593,7 @@ export const tours: TourDetail[] = [
   },
 {
     "slug": "cairo-alexandria-fayoum-tour",
+    "recommendedHotels": ["marriott-mena-house", "nile-ritz-carlton", "cairo-marriott", "steigenberger-cecil"],
     "title": "4-Day Cairo, Alexandria & Fayoum Tour",
     "place": "Cairo, Alexandria & Fayoum",
     "type": "Package",
@@ -674,6 +677,7 @@ export const tours: TourDetail[] = [
 },
 {
     "slug": "cairo-luxor-highlights-tour",
+    "recommendedHotels": ["marriott-mena-house", "nile-ritz-carlton", "sofitel-winter-palace", "steigenberger-nile-palace-luxor"],
     "title": "4-Day Cairo & Luxor Highlights Tour",
     "place": "Cairo & Luxor",
     "type": "Package",
@@ -759,6 +763,7 @@ export const tours: TourDetail[] = [
 },
 {
     "slug": "cairo-alexandria-tour",
+    "recommendedHotels": ["marriott-mena-house", "nile-ritz-carlton", "four-seasons-san-stefano", "steigenberger-cecil"],
     "title": "3-Day Cairo & Alexandria Tour",
     "place": "Cairo & Alexandria",
     "type": "Package",

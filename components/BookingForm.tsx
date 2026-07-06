@@ -1,38 +1,18 @@
 "use client";
 
-import { useState } from "react";
 import { Whatsapp, User, Mail, Calendar, ArrowRight, Check } from "./icons";
 import type { BookingStrings } from "@/lib/booking-content";
 
-type TourOpt = { title: string; type?: string };
-
-export default function BookingForm({
-  s,
-  tours,
-  whatsapp,
-}: {
-  s: BookingStrings;
-  tours: TourOpt[];
-  whatsapp: string;
-}) {
-  const [mode, setMode] = useState<"tour" | "custom">("tour");
-
-  const dayTours = tours.filter((t) => (t.type || "").toLowerCase().includes("day"));
-  const packages = tours.filter((t) => (t.type || "").toLowerCase().includes("package"));
-  const other = tours.filter((t) => !dayTours.includes(t) && !packages.includes(t));
-
+// The global "get a fair quote" form is for custom trips only. Booking a
+// specific listed tour happens on that tour's own page.
+export default function BookingForm({ s, whatsapp }: { s: BookingStrings; whatsapp: string }) {
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     const f = new FormData(e.currentTarget);
     const get = (k: string) => (f.get(k) as string | null)?.trim() || "";
 
     const lines: string[] = [s.waIntro, ""];
-    lines.push(`${s.waMode}: ${mode === "tour" ? s.waModeTour : s.waModeCustom}`);
-    if (mode === "tour") {
-      if (get("tour")) lines.push(`${s.waTour}: ${get("tour")}`);
-    } else {
-      if (get("trip")) lines.push(`${s.waTrip}: ${get("trip")}`);
-    }
+    if (get("trip")) lines.push(`${s.waTrip}: ${get("trip")}`);
     if (get("name")) lines.push(`${s.waName}: ${get("name")}`);
     if (get("email")) lines.push(`${s.waEmail}: ${get("email")}`);
     if (get("phone")) lines.push(`${s.waPhone}: ${get("phone")}`);
@@ -48,45 +28,13 @@ export default function BookingForm({
 
   return (
     <form className="bookform" onSubmit={onSubmit}>
-      <h3>{s.formTitle}</h3>
+      <h3>{s.tabCustom}</h3>
+      <p className="bookform__lede">{s.tabCustomHint}</p>
 
-      <div className="booktabs" role="tablist" aria-label={s.formTitle}>
-        <button type="button" role="tab" aria-selected={mode === "tour"} className={mode === "tour" ? "is-active" : ""} onClick={() => setMode("tour")}>
-          <b>{s.tabTour}</b>
-          <span>{s.tabTourHint}</span>
-        </button>
-        <button type="button" role="tab" aria-selected={mode === "custom"} className={mode === "custom" ? "is-active" : ""} onClick={() => setMode("custom")}>
-          <b>{s.tabCustom}</b>
-          <span>{s.tabCustomHint}</span>
-        </button>
+      <div className="field">
+        <label htmlFor="b-trip">{s.tripLabel}</label>
+        <textarea id="b-trip" name="trip" rows={3} placeholder={s.tripPh} />
       </div>
-
-      {mode === "tour" ? (
-        <div className="field">
-          <label htmlFor="b-tour">{s.tourLabel}</label>
-          <div className="ctl">
-            <select id="b-tour" name="tour" defaultValue="">
-              <option value="" disabled>{s.tourPlaceholder}</option>
-              {dayTours.length > 0 && (
-                <optgroup label={s.groupDayTours}>
-                  {dayTours.map((t) => <option key={t.title}>{t.title}</option>)}
-                </optgroup>
-              )}
-              {packages.length > 0 && (
-                <optgroup label={s.groupPackages}>
-                  {packages.map((t) => <option key={t.title}>{t.title}</option>)}
-                </optgroup>
-              )}
-              {other.map((t) => <option key={t.title}>{t.title}</option>)}
-            </select>
-          </div>
-        </div>
-      ) : (
-        <div className="field">
-          <label htmlFor="b-trip">{s.tripLabel}</label>
-          <textarea id="b-trip" name="trip" rows={3} placeholder={s.tripPh} />
-        </div>
-      )}
 
       <div className="bookgrid">
         <div className="field">
