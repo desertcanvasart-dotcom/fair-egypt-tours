@@ -22,8 +22,7 @@ export type Post = {
 
 export const blogCategories = ["All", "Itineraries", "Guides", "Food", "Tips"];
 
-const layla: Author = { name: "Layla Hassan", avatar: "https://i.pravatar.cc/120?img=47", role: "Local guide & writer" };
-const omar: Author = { name: "Omar El-Sayed", avatar: "https://i.pravatar.cc/120?img=13", role: "Founder, Fair Egypt Tours" };
+const ahmed: Author = { name: "Ahmed Saeed", avatar: "https://i.pravatar.cc/120?img=13", role: "Local guide & writer" };
 
 export const posts: Post[] = [
 {
@@ -33,7 +32,7 @@ export const posts: Post[] = [
   "image": "https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1400&q=80",
   "imageAlt": "Felucca on the Nile at sunset near Aswan",
   "category": "Guides",
-  "author": layla,
+  "author": ahmed,
   "date": "June 28, 2026",
   "isoDate": "2026-06-28",
   "readTime": "17 min read",
@@ -610,7 +609,7 @@ export const posts: Post[] = [
   "image": "https://images.unsplash.com/photo-1503177119275-0aa32b3a9368?auto=format&fit=crop&w=1400&q=80",
   "imageAlt": "Boats and the Nile waterfront in Egypt",
   "category": "Guides",
-  "author": omar,
+  "author": ahmed,
   "date": "June 28, 2026",
   "isoDate": "2026-06-28",
   "readTime": "26 min read",
@@ -1559,7 +1558,7 @@ export const posts: Post[] = [
   "image": "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1400&q=80",
   "imageAlt": "The Pyramids of Giza beside the Grand Egyptian Museum",
   "category": "Guides",
-  "author": layla,
+  "author": ahmed,
   "date": "June 28, 2026",
   "isoDate": "2026-06-28",
   "readTime": "24 min read",
@@ -2084,6 +2083,715 @@ export const posts: Post[] = [
     }
   ]
 },
+{
+  "slug": "top-things-to-do-in-luxor",
+  "title": "Top Things to Do in Luxor, Egypt: A Complete Guide",
+  "excerpt": "Locals call Luxor the greatest open-air museum on earth. Here are the best things to do — the icons, the quiet gems, and how to see them without the overwhelm.",
+  "image": "/img/dest/luxor/karnak.jpg",
+  "imageAlt": "The columns of Karnak Temple in Luxor, Egypt",
+  "category": "Guides",
+  "author": ahmed,
+  "date": "July 6, 2026",
+  "isoDate": "2026-07-06",
+  "readTime": "15 min read",
+  "featured": false,
+  "metaTitle": "Top Things to Do in Luxor, Egypt: A Local's Guide",
+  "metaDescription": "The best things to do in Luxor, Egypt — Karnak, the Valley of the Kings, Hatshepsut's temple, a sunrise balloon ride and more, with honest local tips.",
+  "body": [
+    {
+      "paras": [
+        "Some places in Egypt impress you. Luxor overwhelms you — in the best possible way. Built on the site of ancient Thebes, the mighty capital of Egypt at the height of the New Kingdom, this is a city where an astonishing share of the world's surviving ancient monuments stand within a few square kilometres. Egyptologists and local guides alike call it the greatest open-air museum on earth, and after a single day here you understand exactly why.",
+        "On one bank of the Nile sits the living city and its colossal temples — Karnak and Luxor Temple, glowing gold after dark. On the opposite bank, across the water where the sun goes down, lies a vast city of the dead: the Valley of the Kings, royal mortuary temples, and painted tombs cut deep into the desert hills. You could spend a week here and still leave things unseen.",
+        "This guide walks you through the best things to do in Luxor — the unmissable icons, the quieter gems most visitors skip, and the honest, practical advice that turns a hot, rushed, exhausting day into one of the most memorable parts of any Egypt trip."
+      ]
+    },
+    {
+      "heading": "Why Luxor is unlike anywhere else in Egypt",
+      "paras": [
+        "To understand Luxor, it helps to know it was once Thebes — the religious and political heart of Egypt for much of the New Kingdom, roughly 1550 to 1070 BC. This was the age of the pharaohs whose names still echo today: Hatshepsut, Thutmose III, Amenhotep III, Ramesses II, and the boy-king Tutankhamun, whose tomb was found intact in the hills just west of the river.",
+        "Thebes was the city of Amun, king of the gods, and for centuries the wealth of an empire poured into building temples in his honour and tombs for the rulers who served him. That concentration of power, faith, and gold left behind a density of monuments found nowhere else on the planet.",
+        "The result is a city that rewards curiosity. Every temple wall tells a story, every tomb was painted to guide a soul into the afterlife, and a good guide turns what could be a blur of stone into one continuous, gripping narrative that spans three thousand years."
+      ]
+    },
+    {
+      "heading": "East Bank and West Bank: how Luxor is laid out",
+      "paras": [
+        "The Nile splits Luxor into two very different halves, and knowing which is which is the key to planning your days. The ancient Egyptians associated the rising sun in the east with life and the setting sun in the west with death — and they built accordingly.",
+        "The East Bank is the living city: hotels, the corniche, markets, and the two great temples of Karnak and Luxor. The West Bank is the necropolis — the Valley of the Kings, the Valley of the Queens, mortuary temples, and the tombs of nobles and workers, backed by the pyramid-shaped peak of el-Qurn.",
+        "Crossing between the two is easy: there's a bridge a few kilometres south, a public ferry for a few pounds, and private motorboats that skip across in minutes. We usually plan temples for the late afternoon and evening on the East Bank, and save the West Bank tombs for an early start before the heat and the crowds arrive."
+      ],
+      "list": [
+        "East Bank — Karnak Temple, Luxor Temple, the Avenue of Sphinxes, Luxor Museum, the souk and corniche",
+        "West Bank — Valley of the Kings, Temple of Hatshepsut, Colossi of Memnon, Valley of the Queens, Medinet Habu, the Ramesseum, and the balloon-launch fields"
+      ]
+    },
+    {
+      "heading": "Karnak Temple: the largest religious complex ever built",
+      "paras": [
+        "If you see one thing in Luxor, make it Karnak. This is not a single temple but a sprawling city of temples, chapels, pylons, and obelisks built and added to by around thirty pharaohs over more than a thousand years. Walking in through the avenue of ram-headed sphinxes, the sheer scale is difficult to take in.",
+        "Its centrepiece is the Great Hypostyle Hall: a forest of 134 gigantic stone columns, the tallest rising some 21 metres, once supporting a roof and still carved with hieroglyphs and traces of the original colour. Standing among them, dwarfed on every side, is one of those moments travellers remember for the rest of their lives.",
+        "Give Karnak at least two hours. It's best in the softer light of the late afternoon, and many evenings there's a sound-and-light show that lights the columns and pylons and tells the story of the site — a memorable, if theatrical, way to end a day."
+      ]
+    },
+    {
+      "heading": "Luxor Temple: the heart of the ancient city",
+      "paras": [
+        "Right in the centre of modern Luxor stands Luxor Temple, smaller and more graceful than Karnak, and connected to it in antiquity by a nearly three-kilometre avenue of sphinxes. Dedicated to the rejuvenation of kingship, it was the setting for the great Opet Festival, when the gods were carried in procession between the two temples.",
+        "The temple is beautiful by day, but it comes into its own after dark, when warm floodlighting turns the columns and colossal statues of Ramesses II honey-gold against the night sky. Because it sits in the middle of town, it's easy to visit in the evening after the West Bank tombs, when the air has cooled and the site is at its most atmospheric.",
+        "Look for the single standing obelisk at the entrance — its twin has stood in the Place de la Concorde in Paris since the 1830s — and the later layers of history stacked on top of the pharaonic core, including a Roman chapel and a still-working mosque built into the ruins."
+      ]
+    },
+    {
+      "heading": "Walk the reopened Avenue of Sphinxes",
+      "paras": [
+        "For most of modern history, the ancient processional road linking Luxor and Karnak lay buried under the city. After decades of excavation it was fully reopened in a spectacular ceremony in late 2021, and you can now walk stretches of the same route the priests followed thousands of years ago, flanked by rows of sphinxes.",
+        "It's a short, free, and genuinely moving thing to do — especially in the evening, when both temples are lit at either end. It also makes the connection between the two great East Bank monuments suddenly, physically real."
+      ]
+    },
+    {
+      "heading": "The Valley of the Kings: tombs fit for pharaohs",
+      "paras": [
+        "Across the river and into the desert hills lies the Valley of the Kings, where the pharaohs of the New Kingdom were buried in secret, richly decorated tombs cut into the rock — hidden, they hoped, from the tomb robbers who had plundered the pyramids. More than sixty tombs have been found here so far.",
+        "A standard ticket lets you into three tombs of your choice from those open on the day; a handful of the finest — including Tutankhamun's and Seti I's — require separate tickets. The painted ceilings and walls, still vivid after three thousand years, are the real reason to come: goddesses with outstretched wings, star-filled skies, and the texts written to carry a king safely into the next world.",
+        "It gets hot and busy fast, so an early start matters here more than anywhere. A good guide can't enter the tombs to lecture (talking inside is restricted to protect them), so the trick is a proper briefing outside, then time to explore each tomb at your own pace."
+      ],
+      "list": [
+        "KV62 — Tutankhamun's tomb, small but famous, with the young king's mummy still on site (separate ticket)",
+        "KV17 — the tomb of Seti I, the longest and among the most beautifully decorated (separate ticket)",
+        "KV9 — Ramesses V and VI, with a superb astronomical ceiling (often on the standard ticket)",
+        "KV11 — the tomb of Ramesses III, long and richly carved"
+      ]
+    },
+    {
+      "heading": "The Temple of Hatshepsut at Deir el-Bahari",
+      "paras": [
+        "Set dramatically against a wall of golden cliffs, the mortuary temple of Hatshepsut is one of the most striking buildings in all of Egypt. Its clean, colonnaded terraces look almost modern, rising in three levels toward the rock face — an architectural masterpiece built for one of history's few female pharaohs.",
+        "Hatshepsut ruled for around two decades and sent famous trading expeditions to the distant land of Punt, scenes of which are carved on the temple walls. Her successor later tried to erase her name, which only adds to the intrigue as your guide points out where her image was chiselled away.",
+        "There's very little shade here, so it's another one for an early visit. Paired with the Colossi of Memnon and one of the quieter mortuary temples, it makes a perfect West Bank morning."
+      ]
+    },
+    {
+      "heading": "The Colossi of Memnon",
+      "paras": [
+        "Two enormous seated statues rise straight out of the fields on the road into the West Bank — all that remains, in plain view, of the vast mortuary temple of Amenhotep III, once the largest in Egypt before floods and earthquakes brought it down. Each colossus stands around 18 metres tall.",
+        "In antiquity one of the statues was famous for 'singing' at dawn — a faint sound, probably caused by heat and moisture in the cracked stone, that drew Greek and Roman tourists who left their graffiti behind. It's a quick, free stop, and a fine place for a photo on the way to Hatshepsut's temple."
+      ]
+    },
+    {
+      "heading": "The Valley of the Queens and Nefertari's tomb",
+      "paras": [
+        "A short drive from the Valley of the Kings, the Valley of the Queens holds the tombs of royal wives and children. Its crown jewel is the tomb of Nefertari, the favourite queen of Ramesses II, widely considered the most beautiful painted tomb in Egypt.",
+        "The colours — deep blues, warm ochres, and the queen's serene face repeated along the walls — are simply extraordinary. Access is limited and carries a premium ticket with a short time limit inside, but for many travellers it's worth every pound. If it's open during your visit and the budget allows, don't hesitate."
+      ]
+    },
+    {
+      "heading": "The quieter mortuary temples: Medinet Habu and the Ramesseum",
+      "paras": [
+        "Most visitors race between the headline sites and never see the two mortuary temples that many guides quietly rate as their favourites. Medinet Habu, the great temple of Ramesses III, is astonishingly well preserved, with towering painted reliefs of battles and processions where the original colour still clings to the stone — and a fraction of the crowds of Karnak.",
+        "Nearby, the Ramesseum — the mortuary temple of Ramesses II — is where a toppled colossus of the king inspired Shelley's poem 'Ozymandias', with its warning that even the mightiest works fade to ruin. Standing among the fallen giant's fragments, the poem lands differently.",
+        "Adding one of these to your West Bank day is the single easiest way to swap crowds for calm without losing an ounce of wonder."
+      ]
+    },
+    {
+      "heading": "Float over it all: a sunrise hot-air balloon flight",
+      "paras": [
+        "There is no better way to grasp the scale of ancient Thebes than from the air at first light. A hot-air balloon ride lifts off over the West Bank just as the sun clears the eastern hills, and suddenly the whole landscape makes sense: the ribbon of green along the Nile, the temples, the tombs in the folds of the desert, and the fields waking up below.",
+        "Flights leave very early, so you'll be collected in the dark, but almost no one regrets it. Choose a reputable operator, and it's a safe, gentle, and unforgettable hour. It's one of the few genuine splurges in Luxor that consistently earns its place on people's highlight reel."
+      ]
+    },
+    {
+      "heading": "Luxor Museum and the Mummification Museum",
+      "paras": [
+        "When the heat peaks in the middle of the day, Luxor's museums are the perfect refuge. The Luxor Museum, on the East Bank corniche, is small, beautifully lit, and superbly curated — a refreshing contrast to the sheer overload of some larger collections. Its statues, the royal mummies, and objects from Tutankhamun's tomb are shown with real care.",
+        "A little further along, the Mummification Museum explains, clearly and without gore, exactly how the ancient Egyptians preserved their dead for eternity — the tools, the rituals, and the beliefs behind them. It's compact, air-conditioned, and adds real depth to everything you'll see in the tombs."
+      ]
+    },
+    {
+      "heading": "Sail the Nile: feluccas, motorboats and cruises",
+      "paras": [
+        "You can't understand Luxor without spending time on the water that made it possible. The simplest pleasure is an hour on a felucca, the traditional lateen-sailed boat, drifting past the banks as the sun drops and the temples turn gold — quiet, cheap, and lovely.",
+        "Luxor is also the northern gateway for the classic Nile cruise between here and Aswan, a two-to-four-night journey that turns the trip between the great sites into part of the holiday itself, stopping at temples like Edfu and Kom Ombo along the way. Whether you sail for an hour or several days, the river is where Luxor's frantic pace finally slows down."
+      ]
+    },
+    {
+      "heading": "Beyond the monuments: markets, carriages and local life",
+      "paras": [
+        "Luxor is a working city, not just an archaeological site, and its everyday life is part of the fun. Wander the souk off the corniche for spices, scarves, and alabaster; the trick is to browse slowly, haggle with good humour, and never feel pressured to buy.",
+        "For a gentle taste of old Luxor, a horse-drawn caleche ride along the corniche at dusk is a local classic — agree the price and route before you climb in. And simply sitting with a mint tea or a fresh sugar-cane juice, watching the ferries cross as the light fades, is as memorable as any temple."
+      ]
+    },
+    {
+      "heading": "How many days do you need in Luxor?",
+      "paras": [
+        "Two full days is the sweet spot for most first-time visitors: one for the West Bank tombs and temples in the cool of the morning, and one for Karnak and Luxor Temple, ideally finishing after dark. Add a sunrise balloon flight and it becomes a very full, very rewarding couple of days.",
+        "With three or four days you can slow right down — add the quieter mortuary temples, both museums, a felucca afternoon, and the tombs of the nobles — or use Luxor as the start of a Nile cruise south to Aswan. The most common mistake we see is trying to cram it all into a single day-trip; Luxor deserves more than a checklist."
+      ]
+    },
+    {
+      "heading": "The best time to visit Luxor",
+      "paras": [
+        "Luxor sits in Upper Egypt, so it runs hot. October to April is by far the most comfortable window, with warm, clear days ideal for temples and tombs. From May to September the midday heat is intense — often well above 40°C — so sightseeing shifts to sunrise and late afternoon, with the middle of the day spent resting.",
+        "Whatever the season, the golden rule in Luxor is simple: start early. The tombs and temples are quietest and coolest soon after they open, and the light for photographs is at its best. For a full month-by-month breakdown, see our guide to the best time to visit Egypt."
+      ]
+    },
+    {
+      "heading": "Seeing Luxor the fair way",
+      "paras": [
+        "Luxor rewards good planning more than almost anywhere in Egypt. The distances between sites, the heat, the ticketing, and the sheer volume of history can turn an unstructured visit into an exhausting scramble. A little organisation is the difference between a blur and a revelation.",
+        "Every trip we plan in Luxor includes a licensed Egyptologist guide who ties the sites into one story, a private air-conditioned car and driver so you never wait in the sun, tickets arranged in advance, and a route built around timing and comfort — early starts for the tombs, shaded museums at midday, temples lit up in the evening. Tell us your dates and what you'd love to see, and we'll shape a Luxor stay that feels unforgettable rather than overwhelming."
+      ]
+    },
+    {
+      "heading": "The bottom line",
+      "paras": [
+        "Luxor is not a place you tick off — it's a place that rearranges your sense of what human beings can build and how long a memory can last. Between the columns of Karnak, the painted ceilings of the Valley of the Kings, and a balloon drifting over it all at dawn, it delivers more genuine wonder per square kilometre than almost anywhere on earth.",
+        "See the icons, but leave room for the quiet corners and the slow moments on the river. Give it the time it deserves, start your days early, and Luxor will give you the trip you'll be talking about long after you're home."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How many days do you need in Luxor?",
+      "a": "Two full days suit most first-time visitors — one for the West Bank (Valley of the Kings, Hatshepsut, the Colossi) in the cool morning, and one for Karnak and Luxor Temple, finishing after dark. Three or four days let you add the quieter temples, both museums, a felucca sail, or the start of a Nile cruise to Aswan."
+    },
+    {
+      "q": "What's the difference between the East Bank and West Bank of Luxor?",
+      "a": "The East Bank is the living city, home to Karnak and Luxor Temple, the museums, and the markets. The West Bank, where the sun sets, is the ancient necropolis — the Valley of the Kings, the Valley of the Queens, and the royal mortuary temples. You cross between them by bridge, public ferry, or private motorboat in minutes."
+    },
+    {
+      "q": "Is the Valley of the Kings worth it, and which tombs should I see?",
+      "a": "Absolutely — the painted tombs are the highlight of many people's whole Egypt trip. A standard ticket includes three tombs; the finest, such as Tutankhamun's and Seti I's, need separate tickets. Well-loved choices on the standard ticket include the tombs of Ramesses V/VI and Ramesses III. Go as early as possible to beat the heat and crowds."
+    },
+    {
+      "q": "Is a hot-air balloon ride over Luxor safe and worth doing?",
+      "a": "With a reputable, licensed operator it's a safe, gentle, and genuinely unforgettable experience. Flights lift off at first light over the West Bank, giving you the temples, tombs, and the green Nile valley from above. It means a very early start, but it's one of Luxor's best splurges and rarely disappoints."
+    },
+    {
+      "q": "What is the best time of year to visit Luxor?",
+      "a": "October to April offers the most comfortable weather for exploring Luxor's open-air temples and tombs. May to September is very hot — often above 40°C — so sightseeing moves to early morning and late afternoon, with midday spent resting. Whatever the season, starting early is the key to enjoying Luxor."
+    },
+    {
+      "q": "Do I need a guide to visit Luxor?",
+      "a": "You can visit independently, but Luxor is where a licensed Egyptologist guide adds the most. The sites are layered with three thousand years of history, and a good guide turns separate temples and tombs into one connected story — while handling tickets, timing, and transport so you stay cool and unhurried. Every tour we run in Luxor includes one."
+    }
+  ],
+  "related": [
+    {
+      "href": "/destinations/luxor",
+      "label": "Luxor travel guide"
+    },
+    {
+      "href": "/tours",
+      "label": "Browse our Egypt tours"
+    },
+    {
+      "href": "/blog/best-time-to-visit-egypt",
+      "label": "The best time to visit Egypt"
+    },
+    {
+      "href": "/booking",
+      "label": "Plan your Luxor trip"
+    }
+  ]
+},
+{
+  "slug": "top-islamic-places-in-cairo",
+  "title": "Top Must-Visit Islamic Places in Cairo",
+  "excerpt": "Cairo is the City of a Thousand Minarets. Here are the must-visit Islamic sites — the great mosques, medieval gates and bazaars — and how to see them with confidence and respect.",
+  "image": "/img/dest/cairo/citadel.jpg",
+  "imageAlt": "The Muhammad Ali Mosque at the Citadel in Islamic Cairo",
+  "category": "Guides",
+  "author": ahmed,
+  "date": "July 7, 2026",
+  "isoDate": "2026-07-07",
+  "readTime": "12 min read",
+  "featured": false,
+  "metaTitle": "Top Islamic Places to Visit in Cairo, Egypt",
+  "metaDescription": "The best Islamic sites in Cairo — the Citadel, Ibn Tulun, Al-Azhar, Sultan Hassan, Al-Muizz Street and Khan el-Khalili — with honest local tips.",
+  "body": [
+    {
+      "paras": [
+        "Cairo is often called the City of a Thousand Minarets, and the moment you step into the medieval heart of the city, you realise it isn't an exaggeration. Domes and minarets crowd the skyline in every direction, the call to prayer rolls across the rooftops, and lanes that have traded and prayed and lived for more than a thousand years still hum with everyday life.",
+        "This is Islamic Cairo — a dense, atmospheric quarter that UNESCO lists among the world's greatest concentrations of medieval Islamic architecture. It's home to the oldest mosque in Egypt still standing in its original form, one of the oldest universities on earth, and a bazaar that has sold lamps and spices since the fourteenth century.",
+        "This guide walks you through the must-visit Islamic places in Cairo — the great mosques, the medieval gates and streets, the markets, and the small points of etiquette that let you visit any of them with confidence and respect."
+      ]
+    },
+    {
+      "heading": "What is Islamic Cairo?",
+      "paras": [
+        "Islamic Cairo — sometimes called Historic or Medieval Cairo — is the old walled city and the districts that grew around it, neighbourhoods like al-Gamaliya and al-Darb al-Ahmar. It was founded in 969 AD by the Fatimid dynasty as al-Qahira, 'the Victorious', the name from which Cairo itself comes. For the next thousand years, ruler after ruler added mosques, madrasas, mausoleums, and public fountains, each leaving their mark.",
+        "The result is a living museum of architecture from the Fatimid, Ayyubid, Mamluk, and Ottoman ages, stacked side by side along the same streets — several hundred listed monuments in all. UNESCO inscribed Historic Cairo as a World Heritage Site in 1979.",
+        "Crucially, this is not a roped-off ruin. People live here, shop here, and pray here exactly as they have for centuries — coppersmiths still hammer in the alleys, families still gather after sunset — which is precisely what makes it so unforgettable to wander."
+      ]
+    },
+    {
+      "heading": "The Citadel of Salah al-Din and the Alabaster Mosque",
+      "paras": [
+        "Crowning a limestone spur above the city, the Citadel was begun by Salah al-Din — the Saladin of the Crusades — in the 1170s and served as the seat of Egypt's rulers for nearly seven hundred years. Its ramparts give the widest open view over Cairo, and on a clear day you can pick out the Pyramids of Giza on the horizon.",
+        "Inside stands the Mosque of Muhammad Ali, built in the 1830s and 40s in a soaring Ottoman style and clad in pale alabaster — the reason it's popularly known as the Alabaster Mosque. Its twin pencil minarets are visible from much of the city, and its vast domed interior, hung with descending circles of lamps, is genuinely breathtaking. In the courtyard, look for the ornate brass clock France gave Egypt in exchange for the Luxor obelisk now in Paris.",
+        "Give the Citadel a couple of hours. It also holds the older Al-Nasir Muhammad Mosque and a cluster of small military and police museums, and the terrace outside the walls is one of the best sunset viewpoints in the whole city."
+      ]
+    },
+    {
+      "heading": "The Mosque of Ibn Tulun: Cairo's oldest survivor",
+      "paras": [
+        "Older than the Fatimid city itself, the Mosque of Ibn Tulun was completed in 879 AD and is the oldest mosque in Egypt to survive in something close to its original form. After the crowds of the Citadel, its enormous, near-empty courtyard, wrapped by an outer corridor called the ziyada, feels like stepping into a moment of pure calm.",
+        "Its most distinctive feature is the spiral minaret with an external staircase — unusual in Egypt and thought to echo the great mosque of Samarra in Iraq. You can usually climb it for a wonderful view over the rooftops and domes of the old city; film fans may recognise it from the James Bond scenes shot here.",
+        "Tucked against its walls is the Gayer-Anderson Museum, two beautifully preserved seventeenth-century houses filled with furniture, carpets, and art — a perfect, cool detour that shows how a wealthy Cairo home once looked, right down to the screened balconies where women could watch guests unseen."
+      ]
+    },
+    {
+      "heading": "Al-Azhar Mosque: a thousand years of learning",
+      "paras": [
+        "Founded in 970 AD, Al-Azhar is both one of the world's oldest mosques and the home of Al-Azhar University, among the oldest continuously operating universities on the planet and the most influential seat of Sunni learning. To walk into its serene marble courtyard is to stand in a place that has taught scholars for over a millennium.",
+        "The mosque grew over the centuries, so its five minarets and several gateways span different dynasties, each in its own style — a visible timeline of Cairo's rulers in a single building. It remains fully active, so you'll share the space with students bent over books and worshippers at rest. Visit quietly and outside prayer times, and you're genuinely welcome."
+      ]
+    },
+    {
+      "heading": "Sultan Hassan and Al-Rifa'i: giants face to face",
+      "paras": [
+        "Standing at the foot of the Citadel, the Mosque-Madrasa of Sultan Hassan is one of the masterpieces of Mamluk architecture. Built in the 1350s on a colossal scale, its soaring entrance portal and vast, austere prayer hall — hung with long chains that once held rows of glass lamps — are designed to make you feel small, and they succeed completely. Stand in the centre and even a whisper carries.",
+        "Directly opposite rises the Al-Rifa'i Mosque, begun in the nineteenth century and finished in 1912 to deliberately mirror its medieval neighbour. It doubles as a royal mausoleum: several members of Egypt's royal family are buried here, including King Farouk, along with the last Shah of Iran. Seen together, the two mosques make one of the most dramatic architectural pairings in the city."
+      ]
+    },
+    {
+      "heading": "Al-Muizz Street: an open-air museum of Islamic art",
+      "paras": [
+        "If you only have time for one walk in Islamic Cairo, make it Al-Muizz Street. This single medieval avenue holds what is often described as the greatest concentration of Islamic architectural treasures in the world — mosques, madrasas, mausoleums, and ornate public fountains lined up one after another for a kilometre.",
+        "Look for the grand Complex of Qalawun with its hospital, madrasa, and domed mausoleum; the Madrasa of Barquq; and the beautifully carved Sabil-Kuttab of Abdel Rahman Katkhuda, a combined fountain and Quran school. A short detour brings you to Bayt al-Suhaymi, a magnificent Ottoman merchant's house arranged around a green courtyard — one of the loveliest domestic interiors in the city.",
+        "Much of the street has been carefully restored and pedestrianised, and it's at its best in the late afternoon and evening, when the heat drops, the buildings are floodlit, and locals come out to stroll. Walking it slowly, from the Bab al-Futuh gate down toward Bab Zuweila, is one of the great free experiences in Cairo."
+      ]
+    },
+    {
+      "heading": "Bab Zuweila and the medieval gates",
+      "paras": [
+        "Islamic Cairo was once a walled city, and three of its great eleventh-century Fatimid gates still stand. Bab Zuweila marks the southern entrance; for a small fee you can climb the minarets of the adjoining Mosque of al-Muayyad on top of it for one of the finest rooftop panoramas of the old city — a sea of domes and minarets in every direction. In medieval times this gate was also where public executions were carried out, and heads were displayed on its spikes.",
+        "At the northern end, Bab al-Futuh (the Gate of Conquests) and Bab al-Nasr (the Gate of Victory) anchor the other end of Al-Muizz Street, their massive stone towers still guarding the road. Together the three gates let you trace the outline of the medieval city on foot."
+      ]
+    },
+    {
+      "heading": "Khan el-Khalili and the markets",
+      "paras": [
+        "No visit to Islamic Cairo is complete without losing yourself in Khan el-Khalili, the great bazaar whose covered lanes have traded since the fourteenth century. It's the place to browse for lamps, lanterns, spices, silver, perfume, and alabaster — and the pleasure is as much in the wandering and the good-humoured haggling as in anything you buy. Slip into the quieter side alleys to watch coppersmiths and craftsmen still working by hand.",
+        "Pause for mint tea at El-Fishawy, a wonderfully atmospheric mirror-lined café that has served customers in the same alley for over two centuries. The nearby Al-Hussein Mosque, one of Cairo's holiest shrines, sits at the heart of the quarter and comes alive on religious festivals.",
+        "Just south of Bab Zuweila, don't miss the Street of the Tentmakers — the last surviving covered market in Cairo, where artisans still hand-stitch the brilliantly coloured appliqué textiles known as khayamiya. It's a quieter, gentler shopping experience than the main bazaar, and a genuine living craft."
+      ]
+    },
+    {
+      "heading": "A whirling tanoura night at Wikalat al-Ghuri",
+      "paras": [
+        "For a memorable evening, head to Wikalat al-Ghuri, a restored Mamluk caravanserai that hosts regular tanoura performances — a hypnotic, colourful form of Sufi spinning dance set to live music. It's a joyful, family-friendly show in a stunning historic setting, and it's either free or very inexpensive.",
+        "It's the kind of experience that rounds off a day of mosques and monuments perfectly: the same culture that raised these buildings, still alive and turning under the same domes."
+      ]
+    },
+    {
+      "heading": "How to visit Cairo's mosques respectfully",
+      "paras": [
+        "Egypt's mosques warmly welcome respectful visitors, and a few simple courtesies go a long way. The essentials are easy to follow, and most historic sites are well used to receiving travellers from around the world.",
+        "Dress modestly, avoid the busiest prayer times, and you'll find the doors open and the atmosphere friendly. When in doubt, watch what locals do and follow their lead."
+      ],
+      "list": [
+        "Cover your shoulders and knees; women are usually asked to cover their hair with a scarf. Some mosques lend a robe at the entrance.",
+        "Remove your shoes before stepping onto the carpeted prayer areas — carry them with you or leave them with the attendant for a small tip.",
+        "Avoid visiting during the five daily prayers, and especially the Friday midday prayer, when mosques fill with worshippers.",
+        "Keep your voice low, never walk in front of someone who is praying, and always ask before photographing people.",
+        "A small donation or tip for the shoe-keeper or caretaker is customary and appreciated."
+      ]
+    },
+    {
+      "heading": "When to go and how long you need",
+      "paras": [
+        "Islamic Cairo deserves at least half a day, and a full day if you want to combine the Citadel, the great mosques, and a proper wander down Al-Muizz Street into Khan el-Khalili. A popular rhythm is the Citadel and Ibn Tulun in the morning and the bazaar and Al-Muizz Street in the late afternoon and evening, when it's cooler and beautifully lit.",
+        "October to April brings the most comfortable weather for all the walking involved. Whatever the season, the old city is at its finest in the late afternoon and evening, when the light softens, the monuments are floodlit, and the lanes come alive. During Ramadan the whole quarter takes on a special, festive atmosphere after sunset, with lanterns strung across the streets."
+      ]
+    },
+    {
+      "heading": "Getting around Islamic Cairo",
+      "paras": [
+        "Most of the highlights sit within walking distance of one another, but the district is a maze, and the walk from the Citadel down to Khan el-Khalili is long and often hot. The easiest approach is a private car and driver to hop between the main clusters — the Citadel and Sultan Hassan area, Ibn Tulun, and the Al-Azhar and Khan el-Khalili area — then explore each on foot.",
+        "Wear comfortable, closed shoes for the uneven medieval paving, carry water and a scarf, and keep some small cash for tickets, tips, and tea. Ride-hailing apps work well for getting to and from the quarter and save a lot of haggling over fares."
+      ]
+    },
+    {
+      "heading": "Seeing Islamic Cairo the fair way",
+      "paras": [
+        "Islamic Cairo rewards a little guidance more than almost anywhere in the city. The lanes are dense and easy to get lost in, the layers of dynasties can blur together, and the difference between a confusing afternoon and a fascinating one is usually a good guide who can turn a thousand years of history into one clear, connected story.",
+        "Every trip we plan here includes a licensed local guide, a private air-conditioned car and driver to link the sites without hassle, tickets sorted in advance, and a route built around the heat, the prayer times, and your pace — mosques in the cooler hours, the bazaar in the glow of the evening. Tell us what you'd love to see, and we'll shape a day in old Cairo that feels rich rather than rushed."
+      ]
+    },
+    {
+      "heading": "The bottom line",
+      "paras": [
+        "Islamic Cairo is where the city's thousand years of faith, art, and daily life come together in a few square kilometres of minarets and lantern-lit lanes. From the alabaster domes of the Citadel to the spiral minaret of Ibn Tulun and the treasures of Al-Muizz Street, it holds some of the most beautiful architecture anywhere in the Islamic world.",
+        "Go with an open mind and comfortable shoes, dress with respect, and give it an unhurried afternoon into the evening. It's one of the richest and most rewarding half-days you can spend anywhere in Egypt."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is Islamic Cairo and why should I visit it?",
+      "a": "Islamic Cairo is the medieval heart of the city, founded in 969 AD and now a UNESCO World Heritage Site with one of the world's greatest concentrations of Islamic architecture. It's home to landmarks like the Citadel, the Mosque of Ibn Tulun, Al-Azhar, and Al-Muizz Street, all still surrounded by everyday life — making it one of the most atmospheric parts of any Egypt trip."
+    },
+    {
+      "q": "Can non-Muslims enter the mosques in Cairo?",
+      "a": "Yes. Most of Cairo's historic mosques welcome respectful visitors of any faith outside prayer times. You'll be asked to dress modestly and remove your shoes before entering the carpeted areas. A few active mosques may limit access during the five daily prayers, especially the Friday midday prayer."
+    },
+    {
+      "q": "What should I wear to visit mosques in Cairo?",
+      "a": "Dress modestly: cover your shoulders and knees, and women should carry a scarf to cover their hair inside mosques. Loose, lightweight clothing is most comfortable in the heat. Some mosques lend a robe at the entrance if you need one, and you'll always remove your shoes before stepping onto the prayer carpets."
+    },
+    {
+      "q": "How much time do I need for Islamic Cairo?",
+      "a": "Plan at least half a day, and ideally a full day if you want to combine the Citadel, the major mosques, and a walk down Al-Muizz Street into Khan el-Khalili. A popular approach is the Citadel and Ibn Tulun in the morning and the bazaar in the late afternoon and evening, when it's cooler and beautifully lit."
+    },
+    {
+      "q": "Is it safe to walk around Islamic Cairo?",
+      "a": "Yes — Islamic Cairo is a busy, well-visited district and normal city sense is all you need: watch your belongings in crowded lanes, be ready for friendly hard-selling in the bazaar, and take care with the traffic. Many travellers feel more comfortable with a guide, who also helps with navigation and context in the dense old streets."
+    },
+    {
+      "q": "Do I need a guide for Islamic Cairo?",
+      "a": "You can explore independently, but this is one of the places a licensed local guide adds the most. The area is easy to get lost in and packed with a thousand years of overlapping history; a good guide connects the dynasties and buildings into one story, handles tickets and timing, and knows which mosques are open when. Every tour we run here includes one."
+    }
+  ],
+  "related": [
+    {
+      "href": "/destinations/cairo",
+      "label": "Cairo & Giza travel guide"
+    },
+    {
+      "href": "/tours",
+      "label": "Browse our Cairo tours"
+    },
+    {
+      "href": "/blog/best-time-to-visit-egypt",
+      "label": "The best time to visit Egypt"
+    },
+    {
+      "href": "/booking",
+      "label": "Plan your Cairo trip"
+    }
+  ]
+},
+{
+  "slug": "exploring-coptic-cairo",
+  "title": "Exploring Coptic Cairo: Old Cairo's Ancient Churches",
+  "excerpt": "In a few quiet lanes of Old Cairo, ancient churches, a historic synagogue and a Roman fortress tell two thousand years of faith. Here's how to explore Coptic Cairo.",
+  "image": "/img/tours/coptic-hanging.jpg",
+  "imageAlt": "The Hanging Church (Al-Muallaqa) in Coptic Cairo",
+  "category": "Guides",
+  "author": ahmed,
+  "date": "July 8, 2026",
+  "isoDate": "2026-07-08",
+  "readTime": "10 min read",
+  "featured": false,
+  "metaTitle": "Exploring Coptic Cairo: Old Cairo's Churches",
+  "metaDescription": "A guide to Coptic Cairo — the Hanging Church, Abu Serga and the Holy Family, the Ben Ezra Synagogue and the Coptic Museum — with honest local tips.",
+  "body": [
+    {
+      "paras": [
+        "Within a few narrow, sunlit lanes in Old Cairo, three of the world's great faiths stand almost within touching distance of one another. Ancient churches, one of the oldest synagogues on earth, and the first mosque built on the African continent all rise from the same patch of ground, wrapped inside the walls of a Roman fortress that is older still.",
+        "This is Coptic Cairo — the cradle of Christianity in Egypt and one of the most peaceful and moving corners of the entire city. It's where tradition says the Holy Family sheltered during their flight into Egypt, where a community that traces its roots to the first century still worships today, and where the deep layers of Egypt's history feel unusually close to the surface.",
+        "This guide walks you through the churches, the synagogue, and the museum of Coptic Cairo, the story that ties them all together, and how to visit this quietly sacred quarter with the respect it deserves."
+      ]
+    },
+    {
+      "heading": "What is Coptic Cairo?",
+      "paras": [
+        "The word 'Coptic' comes, through Greek and Arabic, from the ancient word for Egypt itself — so a Copt is, quite literally, an Egyptian Christian. The Coptic Orthodox Church traces its founding to Saint Mark the Evangelist in the first century AD, making it one of the oldest Christian communities in the world, and Copts remain a large and living part of Egyptian society today.",
+        "Coptic Cairo sits in the district of Old Cairo — Masr al-Qadima — which is far older than the Islamic city to its north. It grew up in and around the Roman fortress of Babylon, and its churches were already ancient when the Arab conquest arrived in the seventh century. Today the quarter forms part of the UNESCO-listed Historic Cairo.",
+        "What makes it so special is the density and the calm. In a single, mostly car-free pocket you can walk between churches built over a Roman gate, the synagogue linked to the story of Moses, and the museum that holds the world's greatest collection of Coptic art — all in a couple of unhurried hours."
+      ]
+    },
+    {
+      "heading": "The Roman Fortress of Babylon",
+      "paras": [
+        "Before it was Christian, this was a Roman stronghold. The Fortress of Babylon was rebuilt on a grand scale by the emperor Trajan in the early second century AD to guard the point where the Nile met an old canal to the Red Sea. Its two great round towers still flank what was once the river gate, and much of the Christian quarter was built directly on top of and inside its walls.",
+        "Understanding the fortress is the key to understanding Coptic Cairo: the churches don't just sit near the old Roman defences, they are built into them. It's why the ground level feels lower than the modern street, and why one famous church appears to hang in mid-air."
+      ]
+    },
+    {
+      "heading": "The Hanging Church (Al-Muallaqa)",
+      "paras": [
+        "The most famous church in Coptic Cairo is the Church of the Virgin Mary, universally known as the Hanging Church — Al-Muallaqa, 'the suspended one' — because its nave was built across the top of the southern gate of the Roman fortress, so it seems to hang above the passage below. A steep flight of steps leads up to it from the street.",
+        "Its origins reach back to around the third or fourth century, though it has been rebuilt and embellished many times since. Inside, look up at the beautiful wooden roof, shaped like the hull of Noah's Ark, and along the walls at a collection of more than a hundred icons, some centuries old. The delicate marble pulpit, resting on slender columns, is one of the loveliest in Egypt.",
+        "The Hanging Church remains an active place of worship and a symbol of the Coptic community, so you may find it busy on Sundays and feast days. It's the natural place to begin any visit to the quarter."
+      ]
+    },
+    {
+      "heading": "The Church of St. Sergius and the Holy Family",
+      "paras": [
+        "Down at the older, sunken level of Coptic Cairo stands the Church of Saints Sergius and Bacchus, known in Arabic as Abu Serga — and for many visitors it is the emotional heart of the whole quarter. Tradition holds that this is one of the places where the Holy Family — Mary, Joseph, and the infant Jesus — sheltered during their flight into Egypt.",
+        "Beneath the church lies a crypt, said to be the very cave where they rested. It sometimes floods with groundwater and isn't always open, but the church above it is a fine, early example of the basilica form, with rows of ancient columns dividing the nave.",
+        "Whatever your beliefs, standing in a place woven into a two-thousand-year-old story, still visited by pilgrims from around the world, is a quietly powerful experience."
+      ]
+    },
+    {
+      "heading": "The Church of St. Barbara",
+      "paras": [
+        "A short walk away, the Church of Saint Barbara is one of the largest and finest in the quarter. Dedicated to a young martyr of the early Church, it's admired for its beautifully carved wooden screens and its serene, well-preserved interior. It sees fewer visitors than the Hanging Church, which only adds to the calm."
+      ]
+    },
+    {
+      "heading": "The Ben Ezra Synagogue",
+      "paras": [
+        "Just steps from the churches stands the Ben Ezra Synagogue, the oldest synagogue in Egypt, on a site with layers of tradition. One story says it marks the spot where the baby Moses was found among the reeds of the Nile; the building itself was restored in the ninth century from an earlier Coptic church.",
+        "Its greatest claim to fame lies in what was found here: the Cairo Geniza, a storeroom that had been sealed for centuries and held some hundreds of thousands of medieval Jewish documents — letters, contracts, and prayers that have transformed historians' understanding of everyday life in the medieval Mediterranean world.",
+        "The synagogue is beautifully kept, with intricate geometric decoration, and it stands as a reminder of the long Jewish presence in Egypt. Photography inside is usually not permitted, so simply take a quiet moment to look."
+      ]
+    },
+    {
+      "heading": "The Coptic Museum",
+      "paras": [
+        "To make sense of everything you'll see, the Coptic Museum is essential. Founded in 1908 and set in a lovely building with carved wooden mashrabiya screens and a peaceful garden, it holds the largest collection of Coptic Christian art anywhere in the world.",
+        "Its galleries trace the bridge between ancient Egypt and Christian Egypt — early textiles and tunics, carved stone and woodwork, illuminated manuscripts, and icons that show pharaonic motifs blending into Christian ones. Among its treasures are pages connected to the famous Nag Hammadi codices. An hour here adds real depth to a walk through the churches next door."
+      ]
+    },
+    {
+      "heading": "The Church of St. George (Mari Girgis)",
+      "paras": [
+        "Rising above the fortress, the Greek Orthodox Church of Saint George — Mari Girgis in Arabic — is impossible to miss, built in a striking round shape on top of one of the Roman towers. It's the only major round church in Egypt, and Saint George, the dragon-slaying martyr, is deeply loved across the country.",
+        "Next to it, the Convent of Saint George preserves a hall with an enormous old wooden door and chains once used in rituals. The metro station that serves the whole quarter takes its name, Mar Girgis, from this church."
+      ]
+    },
+    {
+      "heading": "Following the Holy Family Trail",
+      "paras": [
+        "Coptic Cairo is one chapter in a much larger story. The Gospel of Matthew describes how the Holy Family fled to Egypt to escape King Herod, and Egyptian tradition maps their journey across the country in loving detail — a route now developed and promoted as the Holy Family Trail, linking around two dozen sites from Sinai to Upper Egypt.",
+        "Abu Serga in Coptic Cairo is one of the most important stops on that trail, which is why the quarter draws Christian pilgrims from all over the world. If the theme moves you, your guide can connect the dots between here and the other Holy Family sites you might visit on a longer trip."
+      ]
+    },
+    {
+      "heading": "How to visit Coptic Cairo respectfully",
+      "paras": [
+        "The churches, synagogue, and museum of Coptic Cairo all welcome respectful visitors of any background, and entry to the churches is generally free. As with the mosques of the Islamic quarter, a little courtesy goes a long way in what is, above all, a living place of worship.",
+        "Dress modestly with your shoulders and knees covered, keep your voice low, and be especially considerate during services. Photography is fine in most churches but restricted in the synagogue and during worship — when in doubt, ask, or simply put the camera away and take it in."
+      ]
+    },
+    {
+      "heading": "When to go and how long you need",
+      "paras": [
+        "Coptic Cairo is compact and mostly pedestrian, so half a day is plenty to see the highlights without rushing. Mornings are the calmest; Sundays and Coptic feast days are busier with worshippers, which can be atmospheric if you don't mind the crowds. Because so much of the visit is shaded or indoors, it works well year-round, though October to April remains the most comfortable season overall.",
+        "Getting there is easy: the Mar Girgis metro station sits right at the entrance to the quarter, and a private car drops you at the door. Many travellers pair Coptic Cairo with the nearby Amr ibn al-As Mosque — the first mosque built in Egypt — or with a visit to Islamic Cairo to see the city's faiths side by side."
+      ]
+    },
+    {
+      "heading": "Seeing Coptic Cairo the fair way",
+      "paras": [
+        "Coptic Cairo is small, but its layers of history and belief are deep, and it's easy to walk through it without grasping why any of it matters. This is a place where a good guide changes everything — turning a handful of old churches into a single, vivid story that runs from the Romans through the Holy Family to the living community that worships here today.",
+        "Every trip we plan here includes a licensed local guide who knows that story, a private air-conditioned car and driver, tickets arranged in advance, and a route shaped around your pace and any services taking place. Tell us what you'd love to see, and we'll build a calm, meaningful morning in Old Cairo — on its own or paired with the Islamic quarter, the Egyptian Museum, or the pyramids."
+      ]
+    },
+    {
+      "heading": "The bottom line",
+      "paras": [
+        "Coptic Cairo is one of those rare places where you can stand in a Roman fortress, an ancient church, and a medieval synagogue within a few minutes' walk, and feel two thousand years of faith pressed into a single quiet quarter. It's gentle, beautiful, and unlike anywhere else in the city.",
+        "Give it an unhurried morning, dress and behave with respect, and let a guide draw out the story beneath the stones. It's one of the most rewarding and reflective half-days you can spend in Cairo."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "What is Coptic Cairo and why should I visit it?",
+      "a": "Coptic Cairo is the ancient Christian quarter in Old Cairo, built in and around the Roman Fortress of Babylon. In a few walkable lanes it gathers some of Egypt's oldest churches, the country's oldest synagogue, and the world's finest collection of Coptic art — a peaceful, deeply historic corner where Christianity, Judaism, and Islam sit side by side."
+    },
+    {
+      "q": "Did the Holy Family really visit Cairo?",
+      "a": "According to long-standing Egyptian Christian tradition, the Holy Family sheltered in what is now Coptic Cairo during their flight into Egypt, and the crypt beneath the Church of St. Sergius (Abu Serga) is honoured as one of their resting places. It's one of the key stops on Egypt's Holy Family Trail and draws pilgrims from around the world."
+    },
+    {
+      "q": "Can tourists and non-Christians visit the churches in Coptic Cairo?",
+      "a": "Yes. The churches, the Ben Ezra Synagogue, and the Coptic Museum all welcome respectful visitors of any faith, and entry to the churches is generally free. Just dress modestly, keep quiet, and be considerate during any services taking place."
+    },
+    {
+      "q": "What should I wear to visit Coptic Cairo?",
+      "a": "Dress modestly, with your shoulders and knees covered, as you would for any place of worship. Comfortable shoes help with the steps and uneven older paving, and it's worth carrying a little cash for the Coptic Museum ticket and small donations."
+    },
+    {
+      "q": "How long do I need in Coptic Cairo, and how do I get there?",
+      "a": "Half a day is enough to enjoy the main churches, the synagogue, and the museum at a relaxed pace. It's very easy to reach — the Mar Girgis metro station is right at the entrance, or a private car will drop you at the door. Many people combine it with Islamic Cairo or the nearby Amr ibn al-As Mosque."
+    },
+    {
+      "q": "Do I need a guide for Coptic Cairo?",
+      "a": "You can visit independently, but a guide adds enormous value here, connecting the Roman fortress, the churches, the Holy Family story, and the synagogue into one clear narrative you'd otherwise miss. A good guide also helps with timing around church services. Every tour we run in Coptic Cairo includes a licensed local guide."
+    }
+  ],
+  "related": [
+    {
+      "href": "/blog/top-islamic-places-in-cairo",
+      "label": "Top Islamic places in Cairo"
+    },
+    {
+      "href": "/destinations/cairo",
+      "label": "Cairo & Giza travel guide"
+    },
+    {
+      "href": "/tours",
+      "label": "Browse our Cairo tours"
+    },
+    {
+      "href": "/booking",
+      "label": "Plan your Cairo trip"
+    }
+  ]
+},
+{
+  "slug": "unforgettable-things-to-do-in-aswan",
+  "title": "7 Unforgettable Things to Do in Aswan",
+  "excerpt": "Aswan is where Egypt slows down. From a sunset felucca sail to the island Temple of Philae and a day trip to Abu Simbel, here are 7 unforgettable things to do.",
+  "image": "/img/dest/aswan/hero.jpg",
+  "imageAlt": "Feluccas sailing on the Nile at Aswan, Egypt",
+  "category": "Guides",
+  "author": ahmed,
+  "date": "July 9, 2026",
+  "isoDate": "2026-07-09",
+  "readTime": "10 min read",
+  "featured": false,
+  "metaTitle": "7 Unforgettable Things to Do in Aswan, Egypt",
+  "metaDescription": "The best things to do in Aswan — a sunset felucca sail, the Temple of Philae, Abu Simbel, a Nubian village, the Unfinished Obelisk and the High Dam.",
+  "body": [
+    {
+      "paras": [
+        "If Cairo overwhelms and Luxor astonishes, Aswan does something rarer in Egypt: it lets you breathe. Egypt's southernmost city sits where the Nile is at its most beautiful — a broad, glassy river scattered with granite islands and white-sailed feluccas, framed by golden dunes that tumble almost to the water's edge. It is the country's most relaxed and, for many travellers, its most romantic destination.",
+        "Aswan is also the gateway to Nubia, a land and culture with its own language, music, and famously warm hospitality, and the launch point for the great temples of Abu Simbel. Whether you arrive for a day at the end of a Nile cruise or linger for several, it rewards a slower pace than anywhere else in Egypt.",
+        "Here are seven unforgettable things to do in Aswan — from a sunset sail to an island temple and a day trip to one of the wonders of the ancient world — plus a few extra gems and the practical advice to tie them all together."
+      ]
+    },
+    {
+      "heading": "Why Aswan feels different",
+      "paras": [
+        "For thousands of years, Aswan was Egypt's southern frontier — the town the ancients called Swenett, where the Nile tumbled over the granite boulders of the First Cataract and the empire met the land of Nubia beyond. Its famous pink-and-grey granite was quarried here and floated downriver to build obelisks, colossi, and temples across the whole country.",
+        "That frontier feeling still lingers. The pace is gentler, the river wider and calmer, and the light softer than in the cities to the north. Add the colour and warmth of Nubian culture, and Aswan becomes the place where most travellers finally exhale and simply enjoy Egypt."
+      ]
+    },
+    {
+      "heading": "1. Sail a felucca among the islands at sunset",
+      "paras": [
+        "If you do only one thing in Aswan, make it this. A felucca is the traditional wooden sailing boat of the Nile, and gliding silently between the islands under its single white sail — no engine, just the wind and the water — is the quintessential Aswan experience.",
+        "A sunset sail loops around lush Elephantine Island and Kitchener's Island with its botanical garden, past the grand Old Cataract Hotel and the domed Aga Khan Mausoleum on the western cliffs, as the sky turns gold and pink and the sails of a dozen other boats glow around you. It's inexpensive, utterly peaceful, and the memory most people carry home from Aswan."
+      ]
+    },
+    {
+      "heading": "2. Visit the island Temple of Philae",
+      "paras": [
+        "Rising from its own island, the Temple of Philae is one of the most romantic ancient sites in Egypt. Dedicated to the goddess Isis, it was one of the very last places where the old Egyptian religion was practised, long into the Roman era, and its walls are covered in beautifully preserved carvings.",
+        "Philae has a remarkable modern story too: when the dams raised the water and threatened to drown it, UNESCO dismantled the entire temple and rebuilt it, stone by stone, on higher Agilkia Island. You reach it by a short motorboat ride across the water, which only adds to the sense of arrival. In the evening, a sound-and-light show brings the temple and its story to life."
+      ]
+    },
+    {
+      "heading": "3. Take a day trip to Abu Simbel",
+      "paras": [
+        "Roughly three hours south of Aswan, close to the Sudanese border, stand the temples of Abu Simbel — for many people the single most awe-inspiring sight in all of Egypt. Carved into a mountainside some 3,200 years ago by Ramesses II, the Great Temple is fronted by four colossal seated statues of the pharaoh, each around twenty metres tall, with the smaller temple beside it dedicated to his beloved queen, Nefertari.",
+        "Like Philae, Abu Simbel was rescued from the rising waters of Lake Nasser in an extraordinary 1960s engineering feat, cut into blocks and reassembled higher up. Twice a year, around 22 February and 22 October, the rising sun aligns perfectly to reach deep into the Great Temple's sanctuary — a spectacle that draws crowds at dawn.",
+        "You can go by road, usually leaving Aswan very early, or take a short scenic flight. Either way it's a long day, but almost nobody regrets making the journey to stand beneath those giants."
+      ]
+    },
+    {
+      "heading": "4. Spend an afternoon in a Nubian village",
+      "paras": [
+        "Aswan is the heart of Nubian Egypt, and a visit to a Nubian village on the west bank — Gharb Soheil is the best known — is one of its warmest experiences. The houses are painted in brilliant blues, yellows, and ochres, their walls decorated with folk designs, and the welcome is genuine.",
+        "Reached by boat, a village visit typically means sweet hibiscus tea, stalls of spices and handicrafts, the chance to try henna, and sometimes a resident crocodile kept by a local family. It's colourful, friendly, and a lovely counterpoint to the ancient stone of the temples — a reminder that Aswan is a living culture, not just a monument."
+      ]
+    },
+    {
+      "heading": "5. Stand before the Unfinished Obelisk",
+      "paras": [
+        "In the ancient granite quarries on the edge of town lies one of Egypt's most fascinating 'what ifs': a colossal obelisk still attached to the bedrock, abandoned some three and a half thousand years ago when a crack appeared in the stone. Had it been finished, it would have been the largest obelisk ever raised, weighing well over a thousand tons.",
+        "Lying there half-carved, it's an open-air lesson in how the ancient Egyptians shaped these giant monoliths with little more than stone tools and ingenuity. It's a quick stop, but a genuinely thought-provoking one, and it's often combined with the High Dam and Philae into a single easy morning."
+      ]
+    },
+    {
+      "heading": "6. See the High Dam and Lake Nasser",
+      "paras": [
+        "The Aswan High Dam, completed in the 1960s, is one of the defining structures of modern Egypt. It finally tamed the Nile's annual floods, generates a huge share of the country's power, and created Lake Nasser behind it — one of the largest artificial lakes in the world, stretching far into Sudan.",
+        "It's also the reason temples like Philae and Abu Simbel had to be rescued and moved. Standing on the dam, looking out over the vast blue expanse of the lake on one side and the river on the other, gives you the scale of what was achieved — and what was nearly lost."
+      ]
+    },
+    {
+      "heading": "7. Explore the Nubian Museum",
+      "paras": [
+        "To understand everything else you'll see, spend an hour in the excellent Nubian Museum. Beautifully designed and set among gardens, it tells the long story of Nubian civilisation — a culture as old and rich as pharaonic Egypt — and the dramatic international campaign that saved its monuments from the rising waters of Lake Nasser.",
+        "Its galleries of sculpture, jewellery, and everyday objects, along with displays on Nubian traditions that continue today, make it one of the finest museums in Egypt. It's also a cool, calm refuge when the Aswan sun is at its fiercest."
+      ]
+    },
+    {
+      "heading": "A few more Aswan gems",
+      "paras": [
+        "If you have extra time, Aswan has several quieter pleasures worth seeking out:"
+      ],
+      "list": [
+        "Afternoon tea on the terrace of the Old Cataract Hotel, the grand Victorian pile where Agatha Christie wrote part of Death on the Nile, with one of the finest river views in Egypt.",
+        "The ruined Monastery of St. Simeon, a dramatic desert fortress-monastery on the west bank, reached by boat and a short walk or camel ride across the sand.",
+        "Elephantine Island, with its ancient ruins, a Nilometer that once measured the flood, and small Nubian villages to wander.",
+        "On a Nile cruise north, the riverside temples of Kom Ombo, shared by the crocodile god Sobek, and Edfu, the best-preserved temple in Egypt."
+      ]
+    },
+    {
+      "heading": "When to go and how long you need",
+      "paras": [
+        "Aswan is the warmest of Egypt's major destinations, so October to April is the most comfortable time to visit, with clear, pleasant days ideal for sailing and sightseeing. Summer is hot — often above 40°C — so sightseeing shifts to the early morning and the balmy evenings, which are actually one of the loveliest times to be on the water.",
+        "Two days is enough to enjoy the highlights and fit in a day trip to Abu Simbel, while three or four let you slow right down, sail more, and soak up the Nubian side of the city. Many travellers experience Aswan as the start or finish of a Nile cruise to or from Luxor."
+      ]
+    },
+    {
+      "heading": "Seeing Aswan the fair way",
+      "paras": [
+        "Aswan is the easiest of Egypt's great destinations to enjoy, but the logistics still reward a little planning — the early start and convoy or flight for Abu Simbel, the boats to Philae and the Nubian villages, and the timing of the felucca to catch the best of the sunset.",
+        "Every Aswan trip we plan includes a licensed local guide, a private car and driver, boats and felucca arranged, Abu Simbel sorted end to end, and a relaxed route that suits the city's gentle rhythm rather than fighting it. Tell us your dates and what you'd love to do, and we'll shape an Aswan stay that feels like the restful, beautiful high note of your Egypt trip."
+      ]
+    },
+    {
+      "heading": "The bottom line",
+      "paras": [
+        "Aswan is where Egypt slows down and shows its gentler, more beautiful side. Between a felucca drifting home at sunset, an island temple to Isis, the colour of a Nubian village, and the sheer awe of Abu Simbel, it delivers some of the country's most memorable moments — at a pace that finally lets you enjoy them.",
+        "Give it at least a couple of unhurried days, spend as much time as you can on the water, and Aswan may just be the part of Egypt you find hardest to leave."
+      ]
+    }
+  ],
+  "faqs": [
+    {
+      "q": "How many days do you need in Aswan?",
+      "a": "Two days is enough to enjoy the main highlights — a felucca sail, the Temple of Philae, the Unfinished Obelisk and the High Dam — and to fit in a day trip to Abu Simbel. Three or four days let you slow down, sail more, explore the Nubian villages, and treat Aswan as the restful high point of an Egypt trip. Many people also experience it as the start or end of a Nile cruise."
+    },
+    {
+      "q": "Is Abu Simbel worth the day trip from Aswan?",
+      "a": "For most travellers, yes — Abu Simbel is one of the most awe-inspiring sights in all of Egypt. The two temples of Ramesses II and Nefertari, carved into the mountainside and later rescued from Lake Nasser, are unforgettable. It's a long day by road (around three hours each way) or a short flight, but very few people regret going."
+    },
+    {
+      "q": "What is a felucca, and is a felucca ride worth it?",
+      "a": "A felucca is the traditional wooden sailing boat of the Nile, powered only by its single white sail. A sunset felucca ride around Aswan's islands is quiet, inexpensive, and genuinely magical — for many visitors it's the most memorable thing they do in the city, and well worth it even on a short stay."
+    },
+    {
+      "q": "What is the best time to visit Aswan?",
+      "a": "October to April brings the most comfortable weather, with warm, clear days perfect for sailing and sightseeing. Aswan is the hottest of Egypt's major cities, so in summer (often above 40°C) sightseeing moves to early morning, with lovely balmy evenings on the water. Whatever the season, an early start makes Abu Simbel and the open-air sites far more pleasant."
+    },
+    {
+      "q": "Can you visit a Nubian village in Aswan?",
+      "a": "Yes, and it's one of Aswan's warmest experiences. Villages such as Gharb Soheil on the west bank, reached by boat, welcome visitors with brightly painted houses, hibiscus tea, spices and handicrafts, henna, and genuine Nubian hospitality. It's a colourful, friendly contrast to the ancient temples and a highlight for many travellers."
+    },
+    {
+      "q": "Do I need a guide for Aswan?",
+      "a": "You can enjoy Aswan fairly independently, but a guide makes the logistics effortless — arranging the boats to Philae and the Nubian villages, the early start for Abu Simbel, and the felucca at the right time for sunset — while adding the history behind each site. Every Aswan trip we run includes a licensed local guide and private transport."
+    }
+  ],
+  "related": [
+    {
+      "href": "/destinations/aswan",
+      "label": "Aswan travel guide"
+    },
+    {
+      "href": "/tours",
+      "label": "Browse our Egypt tours"
+    },
+    {
+      "href": "/blog/best-time-to-visit-egypt",
+      "label": "The best time to visit Egypt"
+    },
+    {
+      "href": "/booking",
+      "label": "Plan your Aswan trip"
+    }
+  ]
+}
 ];
 
 export const getPost = (slug: string) => posts.find((p) => p.slug === slug);
