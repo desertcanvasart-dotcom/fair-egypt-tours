@@ -19,7 +19,7 @@ export default function HotelCard({ hotel, delay = 1 }: { hotel: Hotel; delay?: 
           {hotel.amenities.slice(0, 3).map((a) => <span key={a}>{a}</span>)}
         </div>
         <div className="hcard__foot">
-          <div className="pr"><small>from</small> <b>${hotel.pricePerNight}</b> <i>/ night</i></div>
+          <span className="hcard__loc"><Pin size={12} /> {hotel.city}</span>
           <span className="hcard__go">View <ArrowRight size={15} /></span>
         </div>
       </div>

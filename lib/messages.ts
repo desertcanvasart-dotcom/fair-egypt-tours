@@ -3,7 +3,7 @@ import type { Locale } from "./i18n";
 // UI string dictionary for the site chrome. Content (tours, guides, posts) is
 // translated per-record in the database; these are the fixed interface strings.
 export type Dict = {
-  nav: { tours: string; destinations: string; travelTips: string; blog: string; about: string };
+  nav: { tours: string; destinations: string; travelTips: string; blog: string; about: string; hotels: string };
   navChildren: { dayTours: string; travelPackages: string };
   cta: string;
   langLabel: string;
@@ -63,7 +63,7 @@ export type Dict = {
 };
 
 const en: Dict = {
-  nav: { tours: "Tours", destinations: "Destinations", travelTips: "Travel Tips", blog: "Blog", about: "About" },
+  nav: { tours: "Tours", destinations: "Destinations", travelTips: "Travel Tips", blog: "Blog", about: "About", hotels: "Hotels" },
   navChildren: { dayTours: "Day Tours", travelPackages: "Travel Packages" },
   cta: "Get a fair quote",
   langLabel: "Language",
@@ -133,7 +133,7 @@ const en: Dict = {
 };
 
 const es: Dict = {
-  nav: { tours: "Tours", destinations: "Destinos", travelTips: "Consejos de viaje", blog: "Blog", about: "Nosotros" },
+  nav: { tours: "Tours", destinations: "Destinos", travelTips: "Consejos de viaje", blog: "Blog", about: "Nosotros", hotels: "Hoteles" },
   navChildren: { dayTours: "Excursiones de un día", travelPackages: "Paquetes de viaje" },
   cta: "Pide un presupuesto",
   langLabel: "Idioma",
@@ -203,7 +203,7 @@ const es: Dict = {
 };
 
 const pt: Dict = {
-  nav: { tours: "Tours", destinations: "Destinos", travelTips: "Dicas de viagem", blog: "Blog", about: "Sobre nós" },
+  nav: { tours: "Tours", destinations: "Destinos", travelTips: "Dicas de viagem", blog: "Blog", about: "Sobre nós", hotels: "Hotéis" },
   navChildren: { dayTours: "Passeios de um dia", travelPackages: "Pacotes de viagem" },
   cta: "Peça um orçamento",
   langLabel: "Idioma",

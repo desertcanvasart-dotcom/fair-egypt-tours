@@ -73,8 +73,8 @@ export const tours: TourDetail[] = [
     price: 55,
     heroImage: D("cairo/hero.jpg"),
     heroImageAlt: "The Great Pyramids and Sphinx on the Giza Plateau",
-    cardImage: D("cairo/card.jpg"),
-    cardImageAlt: "The pyramids of Giza at dusk",
+    cardImage: D("cairo/pyramids.jpg"),
+    cardImageAlt: "The Great Pyramids and the Sphinx on the Giza plateau",
     summary:
       "A private half-day on the Giza Plateau — the three Great Pyramids, the Great Sphinx and the Valley Temple of Khafre — with a licensed Egyptologist and hotel pickup and drop-off.",
     overview: [

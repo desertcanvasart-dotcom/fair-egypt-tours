@@ -3,19 +3,22 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import PageHero from "@/components/PageHero";
 import Cta from "@/components/Cta";
 import HotelCard from "@/components/HotelCard";
-import Gallery from "@/components/Gallery";
 import JsonLdScript from "@/components/JsonLdScript";
 import BreadcrumbJsonLd from "@/components/BreadcrumbJsonLd";
-import { getHotel, getHotels, getHotelSlugs } from "@/lib/cms";
+import { getHotel, getHotels, getHotelSlugs, getPage } from "@/lib/cms";
 import { site } from "@/lib/data";
-import { Star, Pin, BadgeCheck, Calendar, User, ArrowRight, Whatsapp } from "@/components/icons";
+import { Star, Pin, ArrowRight, Check, Whatsapp } from "@/components/icons";
 
 export async function generateStaticParams() {
   return (await getHotelSlugs()).map((slug) => ({ slug }));
 }
+
+// The hotels collection can be empty (no prerendered paths). Render on request
+// so an unknown/removed slug resolves to a clean 404 instead of a static-render
+// error, and so it still works once real hotels are added back.
+export const dynamic = "force-dynamic";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
@@ -39,15 +42,16 @@ export default async function HotelPage({ params }: { params: Promise<{ locale: 
   const h = await getHotel(slug);
   if (!h) notFound();
 
+  const cmsSite = await getPage("site");
+  const wa = cmsSite.whatsapp;
+  const hasWa = !!wa && /\d{5,}/.test(wa);
+
   // Nearby hotels first (same destination), then fill from the rest.
   const allOthers = (await getHotels()).filter((x) => x.slug !== h.slug);
   const others = [
     ...allOthers.filter((x) => x.destination === h.destination),
     ...allOthers.filter((x) => x.destination !== h.destination),
   ].slice(0, 3);
-
-  // Real photos of the hotel itself.
-  const hotelGallery = h.gallery;
 
   const schema = {
     "@context": "https://schema.org",
@@ -59,6 +63,7 @@ export default async function HotelPage({ params }: { params: Promise<{ locale: 
     starRating: { "@type": "Rating", ratingValue: h.stars },
     priceRange: "$$",
     address: { "@type": "PostalAddress", addressLocality: h.city, addressCountry: "EG" },
+    aggregateRating: { "@type": "AggregateRating", ratingValue: h.rating, reviewCount: h.reviewCount },
     amenityFeature: h.amenities.map((a) => ({ "@type": "LocationFeatureSpecification", name: a, value: true })),
   };
 
@@ -67,92 +72,117 @@ export default async function HotelPage({ params }: { params: Promise<{ locale: 
       <JsonLdScript data={schema} />
       <BreadcrumbJsonLd items={[{ name: "Destinations", url: "/destinations" }, { name: h.name }]} />
       <Header />
-      <PageHero
-        kicker={`${h.stars}-Star · ${h.category}`}
-        title={h.name}
-        subtitle={`${h.area}, ${h.city}`}
-        image={h.image}
-        crumbs={[{ label: "Destinations", href: "/destinations" }, { label: h.name }]}
-        meta={[
-          { icon: <Star size={16} />, label: `${h.stars}-star · ${h.category}` },
-          { icon: <Pin size={16} />, label: `${h.area}, ${h.city}` },
-          { icon: <BadgeCheck size={16} />, label: `From $${h.pricePerNight} / night` },
-        ]}
-      />
 
-      <section className="sec">
+      {/* Immersive hero */}
+      <section className="htl-hero" style={{ backgroundImage: `linear-gradient(180deg, rgba(7,28,40,.15) 0%, rgba(7,28,40,.72) 78%, rgba(7,28,40,.9) 100%), url('${h.image}')` }}>
+        <div className="shell htl-hero__grid">
+          <nav className="htl-hero__crumbs" aria-label="Breadcrumb">
+            <Link href="/destinations">Destinations</Link>
+            <span>/</span>
+            <Link href={`/destinations/${h.destination ?? ""}`}>{h.city}</Link>
+            <span>/</span>
+            <b>{h.name}</b>
+          </nav>
+
+          <div className="htl-hero__in">
+            <div className="htl-hero__kick">
+              <span className="htl-stars" aria-label={`${h.stars} star`}>
+                {Array.from({ length: h.stars }).map((_, i) => <Star key={i} size={14} />)}
+              </span>
+              <span>{h.category}</span>
+            </div>
+            <h1 className="display">{h.name}</h1>
+            <p className="htl-hero__loc"><Pin size={16} /> {h.area}, {h.city}</p>
+          </div>
+
+          <div className="htl-hero__rating" aria-label={`Rated ${h.rating} out of 5`}>
+            <b>{h.rating}</b>
+            <span>Guest rating</span>
+            <small>{h.reviewCount} reviews</small>
+          </div>
+        </div>
+      </section>
+
+      {/* Overlapping facts bar */}
+      <div className="shell">
+        <div className="htl-bar reveal">
+          <div className="htl-bar__facts">
+            <div><span>Rating</span><b>{h.rating} <i>/ 5</i></b></div>
+            <div><span>Class</span><b>{h.stars}-star {h.category}</b></div>
+            <div><span>Where</span><b>{h.area}, {h.city}</b></div>
+          </div>
+          {hasWa ? (
+            <a href={wa} target="_blank" rel="noopener" className="htl-bar__wa">
+              <Whatsapp size={17} /> Ask on WhatsApp
+            </a>
+          ) : null}
+        </div>
+      </div>
+
+      {/* Body */}
+      <section className="sec htl-sec">
         <div className="shell">
-          <div className="article">
-            <div className="article__main">
-              <h2 className="subhead">About this hotel</h2>
-              <div className="hotelfacts">
-                <span><Star size={15} /> {h.stars}-star</span>
-                <span><BadgeCheck size={15} /> {h.category}</span>
-                <span><Pin size={15} /> {h.area}, {h.city}</span>
-                <span className="hotelfacts__pr">from ${h.pricePerNight}/night</span>
-              </div>
-              <div className="prose">
-                {h.description.map((p, i) => <p key={i}>{p}</p>)}
+          <div className="htl-wrap">
+            <div className="htl-main">
+              <div className="kicker reveal"><i>—</i> <span>The stay</span></div>
+              <p className="htl-lede reveal" data-delay="1">{h.description[0]}</p>
+              <div className="prose reveal" data-delay="2">
+                {h.description.slice(1).map((p, i) => <p key={i}>{p}</p>)}
               </div>
 
-              <h2 className="subhead" style={{ marginTop: 46 }}>Amenities</h2>
-              <ul className="amenlist">
+              <h2 className="htl-h2 reveal">What&apos;s here</h2>
+              <ul className="htl-amen reveal" data-delay="1">
                 {h.amenities.map((a) => (
-                  <li key={a}><span className="amenlist__ic"><BadgeCheck size={15} /></span>{a}</li>
+                  <li key={a}><span className="htl-amen__ic"><Check size={14} /></span>{a}</li>
                 ))}
               </ul>
 
-              <h2 className="subhead" style={{ marginTop: 46 }}>Photos</h2>
-              <Gallery images={hotelGallery} label={h.name} />
+              <h2 className="htl-h2 reveal">The place</h2>
+              <div className="htl-gal reveal" data-delay="1">
+                {h.gallery.slice(0, 5).map((src, i) => (
+                  <figure key={i} className={`htl-gal__c htl-gal__c--${i}`}>
+                    <img src={src} alt={`${h.name} — view ${i + 1}`} loading="lazy" />
+                  </figure>
+                ))}
+              </div>
             </div>
 
-            <aside className="sidecol">
-              <form className="sidecard" action="/#cta">
-                <div className="price-lg">${h.pricePerNight} <small>/ night</small></div>
-                <div className="field" style={{ marginTop: 18 }}>
-                  <label htmlFor="checkin">Check-in</label>
-                  <div className="ctl"><Calendar size={18} /><input id="checkin" name="checkin" type="text" placeholder="Add date" /></div>
+            <aside className="htl-side">
+              <div id="reserve" className="htl-side__sticky">
+                <div className="htl-stay">
+                  <h4 className="htl-stay__h">Interested in this stay?</h4>
+                  <p className="htl-stay__lede">
+                    Message us on WhatsApp — a real person from our team will tell you everything about {h.name} and how it fits into your trip.
+                  </p>
+                  {hasWa ? (
+                    <a href={wa} target="_blank" rel="noopener" className="htl-stay__wa">
+                      <Whatsapp size={17} /> Chat on WhatsApp
+                    </a>
+                  ) : null}
+                  <p className="htl-stay__fine"><Check size={13} /> No obligation — we usually reply within a few hours.</p>
                 </div>
-                <div className="field">
-                  <label htmlFor="checkout">Check-out</label>
-                  <div className="ctl"><Calendar size={18} /><input id="checkout" name="checkout" type="text" placeholder="Add date" /></div>
-                </div>
-                <div className="field">
-                  <label htmlFor="guests">Guests</label>
-                  <div className="ctl">
-                    <User size={18} />
-                    <select id="guests" name="guests" defaultValue="2 adults">
-                      <option>2 adults</option><option>1 adult</option><option>Family</option><option>Group</option>
-                    </select>
-                  </div>
-                </div>
-                <Link href="/#cta" className="btn btn--solid">Request to book <ArrowRight size={16} /></Link>
-                <a href={site.whatsapp} className="btn btn--outline" style={{ width: "100%", justifyContent: "center", marginTop: 10 }}>
-                  <Whatsapp size={16} /> Ask on WhatsApp
-                </a>
-                <p style={{ fontSize: 12, color: "var(--muted)", textAlign: "center", marginTop: 12 }}>
-                  No charge to enquire · We confirm availability &amp; price first
-                </p>
-              </form>
+              </div>
             </aside>
           </div>
         </div>
       </section>
 
-      <section className="sec" style={{ background: "var(--sand)" }}>
-        <div className="shell">
-          <div className="sec-top">
-            <div className="kicker reveal"><i>—</i> <span>More stays</span> <span className="ln" /></div>
-            <div className="sec-top__row">
-              <h2 className="display reveal" data-delay="1">Other hotels you might like.</h2>
-              <Link className="btn btn--outline reveal" data-delay="2" href="/destinations">Browse destinations <ArrowRight size={16} /></Link>
+      {others.length > 0 ? (
+        <section className="sec" style={{ background: "var(--sand)" }}>
+          <div className="shell">
+            <div className="sec-top">
+              <div className="kicker reveal"><i>—</i> <span>More stays</span> <span className="ln" /></div>
+              <div className="sec-top__row">
+                <h2 className="display reveal" data-delay="1">Other places to stay.</h2>
+                <Link className="btn btn--outline reveal" data-delay="2" href="/destinations">Browse destinations <ArrowRight size={16} /></Link>
+              </div>
+            </div>
+            <div className="hgrid">
+              {others.map((x, i) => <HotelCard key={x.slug} hotel={x} delay={(i % 3) + 1} />)}
             </div>
           </div>
-          <div className="hgrid">
-            {others.map((x, i) => <HotelCard key={x.slug} hotel={x} delay={(i % 3) + 1} />)}
-          </div>
-        </div>
-      </section>
+        </section>
+      ) : null}
 
       <Cta />
       <Footer />

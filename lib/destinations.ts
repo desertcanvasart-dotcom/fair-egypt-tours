@@ -149,7 +149,7 @@ export const destinations: Destination[] = [
     region: "Upper Egypt · Nile Valley",
     tagline: "The world's greatest open-air museum, split between the temples of the living and the tombs of the kings.",
     heroImage: img("luxor", "hero.jpg"),
-    cardImage: img("luxor", "card.jpg"),
+    cardImage: img("luxor", "karnak.jpg"),
     tourCount: 5,
     intro:
       "Luxor, built over ancient Thebes, holds roughly a third of the world's ancient monuments in one stretch of the Nile. The East Bank has the great temples of Karnak and Luxor; the West Bank holds the Valley of the Kings and Hatshepsut's Temple. Two to three days lets you see both banks without rushing.",

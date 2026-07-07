@@ -178,8 +178,8 @@
     .rcard__place{padding:7px 14px;border-radius:999px;background:rgba(251,244,230,.92);font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:var(--nile)}
     .rcard__rate{display:flex;align-items:center;gap:6px;color:#fff;font-size:13px;font-weight:700;background:rgba(7,28,40,.5);backdrop-filter:blur(6px);padding:7px 12px;border-radius:999px}
     .rcard__b{position:relative;z-index:2;padding:28px;color:#fff}
-    .rcard__b .dur{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--clay-soft);font-weight:800}
-    .rcard__b h3{font-family:var(--font-playfair),serif;font-size:28px;margin:8px 0 14px;line-height:1.1}
+    .rcard__b .dur{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--clay-soft);font-weight:500}
+    .rcard__b h3{font-family:var(--font-playfair),serif;font-size:32px;margin:8px 0 14px;line-height:1.08}
     .rcard__foot{display:flex;align-items:center;justify-content:space-between;border-top:1px solid rgba(255,255,255,.2);padding-top:18px}
     .rcard__foot .pr small{font-size:12px;color:rgba(255,255,255,.7)}
     .rcard__foot .pr b{font-family:var(--font-playfair),serif;font-size:27px;color:#fff;margin-left:5px}
@@ -300,6 +300,11 @@
     .cta__form .btn{width:100%;justify-content:center;margin-top:6px}
     .cta__form .fine{font-size:12px;color:var(--muted);text-align:center;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:7px}
     .cta__form .fine svg{color:var(--palm)}
+    .cta__action{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
+    .cta__btn{background:#fff;color:var(--clay-dark);font-size:17px;font-weight:700;padding:18px 32px;border-radius:12px;box-shadow:0 14px 30px -12px rgba(7,28,40,.35)}
+    .cta__btn:hover{background:var(--ivory);transform:translateY(-2px)}
+    .cta__action .fine{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.9)}
+    .cta__action .fine svg{color:#fff}
 
     /* =============== FOOTER — big wordmark editorial =============== */
     .footer{background:var(--nile-deep);color:rgba(255,255,255,.62);overflow:hidden}
