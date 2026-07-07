@@ -45,11 +45,14 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
             {bookings.map((b) => {
               let places: string[] = [];
               try { places = b.places ? (JSON.parse(b.places) as string[]) : []; } catch { places = []; }
+              const fromTour = b.kind !== "tour" && !!b.tourTitle;
+              const kindLabel = b.kind === "tour" ? "Tour request" : fromTour ? "Custom (from tour)" : "Custom quote";
+              const kindClass = b.kind === "tour" ? "tour" : fromTour ? "fromtour" : "quote";
               return (
                 <div className="bkg" key={b.id}>
                   <div className="bkg__l">
                     <div className="bkg__metarow">
-                      <span className={`bkg__kind bkg__kind--${b.kind}`}>{b.kind === "tour" ? "Tour" : "Custom quote"}</span>
+                      <span className={`bkg__kind bkg__kind--${kindClass}`}>{kindLabel}</span>
                       <span className={`bkg__st bkg__st--${b.status}`}>{b.status}</span>
                       <time className="bkg__date">{fmt(b.createdAt)}</time>
                     </div>
@@ -59,7 +62,7 @@ export default async function BookingsPage({ searchParams }: { searchParams: Pro
                       {b.email ? <a href={`mailto:${b.email}`}>{b.email}</a> : null}
                     </div>
                     <div className="bkg__detail">
-                      {b.tourTitle ? <p><b>Tour:</b> {b.tourTitle}</p> : null}
+                      {b.tourTitle ? <p className={fromTour ? "bkg__from" : undefined}><b>{b.kind === "tour" ? "Tour" : "Came from"}:</b> {b.tourTitle}</p> : null}
                       {places.length ? <p><b>Interested in:</b> {places.join(", ")}</p> : null}
                       <div className="bkg__tags">
                         {b.days ? <span className="bkg__tag">{b.days}</span> : null}

@@ -99,7 +99,7 @@ export default function TourBookingForm({ tourSlug, tourTitle }: { tourSlug: str
       <button type="submit" className="btn btn--solid tbook__go" disabled={busy}>
         {busy ? "Sending…" : "Request this tour"} <ArrowRight size={16} />
       </button>
-      <Link href="/booking" className="btn btn--outline tbook__custom">
+      <Link href={`/booking?tour=${encodeURIComponent(tourSlug)}`} className="btn btn--outline tbook__custom">
         Customize your own tour <ArrowRight size={16} />
       </Link>
     </form>

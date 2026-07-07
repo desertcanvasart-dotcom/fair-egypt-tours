@@ -161,7 +161,7 @@ export const pageSchemas: Record<PageKey, Field[]> = {
     { name: "phone", label: "Phone (display)", type: "text" },
     { name: "phoneHref", label: "Phone link", type: "text", hint: "e.g. tel:+201000000000" },
     { name: "email", label: "Email", type: "text" },
-    { name: "whatsapp", label: "WhatsApp link", type: "text", hint: "e.g. https://wa.me/201000000000" },
+    { name: "whatsapp", label: "WhatsApp number", type: "text", hint: "Just your number with country code — e.g. 20 100 123 4567. Powers every WhatsApp button on the site." },
     { name: "instagram", label: "Instagram URL", type: "text" },
     { name: "facebook", label: "Facebook URL", type: "text" },
     { name: "linkedin", label: "LinkedIn URL", type: "text" },

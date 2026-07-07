@@ -226,3 +226,8 @@
   .bkg { grid-template-columns: 1fr; }
   .bkg__act { flex-direction: row; align-items: center; min-width: 0; }
 }
+
+/* custom booking that originated from a tour */
+.bkg__kind--fromtour { background: #efe7f6; color: #6a4a8a; }
+.bkg__from { display: inline-block; background: #fbf3e5; color: #a95f35 !important; padding: 5px 10px; border-radius: 6px; }
+.bkg__from b { color: #8a4a20; }

@@ -6,7 +6,7 @@ export const site = {
   phone: "+20 100 000 0000",
   phoneHref: "tel:+201000000000",
   email: "hello@fairegypttours.com",
-  whatsapp: "https://wa.me/",
+  whatsapp: "",
   url: "https://www.fairegypttours.com",
 };
 

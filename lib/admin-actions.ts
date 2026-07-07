@@ -155,6 +155,13 @@ export async function savePage(key: string, _prev: SaveState, formData: FormData
     return { error: "One of the JSON fields contains invalid JSON. Please fix it and try again." };
   }
 
+  // WhatsApp: let the admin type just a number (any format) and store a working
+  // wa.me link, so every WhatsApp button across the site works from this one field.
+  if (key === "site" && typeof data.whatsapp === "string") {
+    const digits = data.whatsapp.replace(/\D/g, "");
+    data.whatsapp = digits ? `https://wa.me/${digits}` : "";
+  }
+
   await prisma.pageContent.upsert({ where: { key }, update: { data }, create: { key, data } });
 
   revalidatePath("/");

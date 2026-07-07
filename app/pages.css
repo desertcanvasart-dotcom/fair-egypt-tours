@@ -665,3 +665,23 @@ a.rcard, a.hcard, a.bcard { text-decoration: none; color: inherit; }
 .tbook--done h4 { font-size: 18px; }
 .bookform--done p, .tbook--done p { color: var(--muted); font-size: 14.5px; line-height: 1.65; margin: 0 auto; max-width: 46ch; }
 .tbook__custom { margin-top: 10px; }
+
+/* "Customising <tour>" note on the quote form */
+.bookform__from { display: flex; align-items: center; gap: 8px; background: var(--sand); color: var(--nile); border-radius: 10px; padding: 11px 14px; font-size: 14px; line-height: 1.5; margin: 0 0 20px; }
+.bookform__from svg { color: var(--clay); flex: none; }
+.bookform__from b { font-weight: 700; }
+
+/* Travel-tips listing: exactly 3 cards per row (blog grid stays auto-fill) */
+.bgrid--3 { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 920px) { .bgrid--3 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 600px) { .bgrid--3 { grid-template-columns: 1fr; } }
+
+/* Direct-contact card on the booking page (green WhatsApp) */
+.booktalk { margin-top: 18px; background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 22px; }
+.booktalk h4 { margin: 0 0 8px; font-size: 18px; }
+.booktalk p { margin: 0 0 14px; color: var(--ink-soft); font-size: 14.5px; line-height: 1.55; }
+.booktalk__info { display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px; }
+.booktalk__info a { color: var(--nile); font-weight: 600; font-size: 14.5px; text-decoration: none; }
+.booktalk__info a:hover { text-decoration: underline; }
+.booktalk__wa { display: inline-flex; align-items: center; justify-content: center; gap: 9px; width: 100%; padding: 13px 18px; border-radius: 12px; background: #25d366; color: #fff; font-weight: 700; font-size: 15px; text-decoration: none; transition: background .18s ease, transform .18s ease; }
+.booktalk__wa:hover { background: #1fb457; transform: translateY(-1px); }

@@ -6,8 +6,18 @@ import PlacesSelect from "./PlacesSelect";
 import type { BookingStrings } from "@/lib/booking-content";
 
 // The global "get a fair quote" form — custom trips only. Saves to the
-// dashboard via /api/booking.
-export default function BookingForm({ s }: { s: BookingStrings }) {
+// dashboard via /api/booking. When the visitor arrived from a specific tour
+// ("Customize your own tour"), that tour is carried through so the booking is
+// tagged with where it came from.
+export default function BookingForm({
+  s,
+  fromTourSlug,
+  fromTourTitle,
+}: {
+  s: BookingStrings;
+  fromTourSlug?: string;
+  fromTourTitle?: string;
+}) {
   const [sent, setSent] = useState(false);
   const [busy, setBusy] = useState(false);
   const [err, setErr] = useState(false);
@@ -29,6 +39,8 @@ export default function BookingForm({ s }: { s: BookingStrings }) {
       children: get("children") || null,
       dates: get("date"),
       notes: get("notes"),
+      tourSlug: fromTourSlug || null,
+      tourTitle: fromTourTitle || null,
       source: typeof window !== "undefined" ? window.location.pathname : "",
       company: get("company"),
     };
@@ -57,6 +69,11 @@ export default function BookingForm({ s }: { s: BookingStrings }) {
     <form className="bookform" onSubmit={onSubmit}>
       <h3>{s.tabCustom}</h3>
       <p className="bookform__lede">{s.tabCustomHint}</p>
+      {fromTourTitle ? (
+        <div className="bookform__from">
+          <Check size={14} /> Customising <b>{fromTourTitle}</b> — tell us how you&apos;d like to change it.
+        </div>
+      ) : null}
 
       <div className="field">
         <label>{s.placesLabel}</label>

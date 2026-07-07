@@ -58,7 +58,7 @@ export default async function TravelTipsPage({
             ))}
           </div>
 
-          <div className="bgrid">
+          <div className="bgrid bgrid--3">
             {list.map((t, i) => (
               <TipCard key={t.slug} tip={t} delay={(i % 3) + 1} />
             ))}

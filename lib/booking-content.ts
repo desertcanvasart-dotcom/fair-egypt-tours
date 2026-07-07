@@ -51,6 +51,10 @@ export type BookingStrings = {
   // reassurance
   reassureTitle: string;
   reassure: string[];
+  // direct-contact card
+  talkTitle: string;
+  talkText: string;
+  talkCta: string;
   groupDayTours: string;
   groupPackages: string;
   // custom quote form
@@ -121,11 +125,14 @@ const en: BookingStrings = {
     "A 20% deposit confirms your booking; pay the balance on or before the day.",
     "Free cancellation up to 7 days before your tour.",
   ],
+  talkTitle: "Prefer to talk first?",
+  talkText: "Message us on WhatsApp and a real person from our local team will reply — usually within minutes.",
+  talkCta: "Chat on WhatsApp",
   groupDayTours: "Day Tours",
   groupPackages: "Travel Packages",
   placesLabel: "What would you like to visit?",
   placesPh: "Search destinations…",
-  placesOptions: ["Cairo & the Pyramids", "Grand Egyptian Museum", "Islamic & Coptic Cairo", "Saqqara & Memphis", "Alexandria", "Luxor", "Valley of the Kings", "Karnak & Luxor temples", "Aswan", "Abu Simbel", "Philae Temple", "Nile cruise", "Fayoum", "Hurghada & the Red Sea", "Sharm El Sheikh", "Dahab", "White Desert", "Siwa Oasis", "Not sure yet — need advice"],
+  placesOptions: ["Cairo", "Giza & the Pyramids", "Grand Egyptian Museum", "Saqqara & Memphis", "Islamic & Coptic Cairo", "Alexandria", "El Alamein", "Marsa Matruh", "Luxor", "Valley of the Kings", "Karnak & Luxor Temples", "Dendera", "Abydos", "Esna", "Edfu", "Kom Ombo", "Aswan", "Abu Simbel", "Philae Temple", "Lake Nasser", "Nile Cruise", "Minya & Beni Hasan", "Hurghada", "El Gouna", "Soma Bay", "Marsa Alam", "Safaga", "Ain Sokhna", "Sharm El Sheikh", "Ras Mohammed", "Dahab", "Nuweiba", "Taba", "Saint Catherine & Mount Sinai", "Fayoum", "Wadi El Rayan", "Bahariya Oasis", "White Desert", "Farafra Oasis", "Dakhla Oasis", "Kharga Oasis", "Siwa Oasis", "Not sure yet — need advice"],
   daysLabel: "Trip length",
   daysOptions: ["Not sure yet", "1–3 days", "4–5 days", "6–8 days", "9–12 days", "2 weeks or more"],
   adultsLabel: "Adults",
@@ -190,11 +197,14 @@ const es: BookingStrings = {
     "Un depósito del 20 % confirma tu reserva; el resto se paga el día del tour o antes.",
     "Cancelación gratuita hasta 7 días antes de tu tour.",
   ],
+  talkTitle: "¿Prefieres hablar antes?",
+  talkText: "Escríbenos por WhatsApp y una persona real de nuestro equipo local te responderá — normalmente en minutos.",
+  talkCta: "Chatear por WhatsApp",
   groupDayTours: "Excursiones de un día",
   groupPackages: "Paquetes de viaje",
   placesLabel: "¿Qué te gustaría visitar?",
   placesPh: "Busca destinos…",
-  placesOptions: ["El Cairo y las Pirámides", "Gran Museo Egipcio", "El Cairo islámico y copto", "Saqqara y Menfis", "Alejandría", "Luxor", "Valle de los Reyes", "Templos de Karnak y Luxor", "Asuán", "Abu Simbel", "Templo de File", "Crucero por el Nilo", "Fayoum", "Hurgada y el Mar Rojo", "Sharm el-Sheij", "Dahab", "Desierto Blanco", "Oasis de Siwa", "Aún no lo sé — necesito consejo"],
+  placesOptions: ["El Cairo", "Guiza y las Pirámides", "Gran Museo Egipcio", "Saqqara y Menfis", "El Cairo islámico y copto", "Alejandría", "El Alamein", "Marsa Matruh", "Luxor", "Valle de los Reyes", "Templos de Karnak y Luxor", "Dendera", "Abidos", "Esna", "Edfu", "Kom Ombo", "Asuán", "Abu Simbel", "Templo de File", "Lago Nasser", "Crucero por el Nilo", "Minya y Beni Hasan", "Hurgada", "El Gouna", "Soma Bay", "Marsa Alam", "Safaga", "Ain Sojna", "Sharm el-Sheij", "Ras Mohammed", "Dahab", "Nuweiba", "Taba", "Santa Catalina y el Monte Sinaí", "Fayoum", "Wadi El Rayan", "Oasis de Bahariya", "Desierto Blanco", "Oasis de Farafra", "Oasis de Dajla", "Oasis de Jarga", "Oasis de Siwa", "Aún no lo sé — necesito consejo"],
   daysLabel: "Duración del viaje",
   daysOptions: ["Aún no lo sé", "1–3 días", "4–5 días", "6–8 días", "9–12 días", "2 semanas o más"],
   adultsLabel: "Adultos",
@@ -259,11 +269,14 @@ const pt: BookingStrings = {
     "Um depósito de 20 % confirma sua reserva; o restante é pago no dia do passeio ou antes.",
     "Cancelamento gratuito até 7 dias antes do seu passeio.",
   ],
+  talkTitle: "Prefere conversar antes?",
+  talkText: "Fale conosco no WhatsApp e uma pessoa real da nossa equipe local vai responder — normalmente em minutos.",
+  talkCta: "Conversar no WhatsApp",
   groupDayTours: "Passeios de um dia",
   groupPackages: "Pacotes de viagem",
   placesLabel: "O que você gostaria de visitar?",
   placesPh: "Buscar destinos…",
-  placesOptions: ["Cairo e as Pirâmides", "Grande Museu Egípcio", "Cairo islâmico e copta", "Saqqara e Mênfis", "Alexandria", "Luxor", "Vale dos Reis", "Templos de Karnak e Luxor", "Assuã", "Abu Simbel", "Templo de Philae", "Cruzeiro pelo Nilo", "Fayoum", "Hurghada e o Mar Vermelho", "Sharm El-Sheikh", "Dahab", "Deserto Branco", "Oásis de Siwa", "Ainda não sei — preciso de conselho"],
+  placesOptions: ["Cairo", "Gizé e as Pirâmides", "Grande Museu Egípcio", "Saqqara e Mênfis", "Cairo islâmico e copta", "Alexandria", "El Alamein", "Marsa Matruh", "Luxor", "Vale dos Reis", "Templos de Karnak e Luxor", "Dendera", "Abidos", "Esna", "Edfu", "Kom Ombo", "Assuã", "Abu Simbel", "Templo de Philae", "Lago Nasser", "Cruzeiro pelo Nilo", "Mínia e Beni Hassan", "Hurghada", "El Gouna", "Soma Bay", "Marsa Alam", "Safaga", "Ain Sokhna", "Sharm El-Sheikh", "Ras Mohammed", "Dahab", "Nuweiba", "Taba", "Santa Catarina e o Monte Sinai", "Fayoum", "Wadi El Rayan", "Oásis de Bahariya", "Deserto Branco", "Oásis de Farafra", "Oásis de Dakhla", "Oásis de Kharga", "Oásis de Siwa", "Ainda não sei — preciso de conselho"],
   daysLabel: "Duração da viagem",
   daysOptions: ["Ainda não sei", "1–3 dias", "4–5 dias", "6–8 dias", "9–12 dias", "2 semanas ou mais"],
   adultsLabel: "Adultos",
