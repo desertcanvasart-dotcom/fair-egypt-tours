@@ -159,7 +159,7 @@ export default async function TourPage({ params }: { params: Promise<{ locale: s
                 <div className="row"><span><User size={16} /> Group</span><b>{t.groupSize}</b></div>
                 <div className="row"><span><Star size={16} /> Rating</span><b>{t.rating} / 5</b></div>
                 <div className="row"><span><BadgeCheck size={16} /> Languages</span><b>{t.languages}</b></div>
-                <TourBookingForm tourTitle={t.title} whatsapp={site.whatsapp} />
+                <TourBookingForm tourSlug={t.slug} tourTitle={t.title} />
               </div>
             </aside>
           </div>

@@ -138,3 +138,25 @@ model Media {
   height    Int?
   createdAt DateTime @default(now())
 }
+
+/// Booking / quote requests submitted from the public site.
+model Booking {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  kind      String   // "quote" | "tour"
+  status    String   @default("new") // new | contacted | won | lost | archived
+  name      String
+  email     String?
+  phone     String?
+  tourSlug  String?
+  tourTitle String?
+  places    String?  // JSON array of place labels (custom quote)
+  days      String?
+  adults    Int?
+  children  Int?
+  dates     String?
+  notes     String?
+  source    String?  // originating page path
+
+  @@index([createdAt])
+}

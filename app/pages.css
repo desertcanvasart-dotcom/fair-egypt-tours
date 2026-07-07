@@ -635,3 +635,33 @@ a.rcard, a.hcard, a.bcard { text-decoration: none; color: inherit; }
 .tbook textarea:focus { outline: none; border-color: var(--clay); }
 .tbook .btn { margin-top: 6px; }
 .bookform__lede { color: var(--muted); font-size: 14px; margin: -8px 0 20px; line-height: 1.6; }
+
+/* =================================================================
+   SEARCHABLE MULTI-SELECT (places) + form states
+   ================================================================= */
+.hp { position: absolute !important; left: -9999px !important; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+.msel { position: relative; }
+.msel__box { display: flex; flex-wrap: wrap; gap: 6px; align-items: center; min-height: 48px; border: 1px solid var(--line-2); border-radius: 10px; padding: 8px 10px; background: #fff; cursor: text; transition: border-color .2s var(--ease); }
+.msel.is-open .msel__box { border-color: var(--clay); }
+.msel__chip { display: inline-flex; align-items: center; gap: 7px; background: var(--sand); color: var(--nile); border-radius: 999px; padding: 4px 6px 4px 13px; font-size: 13px; font-weight: 600; }
+.msel__chip button { border: none; background: rgba(31,58,74,.12); color: var(--nile); width: 18px; height: 18px; border-radius: 50%; cursor: pointer; font-size: 15px; line-height: 1; display: grid; place-items: center; padding: 0; }
+.msel__chip button:hover { background: var(--clay); color: #fff; }
+.msel__input { flex: 1; min-width: 130px; border: none; outline: none; background: transparent; font: inherit; font-size: 14.5px; color: var(--ink); padding: 5px 2px; }
+.msel__menu { position: absolute; z-index: 30; top: calc(100% + 5px); left: 0; right: 0; background: #fff; border: 1px solid var(--line); border-radius: 12px; box-shadow: var(--sh-md); padding: 6px; max-height: 264px; overflow: auto; }
+.msel__opt { display: block; width: 100%; text-align: left; border: none; background: transparent; padding: 10px 12px; border-radius: 8px; font: inherit; font-size: 14.5px; color: var(--nile); cursor: pointer; }
+.msel__opt:hover { background: var(--sand); }
+
+/* the quote form uses date/number inputs in .ctl */
+.bookform .ctl input, .bookform .ctl select, .tbook .ctl input, .tbook .ctl select { flex: 1; min-width: 0; border: none; background: transparent; font: inherit; font-size: 14.5px; color: var(--ink); outline: none; }
+.bookform .ctl input[type="date"], .tbook .ctl input[type="date"] { color: var(--ink); }
+
+/* success + busy + error states */
+.bookform__go:disabled, .tbook__go:disabled { opacity: .6; cursor: default; }
+.tbook__err { color: var(--clay-dark); font-size: 13px; margin: 10px 0 0; }
+.bookform--done, .tbook--done { text-align: center; padding: 26px 6px; }
+.bookform__ok, .tbook__ok { width: 54px; height: 54px; border-radius: 50%; background: var(--palm); color: #fff; display: grid; place-items: center; margin: 4px auto 18px; }
+.tbook__ok { width: 46px; height: 46px; }
+.bookform--done h3, .tbook--done h4 { font-family: var(--font-playfair), serif; color: var(--nile); margin: 0 0 8px; }
+.tbook--done h4 { font-size: 18px; }
+.bookform--done p, .tbook--done p { color: var(--muted); font-size: 14.5px; line-height: 1.65; margin: 0 auto; max-width: 46ch; }
+.tbook__custom { margin-top: 10px; }

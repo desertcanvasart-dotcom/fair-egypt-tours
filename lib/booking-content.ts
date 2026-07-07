@@ -53,6 +53,17 @@ export type BookingStrings = {
   reassure: string[];
   groupDayTours: string;
   groupPackages: string;
+  // custom quote form
+  placesLabel: string;
+  placesPh: string;
+  placesOptions: string[];
+  daysLabel: string;
+  daysOptions: string[];
+  adultsLabel: string;
+  childrenLabel: string;
+  dateLabel: string;
+  successTitle: string;
+  successText: string;
 };
 
 const en: BookingStrings = {
@@ -112,6 +123,16 @@ const en: BookingStrings = {
   ],
   groupDayTours: "Day Tours",
   groupPackages: "Travel Packages",
+  placesLabel: "What would you like to visit?",
+  placesPh: "Search destinations…",
+  placesOptions: ["Cairo & the Pyramids", "Grand Egyptian Museum", "Islamic & Coptic Cairo", "Saqqara & Memphis", "Alexandria", "Luxor", "Valley of the Kings", "Karnak & Luxor temples", "Aswan", "Abu Simbel", "Philae Temple", "Nile cruise", "Fayoum", "Hurghada & the Red Sea", "Sharm El Sheikh", "Dahab", "White Desert", "Siwa Oasis", "Not sure yet — need advice"],
+  daysLabel: "Trip length",
+  daysOptions: ["Not sure yet", "1–3 days", "4–5 days", "6–8 days", "9–12 days", "2 weeks or more"],
+  adultsLabel: "Adults",
+  childrenLabel: "Children",
+  dateLabel: "Preferred start date",
+  successTitle: "Request received",
+  successText: "Thanks! We've got your request and a real person from our team will reply soon — usually within a few hours.",
 } as BookingStrings;
 
 const es: BookingStrings = {
@@ -171,6 +192,16 @@ const es: BookingStrings = {
   ],
   groupDayTours: "Excursiones de un día",
   groupPackages: "Paquetes de viaje",
+  placesLabel: "¿Qué te gustaría visitar?",
+  placesPh: "Busca destinos…",
+  placesOptions: ["El Cairo y las Pirámides", "Gran Museo Egipcio", "El Cairo islámico y copto", "Saqqara y Menfis", "Alejandría", "Luxor", "Valle de los Reyes", "Templos de Karnak y Luxor", "Asuán", "Abu Simbel", "Templo de File", "Crucero por el Nilo", "Fayoum", "Hurgada y el Mar Rojo", "Sharm el-Sheij", "Dahab", "Desierto Blanco", "Oasis de Siwa", "Aún no lo sé — necesito consejo"],
+  daysLabel: "Duración del viaje",
+  daysOptions: ["Aún no lo sé", "1–3 días", "4–5 días", "6–8 días", "9–12 días", "2 semanas o más"],
+  adultsLabel: "Adultos",
+  childrenLabel: "Niños",
+  dateLabel: "Fecha de inicio preferida",
+  successTitle: "Solicitud recibida",
+  successText: "¡Gracias! Hemos recibido tu solicitud y una persona real de nuestro equipo te responderá pronto, normalmente en pocas horas.",
 } as BookingStrings;
 
 const pt: BookingStrings = {
@@ -230,6 +261,16 @@ const pt: BookingStrings = {
   ],
   groupDayTours: "Passeios de um dia",
   groupPackages: "Pacotes de viagem",
+  placesLabel: "O que você gostaria de visitar?",
+  placesPh: "Buscar destinos…",
+  placesOptions: ["Cairo e as Pirâmides", "Grande Museu Egípcio", "Cairo islâmico e copta", "Saqqara e Mênfis", "Alexandria", "Luxor", "Vale dos Reis", "Templos de Karnak e Luxor", "Assuã", "Abu Simbel", "Templo de Philae", "Cruzeiro pelo Nilo", "Fayoum", "Hurghada e o Mar Vermelho", "Sharm El-Sheikh", "Dahab", "Deserto Branco", "Oásis de Siwa", "Ainda não sei — preciso de conselho"],
+  daysLabel: "Duração da viagem",
+  daysOptions: ["Ainda não sei", "1–3 dias", "4–5 dias", "6–8 dias", "9–12 dias", "2 semanas ou mais"],
+  adultsLabel: "Adultos",
+  childrenLabel: "Crianças",
+  dateLabel: "Data de início preferida",
+  successTitle: "Solicitação recebida",
+  successText: "Obrigado! Recebemos sua solicitação e uma pessoa real da nossa equipe responderá em breve — normalmente em poucas horas.",
 } as BookingStrings;
 
 export const bookingContent: Record<Locale, BookingStrings> = { en, es, pt };
