@@ -118,7 +118,7 @@ export const hotels: Hotel[] = [
   }),
   build({
     slug: "hilton-grand-nile-cairo",
-    name: "Grand Nile Tower, Cairo",
+    name: "Hilton Cairo Grand Nile",
     city: "Cairo",
     region: "Cairo",
     destination: "cairo",
