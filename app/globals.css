@@ -123,9 +123,8 @@
     /* =============== HERO (full-bleed + booking widget) =============== */
     .hero{position:relative;min-height:100dvh;margin-top:-88px;display:flex;align-items:flex-end;
       background:linear-gradient(180deg,rgba(7,28,40,.55) 0%,rgba(7,28,40,.15) 35%,rgba(7,28,40,.78) 100%),
-      url('https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1900&q=85') center/cover fixed}
-    .hero__grid{display:grid;grid-template-columns:1.3fr .7fr;gap:48px;align-items:end;width:100%;padding:0 0 64px;color:#fff}
-    .hero__copy{max-width:720px}
+      url('https://images.unsplash.com/photo-1539768942893-daf53e448371?auto=format&fit=crop&w=1900&q=85') center/cover}
+    .hero__copy{width:100%;max-width:800px;padding:0 0 clamp(56px,10vh,112px);color:#fff}
     .hero__copy .kicker{color:var(--clay-soft);margin-bottom:26px}.hero__copy .kicker .ln{background:rgba(255,255,255,.35)}
     .hero__copy h1{font-family:var(--font-playfair),serif;font-size:clamp(46px,6.4vw,94px);line-height:1.0;color:#fff;letter-spacing:-.015em}
     .hero__copy h1 em{font-style:italic;color:var(--clay-soft)}
@@ -134,17 +133,21 @@
     .hero__chips a{padding:9px 16px;border:1px solid rgba(255,255,255,.32);border-radius:999px;font-size:13px;font-weight:600;
       color:#fff;transition:background .3s var(--ease),border-color .3s var(--ease)}
     .hero__chips a:hover{background:#fff;color:var(--nile);border-color:#fff}
-    /* booking widget */
-    .widget{background:rgba(251,244,230,.96);border-radius:14px;padding:22px;box-shadow:var(--sh-lg);border:1px solid rgba(255,255,255,.6)}
-    .widget h3{font-family:var(--font-playfair),serif;font-size:21px;color:var(--nile);margin-bottom:4px}
-    .widget>span{font-size:13px;color:var(--muted);display:block;margin-bottom:18px}
+    /* hero call-to-action (island button + ghost) */
+    .hero__actions{display:flex;flex-wrap:wrap;align-items:center;gap:16px;margin-top:34px}
+    .hero__cta{display:inline-flex;align-items:center;gap:16px;background:var(--clay);color:#fff;border-radius:999px;padding:9px 10px 9px 30px;font-weight:700;font-size:16.5px;box-shadow:0 16px 34px -14px rgba(201,121,74,.6);transition:transform .5s cubic-bezier(.32,.72,0,1),background .35s var(--ease)}
+    .hero__cta:hover{background:var(--clay-dark);transform:translateY(-2px)}
+    .hero__cta:active{transform:scale(.98)}
+    .hero__cta-ic{width:44px;height:44px;border-radius:50%;background:rgba(255,255,255,.22);display:grid;place-items:center;transition:transform .5s cubic-bezier(.32,.72,0,1)}
+    .hero__cta:hover .hero__cta-ic{transform:translateX(4px)}
+    .hero__cta2{display:inline-flex;align-items:center;color:#fff;font-weight:600;font-size:15px;padding:12px 20px;border-radius:999px;border:1px solid rgba(255,255,255,.32);transition:background .3s var(--ease),border-color .3s var(--ease)}
+    .hero__cta2:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.55)}
     .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
     .field label{font-size:11px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--clay-dark)}
     .field .ctl{display:flex;align-items:center;gap:10px;border:1px solid var(--line-2);border-radius:8px;padding:12px 14px;background:#fff;transition:border-color .3s var(--ease)}
     .field .ctl:focus-within{border-color:var(--clay)}
     .field .ctl svg{color:var(--clay);flex-shrink:0}
     .field select,.field input{border:none;outline:none;width:100%;font-size:14px;color:var(--ink);background:transparent}
-    .widget .btn{width:100%;justify-content:center;margin-top:6px}
     .widget__row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
     /* =============== MARQUEE TRUST STRIP =============== */
@@ -300,9 +303,12 @@
     .cta__form .btn{width:100%;justify-content:center;margin-top:6px}
     .cta__form .fine{font-size:12px;color:var(--muted);text-align:center;margin-top:14px;display:flex;align-items:center;justify-content:center;gap:7px}
     .cta__form .fine svg{color:var(--palm)}
-    .cta__action{display:flex;flex-direction:column;align-items:flex-start;gap:18px}
-    .cta__btn{background:#fff;color:var(--clay-dark);font-size:17px;font-weight:700;padding:18px 32px;border-radius:12px;box-shadow:0 14px 30px -12px rgba(7,28,40,.35)}
-    .cta__btn:hover{background:var(--ivory);transform:translateY(-2px)}
+    .cta__action{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;text-align:center}
+    .cta__btn{display:inline-flex;align-items:center;gap:15px;background:#fff;color:var(--clay-dark);font-size:16.5px;font-weight:700;padding:9px 10px 9px 30px;border-radius:999px;box-shadow:0 18px 40px -16px rgba(7,28,40,.5);transition:transform .5s cubic-bezier(.32,.72,0,1)}
+    .cta__btn:hover{transform:translateY(-2px)}
+    .cta__btn:active{transform:scale(.98)}
+    .cta__btn-ic{width:42px;height:42px;border-radius:50%;background:var(--clay);color:#fff;display:grid;place-items:center;transition:transform .5s cubic-bezier(.32,.72,0,1)}
+    .cta__btn:hover .cta__btn-ic{transform:translateX(4px)}
     .cta__action .fine{display:flex;align-items:center;gap:8px;font-size:13px;color:rgba(255,255,255,.9)}
     .cta__action .fine svg{color:#fff}
 
@@ -339,8 +345,7 @@
     /* =============== RESPONSIVE =============== */
     @media(max-width:1080px){
       .hero{background-attachment:scroll;align-items:flex-start;min-height:auto}
-      .hero__grid{grid-template-columns:1fr;gap:26px;padding:128px 0 56px}
-      .widget{max-width:460px}
+      .hero__copy{padding:120px 0 56px;max-width:100%;min-width:0}
       .promise__grid,.cta__grid{grid-template-columns:1fr;gap:36px}
       .stats{grid-template-columns:1fr 1fr}.stat:nth-child(2){border-right:none}.stat:nth-child(n+3){border-top:1px solid var(--line)}
       .timeline{grid-template-columns:1fr;gap:36px}.timeline::before{display:none}
@@ -351,8 +356,10 @@
     }
     @media(max-width:620px){
       .shell{width:calc(100% - 36px)}
+      .hero__copy,.hero__chips{max-width:100%;min-width:0}
+      .hero__copy p{max-width:100%;overflow-wrap:break-word}
+      .hero__actions{gap:12px}
       .sec-top__row{flex-direction:column;align-items:flex-start;gap:18px}
-      .widget__row{grid-template-columns:1fr}
       .stats{grid-template-columns:1fr}.stat{border-right:none;border-top:1px solid var(--line)}
       .footer__cols{grid-template-columns:1fr}
     }

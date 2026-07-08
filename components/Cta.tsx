@@ -25,8 +25,9 @@ export default async function Cta({
             <p className="reveal" data-delay="2">{text}</p>
           </div>
           <div className="cta__action reveal" data-delay="1">
-            <Link href={localeHref(locale, "/booking")} className="btn cta__btn">
-              {tt.cta} <ArrowRight size={18} />
+            <Link href={localeHref(locale, "/booking")} className="cta__btn">
+              {tt.cta}
+              <span className="cta__btn-ic"><ArrowRight size={18} /></span>
             </Link>
             <div className="fine"><Check size={14} /> {m.fine}</div>
           </div>

@@ -4,6 +4,13 @@ import type { Locale } from "./i18n";
 // translated per-record in the database; these are the fixed interface strings.
 export type Dict = {
   nav: { tours: string; destinations: string; travelTips: string; blog: string; about: string; hotels: string };
+  hotels: {
+    whereToStay: string; recTitle: string; recEm: string; recSub: string; visit: string; elsewhere: string;
+    emptyTitle: string; emptyText: string; getQuote: string; theStay: string; whatsHere: string; thePlace: string;
+    guestRating: string; reviews: string; rating: string; classLabel: string; where: string; askWhatsapp: string;
+    planStay: string; interested: string; messageWa: string; sendEnquiry: string; chatWa: string; enquireStay: string;
+    noObligation: string; moreStays: string; otherPlaces: string; browseDest: string; destinations: string;
+  };
   navChildren: { dayTours: string; travelPackages: string };
   cta: string;
   langLabel: string;
@@ -64,6 +71,19 @@ export type Dict = {
 
 const en: Dict = {
   nav: { tours: "Tours", destinations: "Destinations", travelTips: "Travel Tips", blog: "Blog", about: "About", hotels: "Hotels" },
+  hotels: {
+    whereToStay: "Where to stay", recTitle: "Recommended", recEm: "hotels.",
+    recSub: "An honest, hand-picked shortlist of the places we actually use — grouped by destination. We arrange any of these as part of a trip we plan around you.",
+    visit: "Visit", elsewhere: "Elsewhere in Egypt",
+    emptyTitle: "Our hotel list is on its way.", emptyText: "We're finishing a fresh, hand-picked selection. In the meantime, tell us your dates and we'll recommend the right stay for your trip.",
+    getQuote: "Get a fair quote", theStay: "The stay", whatsHere: "What's here", thePlace: "The place",
+    guestRating: "Guest rating", reviews: "reviews", rating: "Rating", classLabel: "Class", where: "Where",
+    askWhatsapp: "Ask on WhatsApp", planStay: "Plan your stay", interested: "Interested in this stay?",
+    messageWa: "Message us on WhatsApp — a real person from our team will tell you everything about {name} and how it fits into your trip.",
+    sendEnquiry: "Send us an enquiry and a real person from our team will tell you everything about {name} and how it fits into your trip.",
+    chatWa: "Chat on WhatsApp", enquireStay: "Enquire about this stay", noObligation: "No obligation — we usually reply within a few hours.",
+    moreStays: "More stays", otherPlaces: "Other places to stay.", browseDest: "Browse destinations", destinations: "Destinations",
+  },
   navChildren: { dayTours: "Day Tours", travelPackages: "Travel Packages" },
   cta: "Get a fair quote",
   langLabel: "Language",
@@ -134,6 +154,19 @@ const en: Dict = {
 
 const es: Dict = {
   nav: { tours: "Tours", destinations: "Destinos", travelTips: "Consejos de viaje", blog: "Blog", about: "Nosotros", hotels: "Hoteles" },
+  hotels: {
+    whereToStay: "Dónde alojarse", recTitle: "Hoteles", recEm: "recomendados.",
+    recSub: "Una selección honesta y cuidada de los lugares que realmente usamos — agrupados por destino. Organizamos cualquiera de ellos como parte de un viaje diseñado a tu medida.",
+    visit: "Ver", elsewhere: "Otros lugares de Egipto",
+    emptyTitle: "Nuestra lista de hoteles está en camino.", emptyText: "Estamos terminando una selección nueva y cuidada. Mientras tanto, cuéntanos tus fechas y te recomendaremos el alojamiento ideal para tu viaje.",
+    getQuote: "Pide un presupuesto", theStay: "El alojamiento", whatsHere: "Qué ofrece", thePlace: "El lugar",
+    guestRating: "Valoración", reviews: "reseñas", rating: "Valoración", classLabel: "Categoría", where: "Dónde",
+    askWhatsapp: "Pregunta por WhatsApp", planStay: "Planifica tu estancia", interested: "¿Te interesa este alojamiento?",
+    messageWa: "Escríbenos por WhatsApp — una persona real de nuestro equipo te contará todo sobre {name} y cómo encaja en tu viaje.",
+    sendEnquiry: "Envíanos una consulta y una persona real de nuestro equipo te contará todo sobre {name} y cómo encaja en tu viaje.",
+    chatWa: "Chatear por WhatsApp", enquireStay: "Consultar sobre este alojamiento", noObligation: "Sin compromiso — normalmente respondemos en pocas horas.",
+    moreStays: "Más alojamientos", otherPlaces: "Otros lugares donde alojarse.", browseDest: "Ver destinos", destinations: "Destinos",
+  },
   navChildren: { dayTours: "Excursiones de un día", travelPackages: "Paquetes de viaje" },
   cta: "Pide un presupuesto",
   langLabel: "Idioma",
@@ -204,6 +237,19 @@ const es: Dict = {
 
 const pt: Dict = {
   nav: { tours: "Tours", destinations: "Destinos", travelTips: "Dicas de viagem", blog: "Blog", about: "Sobre nós", hotels: "Hotéis" },
+  hotels: {
+    whereToStay: "Onde ficar", recTitle: "Hotéis", recEm: "recomendados.",
+    recSub: "Uma seleção honesta e cuidadosa dos lugares que realmente usamos — agrupados por destino. Organizamos qualquer um deles como parte de uma viagem planejada sob medida para você.",
+    visit: "Ver", elsewhere: "Outros lugares do Egito",
+    emptyTitle: "Nossa lista de hotéis está a caminho.", emptyText: "Estamos finalizando uma seleção nova e cuidadosa. Enquanto isso, conte-nos suas datas e recomendaremos a estadia ideal para a sua viagem.",
+    getQuote: "Peça um orçamento", theStay: "A estadia", whatsHere: "O que tem aqui", thePlace: "O lugar",
+    guestRating: "Avaliação", reviews: "avaliações", rating: "Avaliação", classLabel: "Categoria", where: "Onde",
+    askWhatsapp: "Pergunte no WhatsApp", planStay: "Planeje sua estadia", interested: "Interessado nesta estadia?",
+    messageWa: "Fale conosco no WhatsApp — uma pessoa real da nossa equipe vai te contar tudo sobre {name} e como se encaixa na sua viagem.",
+    sendEnquiry: "Envie-nos uma consulta e uma pessoa real da nossa equipe vai te contar tudo sobre {name} e como se encaixa na sua viagem.",
+    chatWa: "Conversar no WhatsApp", enquireStay: "Consultar sobre esta estadia", noObligation: "Sem compromisso — normalmente respondemos em poucas horas.",
+    moreStays: "Mais estadias", otherPlaces: "Outros lugares para ficar.", browseDest: "Ver destinos", destinations: "Destinos",
+  },
   navChildren: { dayTours: "Passeios de um dia", travelPackages: "Pacotes de viagem" },
   cta: "Peça um orçamento",
   langLabel: "Idioma",

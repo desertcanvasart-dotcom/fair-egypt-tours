@@ -82,7 +82,7 @@ const en: BookingStrings = {
   heroTitleLead: "Book your trip,",
   heroTitleEm: "the fair way.",
   heroSub:
-    "Reserve one of our tours or have us build a custom itinerary around your dates, budget and interests. Either way you'll get a clear, itemised quote with no obligation — a real person replies, usually within hours.",
+    "Tell us your dates, your budget, and what you'd like to see, and we'll build a custom itinerary around you — with a clear, itemised quote and no obligation. A real person replies, usually within hours.",
   tabTour: "Book a tour",
   tabCustom: "Plan a custom trip",
   tabTourHint: "Pick one of our day tours or packages.",
@@ -154,7 +154,7 @@ const es: BookingStrings = {
   heroTitleLead: "Reserva tu viaje,",
   heroTitleEm: "de forma justa.",
   heroSub:
-    "Reserva uno de nuestros tours o pídenos que diseñemos un itinerario a medida según tus fechas, presupuesto e intereses. En cualquier caso recibirás un presupuesto claro y detallado, sin compromiso — te responde una persona real, normalmente en pocas horas.",
+    "Cuéntanos tus fechas, tu presupuesto y lo que te gustaría ver, y diseñaremos un itinerario a tu medida — con un presupuesto claro y detallado, sin compromiso. Te responde una persona real, normalmente en pocas horas.",
   tabTour: "Reservar un tour",
   tabCustom: "Planear un viaje a medida",
   tabTourHint: "Elige una de nuestras excursiones o paquetes.",
@@ -226,7 +226,7 @@ const pt: BookingStrings = {
   heroTitleLead: "Reserve sua viagem,",
   heroTitleEm: "do jeito justo.",
   heroSub:
-    "Reserve um dos nossos passeios ou peça que montemos um itinerário sob medida de acordo com suas datas, orçamento e interesses. De qualquer forma, você recebe um orçamento claro e detalhado, sem compromisso — uma pessoa real responde, normalmente em poucas horas.",
+    "Conte-nos suas datas, seu orçamento e o que gostaria de ver, e montaremos um itinerário sob medida para você — com um orçamento claro e detalhado, sem compromisso. Uma pessoa real responde, normalmente em poucas horas.",
   tabTour: "Reservar um passeio",
   tabCustom: "Planejar uma viagem sob medida",
   tabTourHint: "Escolha um dos nossos passeios ou pacotes.",
