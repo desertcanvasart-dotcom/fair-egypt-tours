@@ -96,7 +96,7 @@ export const tours: TourDetail[] = [
     ],
     included: BASE_INCLUDED,
     notIncluded: EXCLUDED_OPT_LUNCH,
-    gallery: [D("cairo/pyramids.jpg"), T("giza-camel.jpg"), D("cairo/hero.jpg"), T("giza-desert.jpg"), T("giza-inside.jpg"), T("giza-night.jpg")],
+    gallery: [D("cairo/pyramids.jpg"), T("giza-camel.jpg"), D("cairo/hero.jpg"), T("giza-desert.jpg"), T("giza-inside.jpg"), T("giza-night.jpg"), "/img/real/giza-sphinx-couple.jpg", "/img/real/giza-pyramid-blocks.jpg", "/img/real/giza-great-pyramid-arms-open.jpg"],
   },
 
   /* ───────────────── 2. Dahshur, Memphis & Saqqara ───────────────── */
@@ -141,7 +141,7 @@ export const tours: TourDetail[] = [
     ],
     included: WITH_LUNCH,
     notIncluded: STD_EXCLUDED,
-    gallery: [D("cairo/saqqara.jpg"), T("dahshur-bent.jpg"), T("dahshur-red.jpg"), T("memphis-ramses.jpg"), T("saqqara-carving.jpg"), T("saqqara-entrance.jpg")],
+    gallery: [D("cairo/saqqara.jpg"), T("dahshur-bent.jpg"), T("dahshur-red.jpg"), T("memphis-ramses.jpg"), T("saqqara-carving.jpg"), T("saqqara-entrance.jpg"), "/img/real/saqqara-step-pyramid-couple.jpg"],
   },
 
   /* ─────────────────── 3. Grand Egyptian Museum ─────────────────── */
@@ -230,7 +230,7 @@ export const tours: TourDetail[] = [
     ],
     included: [...WITH_LUNCH, "Return transfers Cairo ↔ Alexandria"],
     notIncluded: STD_EXCLUDED,
-    gallery: [D("alexandria/catacombs.jpg"), D("alexandria/pompey.jpg"), D("alexandria/qaitbay.jpg"), D("alexandria/montaza.jpg"), T("alex-library.jpg"), T("alex-amphitheatre.jpg")],
+    gallery: [D("alexandria/catacombs.jpg"), D("alexandria/pompey.jpg"), D("alexandria/qaitbay.jpg"), D("alexandria/montaza.jpg"), T("alex-library.jpg"), T("alex-amphitheatre.jpg"), "/img/real/alexandria-catacombs-kom-el-shoqafa.jpg", "/img/real/alexandria-pompeys-pillar.jpg"],
   },
 
   /* ───────────────────── 5. Fayoum Oasis Adventure ───────────────────── */
@@ -275,7 +275,7 @@ export const tours: TourDetail[] = [
     ],
     included: [...WITH_LUNCH, "Return transfers Cairo ↔ Fayoum", "4x4 off-road desert vehicle", "Bedouin tea"],
     notIncluded: STD_EXCLUDED,
-    gallery: [T("fayoum-lake.jpg"), T("fayoum-safari.jpg"), T("desert-tea.jpg"), T("desert-buggy.jpg"), T("desert-camel.jpg")],
+    gallery: [T("fayoum-lake.jpg"), T("fayoum-safari.jpg"), T("desert-tea.jpg"), T("desert-buggy.jpg"), T("desert-camel.jpg"), "/img/real/fayoum-wadi-el-rayan-waterfalls.jpg", "/img/real/fayoum-desert-sand-spray.jpg", "/img/real/fayoum-desert-4x4-group.jpg"],
   },
 
   /* ───────────────────────── 6. Cairo City ───────────────────────── */
@@ -412,7 +412,7 @@ export const tours: TourDetail[] = [
     ],
     included: WITH_LUNCH,
     notIncluded: STD_EXCLUDED,
-    gallery: [D("cairo/saqqara.jpg"), T("saqqara-carving.jpg"), D("cairo/citadel.jpg"), T("coptic-hanging.jpg"), D("cairo/khan.jpg"), T("islamic-muizz.jpg")],
+    gallery: [D("cairo/saqqara.jpg"), T("saqqara-carving.jpg"), D("cairo/citadel.jpg"), T("coptic-hanging.jpg"), D("cairo/khan.jpg"), T("islamic-muizz.jpg"), "/img/real/saqqara-step-pyramid-group.jpg"],
   },
 
   /* ─────────── 9. Giza Pyramids, Papyrus & GEM ─────────── */
@@ -457,7 +457,7 @@ export const tours: TourDetail[] = [
     ],
     included: WITH_LUNCH,
     notIncluded: STD_EXCLUDED,
-    gallery: [D("cairo/pyramids.jpg"), T("giza-camel.jpg"), D("cairo/gem.jpg"), T("museum-mask.jpg"), T("museum-statues.jpg"), D("cairo/g-museum.jpg")],
+    gallery: [D("cairo/pyramids.jpg"), T("giza-camel.jpg"), D("cairo/gem.jpg"), T("museum-mask.jpg"), T("museum-statues.jpg"), D("cairo/g-museum.jpg"), "/img/real/giza-sphinx-traveller.jpg"],
   },
 
   /* ───────────────────── 10. Ultimate Pyramids ───────────────────── */
@@ -502,7 +502,7 @@ export const tours: TourDetail[] = [
     ],
     included: WITH_LUNCH,
     notIncluded: STD_EXCLUDED,
-    gallery: [D("cairo/saqqara.jpg"), T("dahshur-bent.jpg"), T("dahshur-red.jpg"), T("giza-desert.jpg"), D("cairo/hero.jpg"), T("giza-camel.jpg")],
+    gallery: [D("cairo/saqqara.jpg"), T("dahshur-bent.jpg"), T("dahshur-red.jpg"), T("giza-desert.jpg"), D("cairo/hero.jpg"), T("giza-camel.jpg"), "/img/real/giza-pyramid-traveller.jpg", "/img/real/saqqara-step-pyramid-traveller.jpg"],
   },
 
   /* ─────────── 11. Memphis, Saqqara & Giza ─────────── */
@@ -547,7 +547,7 @@ export const tours: TourDetail[] = [
     ],
     included: BASE_INCLUDED,
     notIncluded: EXCLUDED_OPT_LUNCH,
-    gallery: [T("memphis-ramses.jpg"), D("cairo/saqqara.jpg"), T("saqqara-carving.jpg"), D("cairo/hero.jpg"), T("giza-camel.jpg"), T("giza-desert.jpg")],
+    gallery: [T("memphis-ramses.jpg"), D("cairo/saqqara.jpg"), T("saqqara-carving.jpg"), D("cairo/hero.jpg"), T("giza-camel.jpg"), T("giza-desert.jpg"), "/img/real/giza-sphinx-traveller-sign.jpg"],
   },
 
   /* ─────────────── 12. Giza Desert Safari by Beach Buggy ─────────────── */
@@ -589,7 +589,7 @@ export const tours: TourDetail[] = [
     ],
     included: ["Private hotel pickup & drop-off", "Air-conditioned vehicle & professional driver", "1-hour beach-buggy desert safari", "Bottled water"],
     notIncluded: ["Guide (optional add-on)", "Gratuities (at your discretion)", "Personal expenses"],
-    gallery: [T("desert-buggy.jpg"), T("giza-camel.jpg"), T("giza-desert.jpg"), T("fayoum-safari.jpg"), T("desert-camel.jpg")],
+    gallery: [T("desert-buggy.jpg"), T("giza-camel.jpg"), T("giza-desert.jpg"), T("fayoum-safari.jpg"), T("desert-camel.jpg"), "/img/real/desert-dune-travellers.jpg"],
   },
 {
     "slug": "cairo-alexandria-fayoum-tour",

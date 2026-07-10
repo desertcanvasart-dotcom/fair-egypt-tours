@@ -130,7 +130,7 @@ export const aboutDefault: AboutContent = {
       "Fair Egypt Tours began with a simple frustration: travellers were forced to choose between cheap trips that felt careless and luxury agencies that charged a fortune for the same sights. We knew there was a better, fairer middle.",
       "So we built it. A local team, transparent itemised pricing, licensed guides, private air-conditioned transport, and real human support from the first message to the final drop-off. Lower prices should never mean poor communication, rushed tours, or hidden costs.",
     ],
-    image: "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1000&q=80",
+    image: "/img/real/nile-cruise-galabeya-night.jpg",
   },
   stats,
   values: [

@@ -105,6 +105,20 @@ async function main() {
     }
   }
 
+  // One-off, idempotent: swap the About story photo from the old stock image to
+  // the owner's real photo. Only touches it if it is still the stock URL, so a
+  // custom image chosen in the dashboard is never overwritten.
+  const OLD_STORY_IMG = "https://images.unsplash.com/photo-1572252009286-268acec5ca0a?auto=format&fit=crop&w=1000&q=80";
+  const aboutRow = await prisma.pageContent.findUnique({ where: { key: "about" } });
+  if (aboutRow) {
+    const data = aboutRow.data as unknown as { story?: { image?: string } };
+    if (data?.story?.image === OLD_STORY_IMG) {
+      data.story!.image = "/img/real/nile-cruise-galabeya-night.jpg";
+      await prisma.pageContent.update({ where: { key: "about" }, data: { data: data as object } });
+      console.log("  pageContent: about story image -> real photo");
+    }
+  }
+
   // Admin account. Password is only set on first creation — re-seeding never
   // overwrites it, so a changed password is preserved.
   const adminEmail = (process.env.ADMIN_EMAIL || "desertcanvasart@gmail.com").toLowerCase();
